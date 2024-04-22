@@ -2,8 +2,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import '../styles/global.css';
 import ReactQueryProvider from './_react-query/ReactQueryProvider';
 import Header from './_components/header/Header';
+import { ReactNode } from 'react';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode; types: ReactNode }) {
   return (
     <html lang="en">
       <body>
