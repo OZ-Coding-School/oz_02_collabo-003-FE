@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ContentTitleProps {
-  title: TabType;
+  title: string;
 }
 
 function ContentTitle({ title }: ContentTitleProps) {

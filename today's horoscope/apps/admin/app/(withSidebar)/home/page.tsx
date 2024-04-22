@@ -3,11 +3,12 @@ import HomeContent from './_components/HomeContent';
 import ShortcutsLink from './_components/ShortcutsLink';
 import routes from '../../_constants/routes';
 import ShortcutsButton from './_components/ShortcutsButton';
+import MainContainer from '../../_components/mainContainer/MainContainer';
 
 function Home() {
   return (
-    <div className="w-full border-t-[1px] border-gray-100">
-      <div className="p-10 grid grid-cols-2 gap-14">
+    <MainContainer>
+      <div className="grid grid-cols-2 gap-14">
         <HomeContent title="관리자 설정">
           <li>관리자 관리 및 정보 수정</li>
           <ShortcutsLink href={routes.ADMIN} />
@@ -23,7 +24,7 @@ function Home() {
           <ShortcutsButton />
         </HomeContent>
       </div>
-    </div>
+    </MainContainer>
   );
 }
 
