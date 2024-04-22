@@ -1,13 +1,15 @@
 import React, { PropsWithChildren } from 'react';
 
 interface TableButtonProps {
-  bgColor: string;
+  isClickedButton: boolean;
   onClick: () => void;
 }
 
-function TableButton({ children, bgColor, onClick }: PropsWithChildren<TableButtonProps>) {
+function TableButton({ children, isClickedButton, onClick }: PropsWithChildren<TableButtonProps>) {
   return (
-    <button onClick={onClick} className={`px-4 py-1 bg-${bgColor} text-white text-md rounded-lg`}>
+    <button
+      onClick={onClick}
+      className={`px-4 py-1 text-white text-md rounded-lg ${isClickedButton ? 'bg-blue-500' : 'bg-gray-400'}`}>
       {children}
     </button>
   );

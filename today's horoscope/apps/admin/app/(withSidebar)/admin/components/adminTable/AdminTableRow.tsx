@@ -23,7 +23,7 @@ function AdminTableRow({ adminUser }: AdminTableRowProps) {
       <TableCell>{adminUser.contact}</TableCell>
       <TableCell>{adminUser.registeredDate}</TableCell>
       <TableCell>
-        <TableButton onClick={handleClickButton} bgColor={isClickedButton ? 'blue-500' : 'gray-400'}>
+        <TableButton onClick={handleClickButton} isClickedButton={isClickedButton}>
           {isClickedButton ? '저장' : '수정'}
         </TableButton>
       </TableCell>
