@@ -9,7 +9,7 @@ function ShortcutsLink({ href }: ShortcutsLinkProps) {
   return (
     <Link
       href={href}
-      className="absolute bottom-4 right-4 w-24 h-8 flex justify-center items-center bg-blue-300 text-white rounded-md">
+      className="absolute bottom-4 right-4 w-24 h-8 flex justify-center items-center bg-blue-500 text-white rounded-md">
       바로 가기
     </Link>
   );

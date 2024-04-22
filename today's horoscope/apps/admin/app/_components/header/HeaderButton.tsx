@@ -12,6 +12,7 @@ interface HeaderButtonProps {
 function HeaderButton({ content, onClick }: HeaderButtonProps) {
   const pathname = usePathname();
   if (content === '홈으로' && pathname === routes.HOME) return;
+
   return (
     <button onClick={onClick} className="font-medium">
       {content}
