@@ -4,14 +4,17 @@ import React from 'react';
 import HeaderButton from './HeaderButton';
 import { usePathname, useRouter } from 'next/navigation';
 import routes from '../../_constants/routes';
+import useFunctionStore from '../../_stores/useFucntionStore';
 
 function HeaderButtonSection() {
   const pathname = usePathname();
   const router = useRouter();
+  const { setIsOpenedFunction } = useFunctionStore();
 
   if (pathname === routes.LOGIN) return;
 
   const backToHome = () => {
+    setIsOpenedFunction(false);
     router.push(routes.HOME);
   };
 
