@@ -10,10 +10,6 @@ function Home() {
           <li>관리자 관리 및 정보 수정</li>
           <ShortcutsLink href="" />
         </HomeContent>
-        <HomeContent title="회원 관리">
-          <li>소셜 회원 가입 정보 확인</li>
-          <ShortcutsLink href="" />
-        </HomeContent>
         <HomeContent title="통계">
           <li>방문자 통계, 회원 가입 통계</li>
           <li>기간 조회 가능</li>

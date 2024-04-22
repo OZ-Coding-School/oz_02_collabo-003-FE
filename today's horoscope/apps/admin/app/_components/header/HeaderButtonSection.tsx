@@ -3,19 +3,20 @@
 import React from 'react';
 import HeaderButton from './HeaderButton';
 import { usePathname, useRouter } from 'next/navigation';
+import routes from '../../_constants/routes';
 
 function HeaderButtonSection() {
   const pathname = usePathname();
   const router = useRouter();
 
-  if (pathname === '/') return;
+  if (pathname === routes.LOGIN) return;
 
   const backToHome = () => {
-    router.push('/home');
+    router.push(routes.HOME);
   };
 
   const handleLogout = () => {
-    router.push('/');
+    router.push(routes.LOGIN);
   };
 
   return (

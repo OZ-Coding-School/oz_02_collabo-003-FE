@@ -2,13 +2,14 @@
 import React, { FormEvent } from 'react';
 import LoginInput from './LoginInput';
 import { useRouter } from 'next/navigation';
+import routes from '../../_constants/routes';
 
 function LoginForm() {
   const router = useRouter();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push('/home');
+    router.push(routes.HOME);
   };
 
   return (
