@@ -15,7 +15,7 @@ function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout} className="absolute bottom-5 right-10 flex gap-[60px] font-medium">
+    <button onClick={handleLogout} className="absolute bottom-5 right-0 flex gap-[60px] font-medium">
       로그아웃
     </button>
   );
