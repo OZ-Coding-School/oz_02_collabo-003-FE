@@ -5,7 +5,7 @@ import LogoutButton from './LogoutButton';
 
 function Header() {
   return (
-    <header className="w-[1440px] h-[150px] mx-auto relative flex justify-center items-center">
+    <header className="h-[150px] relative flex justify-center items-center">
       <Image src={Logo} alt="Logo" className="w-44" />
 
       <LogoutButton />
