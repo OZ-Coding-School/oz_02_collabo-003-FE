@@ -4,7 +4,7 @@ import routes from '../../_constants/routes';
 
 function Sidebar() {
   return (
-    <div className="h-[calc(100vh-150px)]">
+    <div className={`h-[calc(100vh+50px)]`}>
       <nav className="flex flex-col gap-2 min-w-[250px] p-4 border-t-[2px] border-gray-100 sticky top-0">
         <SidebarTab content="HOME" href={routes.HOME} />
         <SidebarTab content="관리자 설정" href={routes.ADMIN} />

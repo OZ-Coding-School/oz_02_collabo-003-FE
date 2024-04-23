@@ -1,7 +1,7 @@
 import React from 'react';
-import TableHeader from '../../../../../../_components/table/TableHeader';
+import TableHeader from '../../../../../../../_components/table/TableHeader';
 
-function PushMsTableHeader() {
+function PushMsPromptTableHeader() {
   return (
     <thead>
       <tr>
@@ -13,4 +13,4 @@ function PushMsTableHeader() {
   );
 }
 
-export default PushMsTableHeader;
+export default PushMsPromptTableHeader;
