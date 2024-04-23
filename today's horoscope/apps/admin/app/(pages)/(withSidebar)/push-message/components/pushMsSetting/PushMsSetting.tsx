@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DropdownButton from './DropdownButton';
 import DropdownList from './DropdownList';
 import DropdownItems from './DropdownItems';
-import useDropdownStore from '../../../../_stores/useDropdownStore';
+import useDropdownStore from '../../../../../_stores/useDropdownStore';
 
-function PushMessageSetting() {
+function PushMsSetting() {
   const { isOpenedHourDropdown, isOpenedMinuteDropdown, hourDropdownItem, minuteDropdownItem } = useDropdownStore();
   const [dropdownButton, setDropdownButton] = useState([
     {
@@ -61,4 +61,4 @@ function PushMessageSetting() {
   );
 }
 
-export default PushMessageSetting;
+export default PushMsSetting;

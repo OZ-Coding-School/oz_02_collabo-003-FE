@@ -1,7 +1,7 @@
 import Tab from '../../../../_components/tab/Tab';
 import useTabStore from '../../../../_stores/useTabStore';
 
-function PushMessageTabs() {
+function PushMsTabs() {
   const { tabId, setTabId } = useTabStore();
 
   return (
@@ -16,4 +16,4 @@ function PushMessageTabs() {
   );
 }
 
-export default PushMessageTabs;
+export default PushMsTabs;
