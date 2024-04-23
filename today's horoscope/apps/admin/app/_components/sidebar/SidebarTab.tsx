@@ -21,7 +21,7 @@ function SidebarTab({ content, href }: SidebarTabProps) {
         <React.Fragment>
           <button
             onClick={() => setIsOpenedFunction(!isOpenedFunction)}
-            className={`relative hover:bg-blue-700 ${isOpenedFunction ? 'bg-blue-700' : 'bg-blue-400'} transition-colors text-white py-[10px] rounded-md`}>
+            className={`relative hover:bg-blue-700 ${pathname === routes.PUSH_MESSAGE || pathname === routes.CONTENTS || isOpenedFunction ? 'bg-blue-700' : 'bg-blue-400'} transition-colors text-white py-[10px] rounded-md`}>
             {content}
             <p className="absolute top-[50%] translate-y-[-50%] right-[12px] text-lg">{isOpenedFunction ? '-' : '+'}</p>
           </button>
