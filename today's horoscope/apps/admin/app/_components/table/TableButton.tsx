@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 
 interface TableButtonProps {
-  isClickedButton: boolean;
+  isClickedButton?: boolean;
   onClick: () => void;
 }
 
