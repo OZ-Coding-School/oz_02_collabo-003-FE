@@ -1,35 +1,27 @@
 'use client';
 
-import { useState } from 'react';
 import DropdownButton from './DropdownButton';
 import DropdownList from './DropdownList';
 import DropdownItems from './DropdownItems';
 import useDropdownStore from '../../../../../_stores/useDropdownStore';
+import Image from 'next/image';
+import { Dropdown } from '../../../../../_images';
 
 function PushMsSetting() {
   const { isOpenedHourDropdown, isOpenedMinuteDropdown, hourDropdownItem, minuteDropdownItem } = useDropdownStore();
-  const [dropdownButton, setDropdownButton] = useState([
-    {
-      id: 1,
-      clicked: false,
-    },
-    {
-      id: 2,
-      clicked: false,
-    },
-  ]);
 
   return (
     <form className="mt-10 w-[500px]">
       <h2 className="w-full bg-gray-400 text-white px-4 py-2 font-semibold">발송 시간 설정</h2>
       <section className="w-full h-28 flex justify-center items-center gap-4">
         <section className="relative">
-          <DropdownButton
-            type="hour"
-            content={`${hourDropdownItem}시`}
-            dropdownButton={dropdownButton[0]}
-            setDropdownButton={setDropdownButton}
-          />
+          <DropdownButton type="hour" content={`${hourDropdownItem}시`}>
+            <Image
+              src={Dropdown}
+              alt="dropdown"
+              className={`w-[20px] ${isOpenedHourDropdown ? 'rotate-180' : ''} transition-all select-none`}
+            />
+          </DropdownButton>
 
           {isOpenedHourDropdown && (
             <DropdownList>
@@ -39,12 +31,13 @@ function PushMsSetting() {
         </section>
 
         <section className="relative">
-          <DropdownButton
-            type="minute"
-            content={`${minuteDropdownItem}분`}
-            dropdownButton={dropdownButton[1]}
-            setDropdownButton={setDropdownButton}
-          />
+          <DropdownButton type="minute" content={`${minuteDropdownItem}분`}>
+            <Image
+              src={Dropdown}
+              alt="dropdown"
+              className={`w-[20px] ${isOpenedMinuteDropdown ? 'rotate-180' : ''} transition-all select-none`}
+            />
+          </DropdownButton>
 
           {isOpenedMinuteDropdown && (
             <DropdownList>
