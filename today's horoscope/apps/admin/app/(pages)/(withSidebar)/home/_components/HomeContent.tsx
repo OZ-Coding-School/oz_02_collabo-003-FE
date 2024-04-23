@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import ContentTitle from '../../../_components/contentTitle/ContentTitle';
+import ContentTitle from '../../../../_components/contentTitle/ContentTitle';
 import HomeContentDetail from './HomeContentDetail';
 
 interface HomeContentProps {

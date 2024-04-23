@@ -1,9 +1,9 @@
 import React from 'react';
 import HomeContent from './_components/HomeContent';
 import ShortcutsLink from './_components/ShortcutsLink';
-import routes from '../../_constants/routes';
+import routes from '../../../_constants/routes';
 import ShortcutsButton from './_components/ShortcutsButton';
-import MainContainer from '../../_components/mainContainer/MainContainer';
+import MainContainer from '../../../_components/mainContainer/MainContainer';
 
 function Home() {
   return (

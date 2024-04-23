@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import useFunctionStore from '../../../_stores/useFucntionStore';
+import useFunctionStore from '../../../../_stores/useFucntionStore';
 
 function ShortcutsButton() {
   const { isOpenedFunction, setIsOpenedFunction } = useFunctionStore();

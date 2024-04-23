@@ -2,7 +2,7 @@
 import React, { FormEvent } from 'react';
 import LoginInput from './LoginInput';
 import { useRouter } from 'next/navigation';
-import routes from '../../_constants/routes';
+import routes from '../../../_constants/routes';
 
 function LoginForm() {
   const router = useRouter();
