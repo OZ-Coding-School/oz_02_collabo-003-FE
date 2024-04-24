@@ -1,43 +1,17 @@
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
 import { NextArrow, PrevArrow } from '../../_images';
+import usePagination from '../../_hooks/usePagination';
 
 interface PaginationProps {
   totalItems: number;
   itemsPerPage: number;
-  onPageChange: (page: number) => void;
 }
 
-function Pagination({ totalItems, itemsPerPage, onPageChange }: PaginationProps) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  useEffect(() => {
-    onPageChange(currentPage);
-  }, [currentPage, onPageChange]);
-
-  const pageNumbers: number[] = [];
-  const visiblePages = 9;
-
-  let startPage = currentPage - Math.floor(visiblePages / 2);
-  startPage = Math.max(startPage, 1);
-  let endPage = startPage + visiblePages - 1;
-  if (endPage > totalPages) {
-    endPage = totalPages;
-    startPage = Math.max(endPage - visiblePages + 1, 1);
-  }
-
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i);
-  }
-
-  function handlePrevious() {
-    setCurrentPage(prev => Math.max(prev - 1, 1));
-  }
-
-  function handleNext() {
-    setCurrentPage(prev => Math.min(prev + 1, totalPages));
-  }
+function Pagination({ totalItems, itemsPerPage }: PaginationProps) {
+  const { currentPage, handleNext, handlePrevious, pageNumbers, setCurrentPage, totalPages } = usePagination({
+    totalItems,
+    itemsPerPage,
+  });
 
   return (
     <div className="flex justify-center space-x-2">

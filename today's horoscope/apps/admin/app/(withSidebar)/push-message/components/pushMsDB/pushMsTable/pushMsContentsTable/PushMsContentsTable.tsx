@@ -7,9 +7,6 @@ function PushMsContentsTable() {
   const totalItems = 100;
   const itemsPerPage = 5;
 
-  function handlePageChange(page: number) {
-    console.log(`현재 페이지: ${page}`);
-  }
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full leading-normal">
@@ -21,7 +18,7 @@ function PushMsContentsTable() {
         </tbody>
       </table>
       <div className="mt-6">
-        <Pagination totalItems={totalItems} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} />
+        <Pagination totalItems={totalItems} itemsPerPage={itemsPerPage} />
       </div>
     </div>
   );
