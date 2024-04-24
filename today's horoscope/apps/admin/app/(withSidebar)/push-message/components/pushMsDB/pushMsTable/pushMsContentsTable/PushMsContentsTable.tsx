@@ -12,8 +12,8 @@ function PushMsContentsTable() {
       <table className="min-w-full leading-normal">
         <PushMsContentsTableHeader />
         <tbody>
-          {todayContents.map(content => (
-            <PushMsContentsTableRow key={content.date} content={content} />
+          {todayContents.map((content, i) => (
+            <PushMsContentsTableRow key={i} content={content} />
           ))}
         </tbody>
       </table>

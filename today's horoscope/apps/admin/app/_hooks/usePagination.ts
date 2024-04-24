@@ -25,11 +25,11 @@ function usePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
   }
 
   const handlePrevious = () => {
-    setCurrentPage(prev => Math.max(prev - 1, 1));
+    setCurrentPage(prev => prev - 1);
   };
 
   const handleNext = () => {
-    setCurrentPage(prev => Math.min(prev + 1, totalPages));
+    setCurrentPage(prev => prev + 1);
   };
 
   return { totalPages, handlePrevious, handleNext, currentPage, setCurrentPage, pageNumbers };
