@@ -11,14 +11,16 @@ function Home() {
   }
   return (
     <div className="main">
-      <header className="mainHeader">
-        <IoMenuOutline className="menuIcon" onClick={onclickMenuModal} />
-      </header>
-      <div className="mainContents">
-        <div className="mainLogo">오늘의 운세</div>
-        <Carousel />
+      <div className="stateBar">
+        <header className="mainHeader">
+          <IoMenuOutline className="menuIcon" onClick={onclickMenuModal} />
+        </header>
+        <div className="mainContents">
+          <div className="mainLogo">오늘의 운세</div>
+          <Carousel />
+        </div>
+        {menuModal ? <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} /> : null}
       </div>
-      {menuModal ? <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} /> : null}
     </div>
   );
 }
