@@ -3,9 +3,22 @@
   height: 1000px;
   margin: auto;
   background: linear-gradient(35deg, #f4cfd8, #94e4fd);
+}
+.mainHeader {
+  width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 24px;
+}
+.menuIcon {
+  width: 24px;
+  height: 24px;
+}
+.mainContents {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .mainLogo {
   width: 150px;
