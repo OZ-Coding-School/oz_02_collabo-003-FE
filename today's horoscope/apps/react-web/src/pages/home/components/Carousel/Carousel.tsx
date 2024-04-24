@@ -3,23 +3,24 @@ import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
+import { EffectCoverflow } from 'swiper/modules';
 
 function Carousel() {
   return (
     <div className="swiper-container">
       <Swiper
-        spaceBetween={-130}
-        slidesPerView={3}
-        slidesPerGroup={1}
-        effect={'coverflow'}
+        spaceBetween={-150}
         loop={true}
+        effect={'coverflow'}
         centeredSlides={true}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
           depth: 800,
           modifier: 1,
+          slideShadows: false,
         }}
+        modules={[EffectCoverflow]}
         className="swiper-wrapper">
         <SwiperSlide className="swiper-slide">
           <CarouselBanner title="오늘의 운세" content="content" />
