@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import CarouselBanner from './CarouselBanner';
+import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
