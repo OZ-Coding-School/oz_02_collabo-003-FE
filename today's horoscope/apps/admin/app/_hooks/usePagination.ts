@@ -25,8 +25,7 @@ function usePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
 
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
-    const date = new Date();
-    dateForPagination(date, i, pageDates);
+    dateForPagination(i, pageDates);
   }
 
   const handlePrevious = () => {

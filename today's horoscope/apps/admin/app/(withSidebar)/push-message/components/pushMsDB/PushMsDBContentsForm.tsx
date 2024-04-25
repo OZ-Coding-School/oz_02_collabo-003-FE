@@ -17,6 +17,7 @@ function PushMsDBContentsForm({ findPageFromDate, setCurrentPage }: PushMsDBCont
     const page = findPageFromDate(inputValue);
 
     if (page) {
+      console.log(page);
       setCurrentPage(page);
     } else {
       alert('해당 날짜에 대한 페이지를 찾을 수 없습니다.');

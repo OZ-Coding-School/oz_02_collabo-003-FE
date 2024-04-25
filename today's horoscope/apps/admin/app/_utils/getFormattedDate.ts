@@ -13,12 +13,14 @@ function getFormattedDate() {
   const monthDay = `${month}/${day}`;
 
   const adjustDate = (days: number) => {
+    const date = new Date();
     date.setDate(date.getDate() - days);
     const { month, day } = formatDigits(date);
     return `${month}/${day}`;
   };
 
-  const dateForPagination = (date: Date, i: number, pageDates: string[]) => {
+  const dateForPagination = (i: number, pageDates: string[]) => {
+    const date = new Date();
     date.setDate(date.getDate() + (i - 1));
     const { year, month, day } = formatDigits(date);
 
@@ -29,6 +31,7 @@ function getFormattedDate() {
   };
 
   const getDateForPage = (page: number) => {
+    const date = new Date();
     date.setDate(date.getDate() + (page - 1));
     const { year, month, day } = formatDigits(date);
     return `${year}${month}${day}`;

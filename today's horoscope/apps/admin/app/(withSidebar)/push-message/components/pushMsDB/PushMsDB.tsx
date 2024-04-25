@@ -7,7 +7,7 @@ import usePagination from '../../../../_hooks/usePagination';
 import DatePagination from '../../../../_components/pagination/DatePagination';
 
 function PushMsDB() {
-  const totalItems = 500;
+  const totalItems = 540;
   const itemsPerPage = 7;
   const {
     currentPage,
