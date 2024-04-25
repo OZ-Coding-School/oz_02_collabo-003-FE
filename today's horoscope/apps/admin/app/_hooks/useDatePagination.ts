@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import getFormattedDate from '../_utils/getFormattedDate';
+import getVisiblePages from '../_utils/getVisiblePages';
 
-interface UsePaginationProps {
+interface UseDatePaginationProps {
   totalItems: number;
   itemsPerPage: number;
 }
 
-function useDatePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
+function useDatePagination({ totalItems, itemsPerPage }: UseDatePaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const { dateForPagination, getDateForPage } = getFormattedDate();
@@ -15,13 +16,7 @@ function useDatePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
   const pageDates: string[] = [];
   const visiblePages = 7;
 
-  let startPage = currentPage - Math.floor(visiblePages / 2);
-  startPage = Math.max(startPage, 1);
-  let endPage = startPage + visiblePages - 1;
-  if (endPage > totalPages) {
-    endPage = totalPages;
-    startPage = Math.max(endPage - visiblePages + 1, 1);
-  }
+  const { startPage, endPage } = getVisiblePages(visiblePages, currentPage, totalPages);
 
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
