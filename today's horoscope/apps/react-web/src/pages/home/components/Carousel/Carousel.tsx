@@ -4,6 +4,7 @@ import './Csrousel.scss';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
+import DetailButton from '../DetailButton/DetailButton';
 
 function Carousel() {
   return (
@@ -23,16 +24,20 @@ function Carousel() {
         modules={[EffectCoverflow]}
         className="swiper-wrapper">
         <SwiperSlide className="swiper-slide">
-          <CarouselBanner title="오늘의 운세" content="content" />
+          <CarouselBanner title="오늘의 한마디" content="content" />
+          <DetailButton title="오늘의 운세" />
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
-          <CarouselBanner title="MBTI 운세" content="content" />
+          <CarouselBanner title="오늘의 운세" content="content" />
+          <DetailButton title="운세" />
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
           <CarouselBanner title="별자리 운세" content="content" />
+          <DetailButton title="운세" />
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
-          <CarouselBanner title="오늘의 한마디" content="content" />
+          <CarouselBanner title="MBTI 운세" content="content" />
+          <DetailButton title="운세" />
         </SwiperSlide>
       </Swiper>
     </div>

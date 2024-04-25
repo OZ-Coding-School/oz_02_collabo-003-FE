@@ -7,7 +7,7 @@
   margin: auto;
   position: relative;
   top: 0;
-  background: linear-gradient(35deg, #f4cfd8, #94e4fd);
+  background: linear-gradient(45deg, #ffc1f9, #5cc4ff);
 }
 .stateBar {
   width: 100%;
@@ -25,6 +25,7 @@
 .menuIcon {
   width: 24px;
   height: 24px;
+  margin: 0 16px;
 }
 .mainContents {
   display: flex;

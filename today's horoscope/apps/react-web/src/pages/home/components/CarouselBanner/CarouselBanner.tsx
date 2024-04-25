@@ -1,4 +1,3 @@
-import { MdKeyboardArrowDown } from 'react-icons/md';
 import './CarouselBanner.scss';
 
 interface carouselContents {
@@ -13,13 +12,6 @@ function CarouselBanner({ title, content }: carouselContents) {
         <h1 className="title">{title}</h1>
         <div className="content">{content}</div>
       </div>
-      <button className="contentsDetail">
-        운세
-        <br />
-        더보기
-        <br />
-        <MdKeyboardArrowDown size={30} />
-      </button>
     </div>
   );
 }
