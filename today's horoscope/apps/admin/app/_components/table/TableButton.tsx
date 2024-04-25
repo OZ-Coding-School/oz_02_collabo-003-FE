@@ -10,7 +10,7 @@ function TableButton({ children, isClickedButton, onClick, blue }: PropsWithChil
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-1 text-white text-md rounded-lg ${blue || isClickedButton ? 'bg-blue-500' : 'bg-gray-400'}`}>
+      className={`px-3 py-1 text-white text-md rounded-lg ${blue || isClickedButton ? 'bg-blue-500' : 'bg-gray-400'}`}>
       {children}
     </button>
   );

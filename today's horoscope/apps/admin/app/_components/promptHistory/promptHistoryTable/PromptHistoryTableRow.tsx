@@ -1,8 +1,10 @@
 'use client';
 
+import { ToastContainer, toast } from 'react-toastify';
 import TableCell from '../../../_components/table/TableCell';
 import TableButton from '../../table/TableButton';
 import { Prompt } from './fakeData';
+import React from 'react';
 
 interface PromptHistoryTableRowProps {
   prompt: Prompt;
@@ -12,24 +14,27 @@ function PromptHistoryTableRow({ prompt }: PromptHistoryTableRowProps) {
   const handleCopyClipBoard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      alert('클립보드에 링크가 복사되었습니다.');
+      toast.success('히스토리가 복사되었습니다.');
     } catch (e) {
-      alert('복사에 실패하였습니다');
+      toast.error('복사에 실패했습니다.');
     }
   };
 
   return (
-    <tr>
-      <TableCell size="sm">{prompt.date}</TableCell>
-      <TableCell textLeft size="xl">
-        {prompt.prompt}
-      </TableCell>
-      <TableCell size="sm">
-        <TableButton blue onClick={() => handleCopyClipBoard(prompt.prompt)}>
-          복사
-        </TableButton>
-      </TableCell>
-    </tr>
+    <React.Fragment>
+      <tr>
+        <TableCell size="sm">{prompt.date}</TableCell>
+        <TableCell textLeft size="xl">
+          {prompt.prompt}
+        </TableCell>
+        <TableCell size="sm">
+          <TableButton blue onClick={() => handleCopyClipBoard(prompt.prompt)}>
+            복사
+          </TableButton>
+        </TableCell>
+      </tr>
+      <ToastContainer />
+    </React.Fragment>
   );
 }
 
