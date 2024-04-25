@@ -1,7 +1,6 @@
 function getFormattedDate() {
   const date = new Date();
 
-  // 날짜 포맷팅을 위한 보조 함수 정의
   const formatDigits = (date: Date) => ({
     year: date.getFullYear().toString(),
     month: (date.getMonth() + 1).toString().padStart(2, '0'),
@@ -14,20 +13,28 @@ function getFormattedDate() {
   const monthDay = `${month}/${day}`;
 
   const adjustDate = (days: number) => {
-    const resultDate = new Date();
-    resultDate.setDate(resultDate.getDate() - days);
-    const { month, day } = formatDigits(resultDate);
+    date.setDate(date.getDate() - days);
+    const { month, day } = formatDigits(date);
     return `${month}/${day}`;
   };
 
-  const getSixMonthsAgoDate = () => {
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-    const { year, month, day } = formatDigits(sixMonthsAgo);
+  const dateForPagination = (date: Date, i: number, pageDates: string[]) => {
+    date.setDate(date.getDate() + (i - 1));
+    const { year, month, day } = formatDigits(date);
+
+    const formatNumber = (num: number) => (num < 10 ? '0' + num : num.toString());
+
+    const dateString = `${year}${formatNumber(Number(month))}${formatNumber(Number(day))}`;
+    pageDates.push(dateString);
+  };
+
+  const getDateForPage = (page: number) => {
+    date.setDate(date.getDate() + (page - 1));
+    const { year, month, day } = formatDigits(date);
     return `${year}${month}${day}`;
   };
 
-  return { yearMonthDay, monthDay, adjustDate, getSixMonthsAgoDate };
+  return { yearMonthDay, monthDay, adjustDate, dateForPagination, getDateForPage };
 }
 
 export default getFormattedDate;

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import getFormattedDate from '../_utils/getFormattedDate';
 
 interface UsePaginationProps {
   totalItems: number;
@@ -8,9 +9,11 @@ interface UsePaginationProps {
 function usePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const { dateForPagination, getDateForPage } = getFormattedDate();
 
   const pageNumbers: number[] = [];
-  const visiblePages = 9;
+  const pageDates: string[] = [];
+  const visiblePages = 7;
 
   let startPage = currentPage - Math.floor(visiblePages / 2);
   startPage = Math.max(startPage, 1);
@@ -22,17 +25,38 @@ function usePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
 
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
+    const date = new Date();
+    dateForPagination(date, i, pageDates);
   }
 
   const handlePrevious = () => {
-    setCurrentPage(prev => prev - 1);
+    setCurrentPage(prev => Math.max(1, prev - 7));
   };
 
   const handleNext = () => {
-    setCurrentPage(prev => prev + 1);
+    setCurrentPage(prev => Math.min(totalPages, prev + 7));
   };
 
-  return { totalPages, handlePrevious, handleNext, currentPage, setCurrentPage, pageNumbers };
+  const findPageFromDate = (inputDate: string) => {
+    for (let i = 1; i <= totalPages; i++) {
+      const pageDate = getDateForPage(i);
+      if (pageDate === inputDate) {
+        return i;
+      }
+    }
+    return null;
+  };
+
+  return {
+    totalPages,
+    handlePrevious,
+    handleNext,
+    currentPage,
+    setCurrentPage,
+    pageNumbers,
+    pageDates,
+    findPageFromDate,
+  };
 }
 
 export default usePagination;
