@@ -6,7 +6,7 @@ interface UsePaginationProps {
   itemsPerPage: number;
 }
 
-function usePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
+function useDatePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const { dateForPagination, getDateForPage } = getFormattedDate();
@@ -58,4 +58,4 @@ function usePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
   };
 }
 
-export default usePagination;
+export default useDatePagination;
