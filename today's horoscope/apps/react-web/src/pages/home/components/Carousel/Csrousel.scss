@@ -1,0 +1,19 @@
+.swiper-container {
+  width: 360px;
+  height: 670px;
+  margin: 0 auto;
+}
+.swiper-wrapper {
+  margin: 0 55px;
+}
+.swiper-slide-active {
+  z-index: 10;
+  transition: 0.3s all;
+  .contentsDetail {
+    display: block;
+  }
+}
+
+.swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
+  opacity: 0;
+}

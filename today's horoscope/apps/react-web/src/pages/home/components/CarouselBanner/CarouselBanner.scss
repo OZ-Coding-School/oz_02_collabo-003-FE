@@ -1,0 +1,57 @@
+.carouselBanner {
+  width: 240px;
+  height: 494px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carouselImage {
+  width: 240px;
+  height: 240px;
+  background-color: rgba(154, 154, 154, 20%);
+  position: fixed;
+  top: 185px;
+  z-index: 2;
+}
+.carouselContents {
+  width: 209px;
+  height: 260px;
+  padding: 50px 24px;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0 0 5px 1px rgb(198, 198, 198);
+  position: fixed;
+  top: 381px;
+}
+.carouselContents > .title {
+  width: 161px;
+  height: 24px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #191a1b;
+  line-height: 24px;
+  text-align: center;
+  margin-top: 60px;
+}
+.carouselContents > .content {
+  width: 161px;
+  height: 120px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #323538;
+  line-height: 20px;
+  text-align: center;
+}
+
+.contentsDetail {
+  width: 58px;
+  height: 58px;
+  padding-top: 10px;
+  border-radius: 50%;
+  border: 0;
+  font-size: 9px;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(45deg, #a3ff5b, #49c8ff);
+  display: none;
+}
