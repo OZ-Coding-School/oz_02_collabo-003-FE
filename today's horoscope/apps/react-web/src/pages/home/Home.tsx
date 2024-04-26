@@ -19,7 +19,7 @@ function Home() {
           <div className="mainLogo">오늘의 운세</div>
           <Carousel />
         </div>
-        {menuModal ? <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} /> : null}
+        <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />
       </div>
     </div>
   );

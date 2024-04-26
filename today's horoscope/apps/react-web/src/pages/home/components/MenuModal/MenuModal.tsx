@@ -6,9 +6,9 @@ type MenuModalProps = {
   onclickMenuModal: () => void;
 };
 
-function MenuModal({ onclickMenuModal }: MenuModalProps) {
+function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   return (
-    <div className="modalBackground">
+    <div className={menuModal ? 'modalBackground openModal' : 'modalBackground closeModal'}>
       <div className="menuModal">
         <header className="modalHeader">
           <IoCloseOutline onClick={onclickMenuModal} className="modalCloseIcon" />
