@@ -7,6 +7,21 @@ import { EffectCoverflow } from 'swiper/modules';
 import DetailButton from '../DetailButton/DetailButton';
 
 function Carousel() {
+  function ChangeBackgroundColor() {
+    const backgroundColor = [
+      'linear-gradient(45deg, #F4CFD8, #94E4FD)',
+      'linear-gradient(45deg, #8CBAFF, #D2FCF9)',
+      'linear-gradient(45deg, #B6EE94, #FCF3D2)',
+      'linear-gradient(45deg, #C6B2FE, #D2F9FC)',
+    ];
+    // const index = swiper.activeIndex;
+    const index = 0;
+    const mainElement: HTMLElement | null = document.querySelector('.main');
+    if (mainElement) {
+      mainElement.style.backgroundColor = backgroundColor[index + 1];
+    }
+  }
+
   return (
     <div className="swiper-container">
       <Swiper
@@ -21,6 +36,7 @@ function Carousel() {
           modifier: 1,
           slideShadows: false,
         }}
+        onSlideChange={ChangeBackgroundColor}
         modules={[EffectCoverflow]}
         className="swiper-wrapper">
         <SwiperSlide className="swiper-slide">

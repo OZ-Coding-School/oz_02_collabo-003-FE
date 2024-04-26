@@ -12,8 +12,17 @@
   .contentsDetail {
     display: block;
   }
+  .carouselContents {
+    box-shadow: 10px 10px 20px rgba(128, 127, 127, 0.4);
+  }
 }
 
 .swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
   opacity: 0;
+}
+
+@if (activeIndex == 1) {
+  .main {
+    background: linear-gradient(35deg, #d2fcf9, #8cbaff);
+  }
 }
