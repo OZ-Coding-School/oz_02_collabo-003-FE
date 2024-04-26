@@ -22,22 +22,22 @@ function DatePagination({
   totalPages,
 }: DatePaginationProps) {
   return (
-    <div className="flex justify-evenly space-x-2">
+    <div className="flex ">
       <button onClick={handlePrevious} disabled={currentPage === 1} className="px-4">
-        <Image src={PrevArrow} alt="prev-arrow" className="w-4" />
+        <Image src={PrevArrow} alt="prev-arrow" className="min-w-4" />
       </button>
 
       {pageDates.map((date, index) => (
         <button
           key={pageNumbers[index]}
           onClick={() => setCurrentPage(pageNumbers[index])}
-          className={`px-3 py-2 border rounded ${currentPage === pageNumbers[index] ? 'bg-blue-500 text-white' : 'bg-white'}`}>
+          className={`w-full px-3 py-2 border rounded ${currentPage === pageNumbers[index] ? 'bg-blue-500 text-white' : 'bg-white'}`}>
           {date}
         </button>
       ))}
 
       <button onClick={handleNext} disabled={currentPage === totalPages} className="px-4 ">
-        <Image src={NextArrow} alt="next-arrow" className="w-4" />
+        <Image src={NextArrow} alt="next-arrow" className="min-w-4" />
       </button>
     </div>
   );
