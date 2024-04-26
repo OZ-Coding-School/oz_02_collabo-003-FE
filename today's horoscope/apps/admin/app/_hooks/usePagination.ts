@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import getVisiblePages from '../_utils/getVisiblePages';
 
 interface UsePaginationProps {
   totalItems: number;
@@ -12,27 +13,28 @@ function usePagination({ totalItems, itemsPerPage }: UsePaginationProps) {
   const pageNumbers: number[] = [];
   const visiblePages = 9;
 
-  let startPage = currentPage - Math.floor(visiblePages / 2);
-  startPage = Math.max(startPage, 1);
-  let endPage = startPage + visiblePages - 1;
-  if (endPage > totalPages) {
-    endPage = totalPages;
-    startPage = Math.max(endPage - visiblePages + 1, 1);
-  }
+  const { startPage, endPage } = getVisiblePages(visiblePages, currentPage, totalPages);
 
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
 
   const handlePrevious = () => {
-    setCurrentPage(prev => prev - 1);
+    setCurrentPage(prev => Math.max(prev - 1, 1));
   };
 
   const handleNext = () => {
-    setCurrentPage(prev => prev + 1);
+    setCurrentPage(prev => Math.min(prev + 1, totalPages));
   };
 
-  return { totalPages, handlePrevious, handleNext, currentPage, setCurrentPage, pageNumbers };
+  return {
+    pageNumbers,
+    totalPages,
+    currentPage,
+    setCurrentPage,
+    handlePrevious,
+    handleNext,
+  };
 }
 
 export default usePagination;

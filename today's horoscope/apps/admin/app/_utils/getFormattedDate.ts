@@ -1,33 +1,26 @@
+import dayjs from 'dayjs';
+
 function getFormattedDate() {
-  const date = new Date();
+  const today = dayjs();
 
-  // 날짜 포맷팅을 위한 보조 함수 정의
-  const formatDigits = (date: Date) => ({
-    year: date.getFullYear().toString(),
-    month: (date.getMonth() + 1).toString().padStart(2, '0'),
-    day: date.getDate().toString().padStart(2, '0'),
-  });
+  const yearMonthDay = today.format('YYYYMMDD');
+  const monthDay = today.format('MM/DD');
 
-  const { year, month, day } = formatDigits(date);
-
-  const yearMonthDay = `${year}${month}${day}`;
-  const monthDay = `${month}/${day}`;
-
-  const adjustDate = (days: number) => {
-    const resultDate = new Date();
-    resultDate.setDate(resultDate.getDate() - days);
-    const { month, day } = formatDigits(resultDate);
-    return `${month}/${day}`;
+  const subtractDate = (day: number) => {
+    const date = today.subtract(day, 'day').format('MM/DD');
+    return date;
   };
 
-  const getSixMonthsAgoDate = () => {
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-    const { year, month, day } = formatDigits(sixMonthsAgo);
-    return `${year}${month}${day}`;
+  const dateForPagination = (i: number, pageDates: string[]) => {
+    const date = today.add(i - 1, 'day').format('YYYYMMDD');
+    pageDates.push(date);
   };
 
-  return { yearMonthDay, monthDay, adjustDate, getSixMonthsAgoDate };
+  const getDateForPage = (page: number) => {
+    return today.add(page - 1, 'day').format('YYYYMMDD');
+  };
+
+  return { yearMonthDay, monthDay, subtractDate, dateForPagination, getDateForPage };
 }
 
 export default getFormattedDate;

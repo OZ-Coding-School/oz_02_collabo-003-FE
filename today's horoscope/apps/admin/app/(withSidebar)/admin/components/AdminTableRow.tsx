@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import TableCell from '../../../_components/table/TableCell';
-import { AdminUser } from './AdminTable';
 import TableButton from '../../../_components/table/TableButton';
+import { AdminUser } from './fakeData';
 
 interface AdminTableRowProps {
   adminUser: AdminUser;

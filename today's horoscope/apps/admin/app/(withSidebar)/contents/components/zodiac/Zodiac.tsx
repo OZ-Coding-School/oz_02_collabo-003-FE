@@ -5,9 +5,9 @@ import useDatePagination from '../../../../_hooks/useDatePagination';
 import PromptHistory from '../../../../_components/promptHistory/PromptHistory';
 import PromptTable from '../../../../_components/promptTable/PromptTable';
 import ContentsForm from '../../../../_components/contentsForm/ContentsForm';
-import PushMsContentsTable from './pushMsTable/pushMsContentsTable/PushMsContentsTable';
+import ZodiacContentsTable from './zodiacContentsTable/ZodiacContentsTable';
 
-function PushMsDB() {
+function Zodiac() {
   const [isClickedHistoryButton, setIsClickedHistoryButton] = useState(false);
   const totalItems = 540;
   const itemsPerPage = 7;
@@ -39,11 +39,11 @@ function PushMsDB() {
             {...{ pageDates, handleNext, handlePrevious, currentPage, pageNumbers, setCurrentPage, totalPages }}
           />
         </div>
-        <PushMsContentsTable />
+        <ZodiacContentsTable />
       </section>
       {isClickedHistoryButton && <PromptHistory setIsClickedHistoryButton={setIsClickedHistoryButton} />}
     </div>
   );
 }
 
-export default PushMsDB;
+export default Zodiac;

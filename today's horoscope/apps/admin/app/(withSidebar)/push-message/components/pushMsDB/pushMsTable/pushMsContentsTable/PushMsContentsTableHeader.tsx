@@ -5,7 +5,7 @@ function PushMsContentsTableHeader() {
   return (
     <thead>
       <tr>
-        <TableHeader content="날짜" />
+        <TableHeader content="번호" />
         <TableHeader content="내용" />
         <TableHeader />
       </tr>

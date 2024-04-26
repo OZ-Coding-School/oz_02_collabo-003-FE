@@ -12,7 +12,7 @@ function Tab({ children, tabId, active, setTabId }: PropsWithChildren<TabProps>)
   return (
     <button
       onClick={() => setTabId(tabId)}
-      className={`table-cell border p-2 font-semibold ${active ? 'bg-gray-300' : 'br-white'}`}>
+      className={`w-36 table-cell border p-2 font-semibold ${active ? 'bg-gray-300' : 'br-white'}`}>
       {children}
     </button>
   );
