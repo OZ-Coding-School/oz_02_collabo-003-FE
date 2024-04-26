@@ -13,7 +13,6 @@ function PushMsContentsTable() {
           ))}
         </tbody>
       </table>
-      <div className="mt-6"></div>
     </div>
   );
 }

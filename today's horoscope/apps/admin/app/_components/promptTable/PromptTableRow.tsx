@@ -1,13 +1,13 @@
 import React, { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react';
-import TableCell from '../../../../../../_components/table/TableCell';
-import TableButton from '../../../../../../_components/table/TableButton';
-import pushMsPrompt from './fakeData';
+import TableCell from '../table/TableCell';
+import TableButton from '../table/TableButton';
+import pushMsPrompt from '../../(withSidebar)/push-message/components/pushMsDB/pushMsTable/pushMsPromptTable/fakeData';
 
-interface PushMsPromptTableRowProps {
+interface PromptTableRowProps {
   setIsClickedHistoryButton: Dispatch<SetStateAction<boolean>>;
 }
 
-function PushMsPromptTableRow({ setIsClickedHistoryButton }: PushMsPromptTableRowProps) {
+function PromptTableRow({ setIsClickedHistoryButton }: PromptTableRowProps) {
   const editTextareaRef = useRef<HTMLTextAreaElement>(null);
   const [isClickedEditButton, setIsClickedEditButton] = useState(false);
   const [editTextareaValue, setEditTextareaValue] = useState(pushMsPrompt.prompt);
@@ -55,4 +55,4 @@ function PushMsPromptTableRow({ setIsClickedHistoryButton }: PushMsPromptTableRo
   );
 }
 
-export default PushMsPromptTableRow;
+export default PromptTableRow;

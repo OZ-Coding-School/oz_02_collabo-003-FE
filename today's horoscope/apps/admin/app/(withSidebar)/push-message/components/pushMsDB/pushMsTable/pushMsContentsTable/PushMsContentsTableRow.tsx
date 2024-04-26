@@ -3,12 +3,12 @@ import TableCell from '../../../../../../_components/table/TableCell';
 import { TodayContent } from './fakeData';
 import TableButton from '../../../../../../_components/table/TableButton';
 
-interface PushMsContentsTableRow {
+interface ContentsTableRowProps {
   content: TodayContent;
   index: number;
 }
 
-function PushMsContentsTableRow({ content, index }: PushMsContentsTableRow) {
+function ContentsTableRow({ content, index }: ContentsTableRowProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState(content.content);
   const [isClickedButton, setIsClickedButton] = useState(false);
@@ -45,4 +45,4 @@ function PushMsContentsTableRow({ content, index }: PushMsContentsTableRow) {
   );
 }
 
-export default PushMsContentsTableRow;
+export default ContentsTableRow;

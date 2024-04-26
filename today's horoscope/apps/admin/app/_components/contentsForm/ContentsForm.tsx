@@ -1,14 +1,14 @@
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react';
-import getFormattedDate from '../../../../_utils/getFormattedDate';
-import getNumericValue from '../../../../_utils/getNumericValue';
+import getFormattedDate from '../../_utils/getFormattedDate';
+import getNumericValue from '../../_utils/getNumericValue';
 import { ToastContainer, toast } from 'react-toastify';
 
-interface PushMsDBContentsForm {
+interface ContentsFormProps {
   findPageFromDate: (inputDate: string) => number | null;
   setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
-function PushMsDBContentsForm({ findPageFromDate, setCurrentPage }: PushMsDBContentsForm) {
+function ContentsForm({ findPageFromDate, setCurrentPage }: ContentsFormProps) {
   const [inputValue, setInputValue] = useState('');
   const { yearMonthDay } = getFormattedDate();
   const { handleChange } = getNumericValue(setInputValue);
@@ -50,4 +50,4 @@ function PushMsDBContentsForm({ findPageFromDate, setCurrentPage }: PushMsDBCont
   );
 }
 
-export default PushMsDBContentsForm;
+export default ContentsForm;
