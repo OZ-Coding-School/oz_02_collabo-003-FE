@@ -1,35 +1,43 @@
 import Image from 'next/image';
+import React, { Dispatch, SetStateAction } from 'react';
 import { NextArrow, PrevArrow } from '../../_images';
-import usePagination from '../../_hooks/usePagination';
 
 interface PaginationProps {
-  totalItems: number;
-  itemsPerPage: number;
+  handlePrevious: () => void;
+  handleNext: () => void;
+  currentPage: number;
+  totalPages: number;
+  pageNumbers: number[];
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
-function Pagination({ totalItems, itemsPerPage }: PaginationProps) {
-  const { currentPage, handleNext, handlePrevious, pageNumbers, setCurrentPage, totalPages } = usePagination({
-    totalItems,
-    itemsPerPage,
-  });
-
+function Pagination({
+  handleNext,
+  handlePrevious,
+  currentPage,
+  totalPages,
+  pageNumbers,
+  setCurrentPage,
+}: PaginationProps) {
   return (
-    <div className="flex justify-center space-x-2">
+    <div className="w-fit mx-auto flex items-center h-20">
       <button onClick={handlePrevious} disabled={currentPage === 1} className="px-4">
         <Image src={PrevArrow} alt="prev-arrow" className="w-4" />
       </button>
 
-      {pageNumbers.map(page => (
-        <button
-          key={page}
-          onClick={() => setCurrentPage(page)}
-          className={`w-[50px] px-4 py-2 border rounded ${currentPage === page ? 'bg-blue-500 text-white' : 'bg-white'}`}>
-          {page}
-        </button>
-      ))}
+      <div className="flex gap-4">
+        {pageNumbers.map(number => (
+          <button
+            onClick={() => setCurrentPage(number)}
+            key={number}
+            className={`w-10 h-10 rounded-full text-xl ${currentPage === number && 'bg-blue-500 text-white'}`}>
+            {number}
+          </button>
+        ))}
+      </div>
 
       <button onClick={handleNext} disabled={currentPage === totalPages} className="px-4 ">
-        <Image src={NextArrow} alt="prev-arrow" className="w-4" />
+        <Image src={NextArrow} alt="next-arrow" className="w-4" />
       </button>
     </div>
   );

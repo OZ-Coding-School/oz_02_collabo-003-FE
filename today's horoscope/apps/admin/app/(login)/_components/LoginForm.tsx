@@ -1,15 +1,12 @@
 'use client';
 import React, { FormEvent } from 'react';
 import LoginInput from './LoginInput';
-import { useRouter } from 'next/navigation';
 import routes from '../../_constants/routes';
+import Link from 'next/link';
 
 function LoginForm() {
-  const router = useRouter();
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(routes.HOME);
   };
 
   return (
@@ -18,9 +15,12 @@ function LoginForm() {
         <LoginInput type="text" placeholder="아이디" />
         <LoginInput type="password" placeholder="비밀번호" />
       </section>
-      <button type="submit" className="bg-blue-400 text-white h-[55px] mt-4 rounded-lg text-lg">
+      <Link
+        href={routes.HOME}
+        type="submit"
+        className="flex justify-center items-center bg-blue-400 text-white h-[55px] mt-4 rounded-lg text-lg">
         로그인
-      </button>
+      </Link>
     </form>
   );
 }

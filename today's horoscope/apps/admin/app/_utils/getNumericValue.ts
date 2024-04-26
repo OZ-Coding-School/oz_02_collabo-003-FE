@@ -1,16 +1,13 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
-function getNumericValue<T>(setValue: Dispatch<SetStateAction<T>>) {
+function getNumericValue(setValue: Dispatch<SetStateAction<string>>) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     const numericValue = value.replace(/\D/g, '');
-    setValue(prev => ({
-      ...prev,
-      [name]: numericValue,
-    }));
+    setValue(numericValue);
   };
 
-  return handleChange;
+  return { handleChange };
 }
 
 export default getNumericValue;
