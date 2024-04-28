@@ -7,6 +7,7 @@ import { EffectCoverflow } from 'swiper/modules';
 import DetailButton from '../DetailButton/DetailButton';
 
 function Carousel() {
+  const Slices = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
   return (
     <div className="swiper-container">
       <Swiper
@@ -23,22 +24,12 @@ function Carousel() {
         }}
         modules={[EffectCoverflow]}
         className="swiper-wrapper">
-        <SwiperSlide className="swiper-slide">
-          <CarouselBanner title="오늘의 한마디" content="content" />
-          <DetailButton title="오늘의 운세" />
-        </SwiperSlide>
-        <SwiperSlide className="swiper-slide">
-          <CarouselBanner title="오늘의 운세" content="content" />
-          <DetailButton title="운세" />
-        </SwiperSlide>
-        <SwiperSlide className="swiper-slide">
-          <CarouselBanner title="별자리 운세" content="content" />
-          <DetailButton title="운세" />
-        </SwiperSlide>
-        <SwiperSlide className="swiper-slide">
-          <CarouselBanner title="MBTI 운세" content="content" />
-          <DetailButton title="운세" />
-        </SwiperSlide>
+        {Slices.map((SliceContent: string, index: number) => (
+          <SwiperSlide key={SliceContent} className="swiper-slide">
+            <CarouselBanner title={Slices[index]} content="content" />
+            <DetailButton title="운세" />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

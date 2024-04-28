@@ -20,9 +20,3 @@
 .swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
   opacity: 0;
 }
-
-@if (activeIndex == 1) {
-  .main {
-    background: linear-gradient(35deg, #d2fcf9, #8cbaff);
-  }
-}
