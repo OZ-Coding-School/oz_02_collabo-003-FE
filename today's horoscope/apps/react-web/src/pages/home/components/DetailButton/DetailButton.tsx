@@ -1,5 +1,5 @@
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import './DetailButton.scss';
+import styles from './DetailButton.module.scss';
 
 interface DetailTitle {
   title: string;
@@ -7,7 +7,7 @@ interface DetailTitle {
 function DetailButton({ title }: DetailTitle) {
   return (
     <div>
-      <button className="contentsDetail">
+      <button className={styles.contentsDetail}>
         {title}
         <br />
         더보기

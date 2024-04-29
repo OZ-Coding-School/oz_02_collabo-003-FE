@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Home.scss';
+import styles from './Home.module.scss';
 import Carousel from './components/Carousel/Carousel';
 import { IoMenuOutline } from 'react-icons/io5';
 import MenuModal from './components/MenuModal/MenuModal';
@@ -10,13 +10,13 @@ function Home() {
     setMenuModal(!menuModal);
   }
   return (
-    <div className="main">
-      <div className="stateBar">
-        <header className="mainHeader">
-          <IoMenuOutline className="menuIcon" onClick={onclickMenuModal} />
+    <div className={styles.main}>
+      <div className={styles.stateBar}>
+        <header className={styles.mainHeader}>
+          <IoMenuOutline className={styles.menuIcon} onClick={onclickMenuModal} />
         </header>
-        <div className="mainContents">
-          <div className="mainLogo">오늘의 운세</div>
+        <div className={styles.mainContents}>
+          <div className={styles.mainLogo}>오늘의 운세</div>
           <Carousel />
         </div>
         <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />

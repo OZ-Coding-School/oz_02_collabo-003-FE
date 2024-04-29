@@ -1,13 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
-import './Csrousel.scss';
+import './Carousel.module.scss';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import DetailButton from '../DetailButton/DetailButton';
 
 function Carousel() {
-  const Slices = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
+  const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
+
   return (
     <div className="swiper-container">
       <Swiper
@@ -24,9 +25,9 @@ function Carousel() {
         }}
         modules={[EffectCoverflow]}
         className="swiper-wrapper">
-        {Slices.map((SliceContent: string, index: number) => (
+        {Slides.map((SlideContent: string, index: number) => (
           <SwiperSlide key={index} className="swiper-slide">
-            <CarouselBanner title={SliceContent} content="content" />
+            <CarouselBanner title={SlideContent} content="content" />
             <DetailButton title="운세" />
           </SwiperSlide>
         ))}
