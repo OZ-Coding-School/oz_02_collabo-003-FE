@@ -11,31 +11,26 @@
 }
 .main {
   width: 100%;
-  height: 760px;
+  height: 998px;
   margin: auto;
-  position: relative;
-  top: 0;
   background: linear-gradient(45deg, #f4cfd8, #94e4fd);
 }
 .stateBar {
   width: 100%;
   height: 32px;
-  position: fixed;
-  top: 0;
 }
 .mainHeader {
   width: 360px;
-  margin-left: auto;
-  position: fixed;
-  top: 32px;
-  z-index: 5;
+  padding: 0 16px;
 }
 .menuIcon {
-  width: 24px;
-  height: 24px;
-  margin: 0 16px;
+  width: 30px;
+  height: 30px;
 }
 .mainContents {
+  width: 360px;
+  height: 998px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,8 +39,7 @@
   width: 160px;
   height: 72px;
   font-size: 30px;
+  text-align: center;
   color: white;
-  position: fixed;
-  top: 104px;
-  z-index: 40;
+  margin-top: 34px;
 }

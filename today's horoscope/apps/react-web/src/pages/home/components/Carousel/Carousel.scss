@@ -1,19 +1,21 @@
+@import '../DetailButton/DetailButton.module';
+@import '../CarouselBanner/CarouselBanner.module';
+
 .swiper-container {
   width: 360px;
-  height: 760px;
-  margin: auto;
+  height: 998px;
+  margin: 36px auto;
 }
 .swiper-wrapper {
-  margin: 0 55px;
+  margin: 0 60px;
 }
 .swiper-slide-active {
-  z-index: 10;
   transition: 0.3s all;
   .contentsDetail {
     display: block;
   }
   .carouselContents {
-    box-shadow: 10px 10px 20px rgba(128, 127, 127, 0.4);
+    box-shadow: 10px 10px 30px rgba(128, 127, 127, 0.4);
   }
 }
 

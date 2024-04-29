@@ -11,16 +11,15 @@ function Home() {
   }
   return (
     <div className={styles.main}>
-      <div className={styles.stateBar}>
-        <header className={styles.mainHeader}>
-          <IoMenuOutline className={styles.menuIcon} onClick={onclickMenuModal} />
-        </header>
-        <div className={styles.mainContents}>
-          <div className={styles.mainLogo}>오늘의 운세</div>
-          <Carousel />
-        </div>
-        <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />
+      <div className={styles.stateBar}></div>
+      <header className={styles.mainHeader}>
+        <IoMenuOutline className={styles.menuIcon} onClick={onclickMenuModal} />
+      </header>
+      <div className={styles.mainContents}>
+        <div className={styles.mainLogo}>오늘의 운세</div>
+        <Carousel />
       </div>
+      <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />
     </div>
   );
 }

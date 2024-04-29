@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
-import './Carousel.module.scss';
+import './Carousel.scss';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
@@ -12,7 +12,7 @@ function Carousel() {
   return (
     <div className="swiper-container">
       <Swiper
-        spaceBetween={-150}
+        spaceBetween={-200}
         loop={true}
         effect={'coverflow'}
         centeredSlides={true}
