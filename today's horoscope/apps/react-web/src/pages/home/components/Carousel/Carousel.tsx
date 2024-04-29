@@ -25,8 +25,8 @@ function Carousel() {
         modules={[EffectCoverflow]}
         className="swiper-wrapper">
         {Slices.map((SliceContent: string, index: number) => (
-          <SwiperSlide key={SliceContent} className="swiper-slide">
-            <CarouselBanner title={Slices[index]} content="content" />
+          <SwiperSlide key={index} className="swiper-slide">
+            <CarouselBanner title={SliceContent} content="content" />
             <DetailButton title="운세" />
           </SwiperSlide>
         ))}
