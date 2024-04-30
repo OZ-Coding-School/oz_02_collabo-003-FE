@@ -8,7 +8,6 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 
 function Carousel() {
   const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
-
   return (
     <div className="swiper-container">
       <Swiper
@@ -19,7 +18,7 @@ function Carousel() {
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
-          depth: 800,
+          depth: 1000,
           modifier: 1,
           slideShadows: false,
         }}
