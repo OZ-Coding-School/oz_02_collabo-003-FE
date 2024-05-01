@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
 import { IoChevronBack } from 'react-icons/io5';
+import MbtiModal from './components/MbtiModal/MbtiModal';
 
 interface InfoFormprops {
   title: string;
@@ -8,6 +10,10 @@ interface InfoFormprops {
 }
 
 function InfoForm({ title, content }: InfoFormprops) {
+  const [mbtiModal, setMbtiModal] = useState(false);
+  function ClickMbtiModal() {
+    setMbtiModal(!mbtiModal);
+  }
   return (
     <div>
       <div className={styles.stateBar}></div>
@@ -30,10 +36,11 @@ function InfoForm({ title, content }: InfoFormprops) {
           <label>생년월일</label>
           <input type="text" placeholder="생년월일을 설정해 주세요." />
           <label>MBTI</label>
-          <input type="text" placeholder="MBTI를 설정해 주세요." />
+          <input onClick={ClickMbtiModal} type="text" placeholder="MBTI를 설정해 주세요." />
           <SubmitButton content={content} />
         </form>
       </main>
+      {mbtiModal ? <MbtiModal /> : null}
     </div>
   );
 }
