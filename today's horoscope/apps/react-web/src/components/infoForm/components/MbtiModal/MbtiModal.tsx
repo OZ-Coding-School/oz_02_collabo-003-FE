@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import styles from './MbtiModal.module.scss';
+import styles from '../modal.module.scss';
 import './MbtiSwiper.scss';
 
 function BirthModal() {

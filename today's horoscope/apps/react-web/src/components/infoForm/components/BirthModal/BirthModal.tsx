@@ -1,4 +1,4 @@
-import styles from './BirthModal.module.scss';
+import styles from '../modal.module.scss';
 
 function BirthModal() {
   return (
