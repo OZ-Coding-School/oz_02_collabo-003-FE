@@ -3,6 +3,7 @@ import styles from './Home.module.scss';
 import Carousel from './components/Carousel/Carousel';
 import { IoMenuOutline } from 'react-icons/io5';
 import MenuModal from './components/MenuModal/MenuModal';
+import InfoForm from '../../components/infoForm/InfoForm';
 
 function Home() {
   const [menuModal, setMenuModal] = useState<boolean>(false);
@@ -20,6 +21,7 @@ function Home() {
         <Carousel />
       </div>
       <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />
+      <InfoForm title="d" content="d" />
     </div>
   );
 }

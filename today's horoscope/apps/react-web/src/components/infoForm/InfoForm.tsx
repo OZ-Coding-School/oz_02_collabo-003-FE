@@ -3,6 +3,7 @@ import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
 import { IoChevronBack } from 'react-icons/io5';
 import MbtiModal from './components/MbtiModal/MbtiModal';
+import BirthModal from './components/MbtiModal/MbtiModal';
 
 interface InfoFormprops {
   title: string;
@@ -10,6 +11,11 @@ interface InfoFormprops {
 }
 
 function InfoForm({ title, content }: InfoFormprops) {
+  const [birthModal, setBirthModal] = useState(false);
+  function ClickBirthModal() {
+    setBirthModal(!birthModal);
+  }
+
   const [mbtiModal, setMbtiModal] = useState(false);
   function ClickMbtiModal() {
     setMbtiModal(!mbtiModal);
@@ -34,13 +40,13 @@ function InfoForm({ title, content }: InfoFormprops) {
           <label>이름</label>
           <input type="text" placeholder="이름을 입력해 주세요." />
           <label>생년월일</label>
-          <input type="text" placeholder="생년월일을 설정해 주세요." />
+          <input onClick={ClickBirthModal} type="text" placeholder="생년월일을 설정해 주세요." />
           <label>MBTI</label>
           <input onClick={ClickMbtiModal} type="text" placeholder="MBTI를 설정해 주세요." />
           <SubmitButton content={content} />
         </form>
       </main>
-      {mbtiModal ? <MbtiModal /> : null}
+      {mbtiModal ? <MbtiModal /> : birthModal ? <BirthModal /> : null}
     </div>
   );
 }
