@@ -8,11 +8,11 @@ interface DropdownItemsProps {
 function DropdownItems({ type }: DropdownItemsProps) {
   const hourArray = Array(24)
     .fill('')
-    .map((_, i) => i + 1);
+    .map((_, i) => i);
 
   const minuteArray = Array(60)
     .fill('')
-    .map((_, i) => i + 1);
+    .map((_, i) => i);
 
   return (
     <React.Fragment>
