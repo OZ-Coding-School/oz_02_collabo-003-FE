@@ -1,0 +1,110 @@
+@keyframes FadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.modalBackground {
+  width: 100%;
+  height: 998px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+}
+.openModal {
+  animation: FadeIn 0.15s ease-out forwards;
+}
+.closeModal {
+  animation: FadeOut 0.15s ease-out forwards;
+}
+.menuModal {
+  width: 284px;
+  height: 998px;
+  padding-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+.modalHeader {
+  width: 284px;
+  height: 35%;
+  padding: 32px 16px;
+  text-align: right;
+  background: linear-gradient(35deg, #f4cfd8, #94e4fd);
+}
+.modalCloseIcon {
+  width: 30px;
+  height: 30px;
+}
+.modalTitle {
+  width: 160px;
+  height: 72px;
+  margin: 67px auto;
+  text-align: center;
+  font-size: 22px;
+}
+.modalMain {
+  width: 284px;
+  height: 65%;
+  padding: 16px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+.userInfo {
+  height: 48px;
+  margin: 60px 0;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userName {
+  font-size: 18px;
+  margin: 2px;
+  line-height: 24px;
+}
+.userBirth {
+  font-size: 14px;
+  margin: 2px;
+  color: #8e8f90;
+  line-height: 20px;
+}
+.userMBTI {
+  font-size: 14px;
+  margin: 2px;
+  color: #8e8f90;
+  line-height: 20px;
+}
+.menuList {
+  width: 240px;
+  height: 94px;
+  font-size: 14px;
+  margin: 60px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+.menuList li {
+  padding: 16px 10px;
+  border-top: 1px solid #eaeaea;
+}
