@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './MenuModal.module.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 
@@ -7,6 +8,10 @@ type MenuModalProps = {
 };
 
 function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
+  const navigate = useNavigate();
+  function MoveEditInfo() {
+    navigate('/edit-info');
+  }
   return (
     <div
       className={
@@ -24,7 +29,7 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
             <div className={styles.userMBTI}>MBTI</div>
           </div>
           <ul className={styles.menuList}>
-            <li>개인정보수정</li>
+            <li onClick={MoveEditInfo}>개인정보수정</li>
             <li>설정</li>
           </ul>
         </main>
