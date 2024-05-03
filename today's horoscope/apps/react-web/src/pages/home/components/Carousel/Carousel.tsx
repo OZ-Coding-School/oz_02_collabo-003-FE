@@ -5,9 +5,14 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 function Carousel() {
   const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
+  const navigate = useNavigate();
+  function MoveLogin() {
+    navigate('/login');
+  }
   return (
     <div className="swiper-container">
       <Swiper
@@ -27,7 +32,7 @@ function Carousel() {
         {Slides.map((SlideContent: string, index: number) => (
           <SwiperSlide key={index} className="swiper-slide">
             <CarouselBanner title={SlideContent} content="content" />
-            <button className="contentsDetail">
+            <button onClick={MoveLogin} className="contentsDetail">
               운세
               <br />
               더보기
