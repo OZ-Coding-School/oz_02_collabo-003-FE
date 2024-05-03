@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
-import { IoChevronBack } from 'react-icons/io5';
 import MbtiModal from './components/MbtiModal/MbtiModal';
 import BirthModal from './components/MbtiModal/MbtiModal';
 
 interface InfoFormprops {
-  title: string;
   content: string;
 }
 
-function InfoForm({ title, content }: InfoFormprops) {
+function InfoForm({ content }: InfoFormprops) {
   const [birthModal, setBirthModal] = useState(false);
   function ClickBirthModal() {
     setBirthModal(!birthModal);
@@ -22,11 +20,6 @@ function InfoForm({ title, content }: InfoFormprops) {
   }
   return (
     <div>
-      <div className={styles.stateBar}></div>
-      <header className={styles.header}>
-        <IoChevronBack className={styles.backIcon} />
-        <div className={styles.headerTitle}>{title}</div>
-      </header>
       <main className={styles.main}>
         <div className={styles.mainHeader}>
           <div className={styles.mainLogo}>오늘의 운세</div>
