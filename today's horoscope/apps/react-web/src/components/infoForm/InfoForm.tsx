@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
 import MbtiModal from './components/MbtiModal/MbtiModal';
-import BirthModal from './components/MbtiModal/MbtiModal';
+import BirthModal from './components/BirthModal/BirthModal';
 
 interface InfoFormprops {
   content: string;
