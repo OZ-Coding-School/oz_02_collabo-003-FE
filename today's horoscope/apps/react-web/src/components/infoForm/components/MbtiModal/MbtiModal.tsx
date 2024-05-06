@@ -2,7 +2,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from '../modal.module.scss';
 import './MbtiSwiper.scss';
 
-function BirthModal() {
+interface MbtiProps {
+  ClickMbtiModal: () => void;
+}
+function MbtiModal({ ClickMbtiModal }: MbtiProps) {
   const MBTIList = [
     'MBTI모름',
     'ISTJ',
@@ -40,10 +43,12 @@ function BirthModal() {
             ))}
           </Swiper>
         </div>
-        <button className={styles.button}>적용하기</button>
+        <button onClick={ClickMbtiModal} className={styles.button}>
+          적용하기
+        </button>
       </div>
     </div>
   );
 }
 
-export default BirthModal;
+export default MbtiModal;

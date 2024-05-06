@@ -39,7 +39,11 @@ function InfoForm({ content }: InfoFormprops) {
           <SubmitButton content={content} />
         </form>
       </main>
-      {mbtiModal ? <MbtiModal /> : birthModal ? <BirthModal /> : null}
+      {mbtiModal ? (
+        <MbtiModal ClickMbtiModal={ClickMbtiModal} />
+      ) : birthModal ? (
+        <BirthModal ClickBirthModal={ClickBirthModal} />
+      ) : null}
     </div>
   );
 }
