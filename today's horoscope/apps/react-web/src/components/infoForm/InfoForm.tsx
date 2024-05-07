@@ -61,14 +61,13 @@ function InfoForm({ content }: InfoFormProps) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    console.log('submit', userData);
-    // const inputData = {
-    //   name: userData.name,
-    //   birth: userData.birth,
-    //   mbti: userData.mbti,
-    // };
+    const inputData = {
+      name: userData.name,
+      birth: userData.birth,
+      mbti: userData.mbti,
+    };
 
-    // localStorage.setItem('userData', JSON.stringify(inputData));
+    localStorage.setItem('userData', JSON.stringify(inputData));
   }
 
   return (
@@ -99,7 +98,7 @@ function InfoForm({ content }: InfoFormProps) {
           <div className={styles.infoInput}>
             <label>생년월일</label>
             <input
-              onClick={ClickBirthModal}
+              onFocus={ClickBirthModal}
               onChange={handleChange}
               type="date"
               name="birth"
@@ -111,7 +110,7 @@ function InfoForm({ content }: InfoFormProps) {
           <div className={styles.infoInput}>
             <label>MBTI</label>
             <input
-              onClick={ClickMbtiModal}
+              onFocus={ClickMbtiModal}
               onChange={handleChange}
               type="text"
               name="mbti"
