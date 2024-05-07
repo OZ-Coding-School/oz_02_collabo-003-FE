@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './MenuModal.module.scss';
 import { IoCloseOutline } from 'react-icons/io5';
+import { useEffect, useState } from 'react';
 
 type MenuModalProps = {
   menuModal: boolean;
@@ -12,6 +13,19 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   function MoveEditInfo() {
     navigate('/edit-info');
   }
+
+  const [inputData, setInputData] = useState({
+    name: '',
+    birth: '',
+    mbti: '',
+  });
+  useEffect(() => {
+    const storedData = localStorage.getItem('userData');
+    if (storedData) {
+      setInputData(JSON.parse(storedData));
+    }
+  }, []);
+
   return (
     <div
       className={
@@ -24,9 +38,9 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
         </header>
         <main className={styles.modalMain}>
           <div className={styles.userInfo}>
-            <div className={styles.userName}>닉네임</div>
-            <div className={styles.userBirth}>0000.00.00</div>
-            <div className={styles.userMBTI}>MBTI</div>
+            <div className={styles.userName}>{inputData.name}</div>
+            <div className={styles.userBirth}>{inputData.birth}</div>
+            <div className={styles.userMBTI}>{inputData.mbti}</div>
           </div>
           <ul className={styles.menuList}>
             <li onClick={MoveEditInfo}>개인정보수정</li>
