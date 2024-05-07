@@ -4,11 +4,11 @@ import styles from './InfoForm.module.scss';
 import MbtiModal from './components/MbtiModal/MbtiModal';
 import BirthModal from './components/BirthModal/BirthModal';
 
-interface InfoFormprops {
+interface InfoFormProps {
   content: string;
 }
 
-function InfoForm({ content }: InfoFormprops) {
+function InfoForm({ content }: InfoFormProps) {
   const [birthModal, setBirthModal] = useState(false);
   function ClickBirthModal() {
     setBirthModal(!birthModal);
@@ -18,6 +18,20 @@ function InfoForm({ content }: InfoFormprops) {
   function ClickMbtiModal() {
     setMbtiModal(!mbtiModal);
   }
+
+  const [koreanValue, setKoreanValue] = useState(false);
+  function KoreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
+    const inputValue = e.target.value;
+    const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
+    if (koreanRegex.test(inputValue)) {
+      setKoreanValue(false);
+      console.log('only korean', koreanValue);
+    } else {
+      setKoreanValue(true);
+      console.log('not only korean', koreanValue);
+    }
+  }
+
   return (
     <div>
       <main className={styles.main}>
@@ -31,11 +45,27 @@ function InfoForm({ content }: InfoFormprops) {
         </div>
         <form className={styles.infoForm}>
           <label>이름</label>
-          <input type="text" placeholder="이름을 입력해 주세요." />
+          <input
+            onChange={KoreanValueOnly}
+            type="text"
+            placeholder="이름을 입력해 주세요."
+            className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
+          />
+          <div className={koreanValue ? styles.errorText : styles.errorNone}>한글로 입력해 주세요.</div>
           <label>생년월일</label>
-          <input onClick={ClickBirthModal} type="text" placeholder="생년월일을 설정해 주세요." />
+          <input
+            onClick={ClickBirthModal}
+            type="text"
+            placeholder="생년월일을 설정해 주세요."
+            className={styles.inputArea}
+          />
           <label>MBTI</label>
-          <input onClick={ClickMbtiModal} type="text" placeholder="MBTI를 설정해 주세요." />
+          <input
+            onClick={ClickMbtiModal}
+            type="text"
+            placeholder="MBTI를 설정해 주세요."
+            className={styles.inputArea}
+          />
           <SubmitButton content={content} />
         </form>
       </main>
