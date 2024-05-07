@@ -44,28 +44,34 @@ function InfoForm({ content }: InfoFormProps) {
           </div>
         </div>
         <form className={styles.infoForm}>
-          <label>이름</label>
-          <input
-            onChange={KoreanValueOnly}
-            type="text"
-            placeholder="이름을 입력해 주세요."
-            className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
-          />
-          <div className={koreanValue ? styles.errorText : styles.errorNone}>한글로 입력해 주세요.</div>
-          <label>생년월일</label>
-          <input
-            onClick={ClickBirthModal}
-            type="text"
-            placeholder="생년월일을 설정해 주세요."
-            className={styles.inputArea}
-          />
-          <label>MBTI</label>
-          <input
-            onClick={ClickMbtiModal}
-            type="text"
-            placeholder="MBTI를 설정해 주세요."
-            className={styles.inputArea}
-          />
+          <div className={styles.infoInput}>
+            <label>이름</label>
+            <input
+              onChange={KoreanValueOnly}
+              type="text"
+              placeholder="이름을 입력해 주세요."
+              className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
+            />
+            <div className={koreanValue ? styles.errorText : styles.errorNone}>한글로 입력해 주세요.</div>
+          </div>
+          <div className={styles.infoInput}>
+            <label>생년월일</label>
+            <input
+              onClick={ClickBirthModal}
+              type="text"
+              placeholder="생년월일을 설정해 주세요."
+              className={styles.inputArea}
+            />
+          </div>
+          <div className={styles.infoInput}>
+            <label>MBTI</label>
+            <input
+              onClick={ClickMbtiModal}
+              type="text"
+              placeholder="MBTI를 설정해 주세요."
+              className={styles.inputArea}
+            />
+          </div>
           <SubmitButton content={content} />
         </form>
       </main>
