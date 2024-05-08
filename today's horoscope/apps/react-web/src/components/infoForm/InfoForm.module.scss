@@ -37,20 +37,43 @@
   padding: 24px;
   margin-top: 32px;
 }
-.infoForm label {
+.infoInput label {
   width: 312px;
   font-size: 14px;
   line-height: 20px;
   text-align: left;
+  margin: 3px;
 }
-.infoForm input {
+.infoInput {
+  margin: 0 0 24px 0;
+}
+.inputArea {
   width: 312px;
   height: 48px;
   border-radius: 12px;
   border: 1px solid #d3d3d3;
   background-color: #f7f7f7;
-  color: #d3d3d3;
+  color: #191a1b;
   font-size: 16px;
   line-height: 20px;
-  margin: 3px 0 24px 0;
+  margin: 3px 0 3px 0;
+}
+.inputArea::placeholder {
+  color: #d3d3d3;
+}
+.inputArea:focus {
+  outline: none;
+}
+.error {
+  border: 1px solid #e10000;
+}
+.errorText {
+  width: 103px;
+  height: 16px;
+  margin: 5px 15px;
+  color: #e10000;
+  font-size: 12px;
+}
+.errorNone {
+  display: none;
 }
