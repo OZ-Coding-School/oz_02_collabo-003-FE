@@ -55,13 +55,18 @@
 .modalCloseIcon {
   width: 30px;
   height: 30px;
+  padding: 0;
 }
 .modalTitle {
   width: 160px;
   height: 72px;
-  margin: 67px auto;
+  margin: 10px auto;
   text-align: center;
   font-size: 22px;
+}
+.mainImg {
+  width: 240px;
+  height: 240px;
 }
 .modalMain {
   width: 284px;
