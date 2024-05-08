@@ -35,15 +35,13 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
       setInputData(JSON.parse(storedData));
     }
 
-    if (localStorage.length === 0) setInputItem('default');
     if (imgitem === 'mbti') setInputItem(inputData.mbti);
-    if (imgitem === 'zodiac') {
+    else if (imgitem === 'zodiac') {
       const birthData = inputData.birth;
       const birthYear = birthData.split('.')[0];
       const zodiacIndex = parseInt(birthYear) % 12;
       setInputItem(zodiacList[zodiacIndex]);
-    }
-    if (imgitem === 'star') {
+    } else if (imgitem === 'star') {
       const birthData = inputData.birth;
       const birthMonth = birthData.split('.')[1];
       const month = parseInt(birthMonth);
