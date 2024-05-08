@@ -35,8 +35,10 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
       setInputData(JSON.parse(storedData));
     }
 
-    if (imgitem === 'mbti') setInputItem(inputData.mbti);
-    else if (imgitem === 'zodiac') {
+    if (localStorage.length === 0) setInputItem('default');
+    else if (imgitem === 'mbti') {
+      setInputItem(inputData.mbti);
+    } else if (imgitem === 'zodiac') {
       const birthData = inputData.birth;
       const birthYear = birthData.split('.')[0];
       const zodiacIndex = parseInt(birthYear) % 12;
