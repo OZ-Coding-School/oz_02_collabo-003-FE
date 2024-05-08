@@ -9,6 +9,12 @@ interface InfoFormProps {
   content: string;
 }
 
+interface UserData {
+  name: string;
+  birth: string;
+  mbti: string;
+}
+
 function InfoForm({ content }: InfoFormProps) {
   const navigate = useNavigate();
   function MoveHome() {
@@ -38,7 +44,7 @@ function InfoForm({ content }: InfoFormProps) {
   //   }
   // }
 
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState<UserData>({
     name: '',
     birth: '',
     mbti: '',
@@ -122,7 +128,7 @@ function InfoForm({ content }: InfoFormProps) {
           <SubmitButton MoveHome={MoveHome} content={content} />
         </form>
       </main>
-      {mbtiModal ? <MbtiModal ClickMbtiModal={ClickMbtiModal} /> : null}
+      {mbtiModal ? <MbtiModal userData={userData} setUserData={setUserData} ClickMbtiModal={ClickMbtiModal} /> : null}
     </div>
   );
 }
