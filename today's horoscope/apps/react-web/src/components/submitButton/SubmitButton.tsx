@@ -1,13 +1,14 @@
 import styles from './SubmitButton.module.scss';
 
 interface SubmitButtonProps {
+  formId: string;
   content: string;
   MoveHome: () => void;
 }
 
-function SubmitButton({ content, MoveHome }: SubmitButtonProps) {
+function SubmitButton({ formId, content, MoveHome }: SubmitButtonProps) {
   return (
-    <button type="submit" onClick={MoveHome} className={styles.button}>
+    <button form={formId} type="submit" onClick={MoveHome} className={styles.button}>
       {content}
     </button>
   );

@@ -3,6 +3,7 @@ import styles from '../modal.module.scss';
 import React from 'react';
 import './MbtiSwiper.scss';
 import { useState } from 'react';
+import { UserData } from '../../InfoForm';
 
 interface MbtiProps {
   ClickMbtiModal: () => void;
