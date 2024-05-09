@@ -1,3 +1,4 @@
+// text
 import { useNavigate } from 'react-router-dom';
 import styles from './MenuModal.module.scss';
 import { IoCloseOutline } from 'react-icons/io5';

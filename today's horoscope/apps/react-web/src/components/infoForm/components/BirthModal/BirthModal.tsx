@@ -1,3 +1,4 @@
+// text
 import styles from '../modal.module.scss';
 
 interface BirthProps {

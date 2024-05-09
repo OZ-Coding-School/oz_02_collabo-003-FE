@@ -1,3 +1,4 @@
+// text
 import { useEffect, useState } from 'react';
 import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
