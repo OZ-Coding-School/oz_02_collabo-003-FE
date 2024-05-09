@@ -1,16 +1,9 @@
 .button {
-  width: 312px;
-  height: 48px;
-  background-color: #191a1b;
+  width: 105px;
+  height: 40px;
+  background-color: black;
   color: white;
-  font-size: 16px;
-  border-radius: 12px;
-  border: 0;
-  font-weight: 700;
-  line-height: 20px;
-  position: fixed;
-  bottom: 39px;
-}
-.button:hover {
-  background-color: #d3d3d3;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: 600;
 }
