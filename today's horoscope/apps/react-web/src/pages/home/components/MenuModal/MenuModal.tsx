@@ -1,4 +1,3 @@
-import './MenuModal.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +25,10 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   }, []);
 
   return (
-    <div className={menuModal ? `${styles.modalBackground} ${styles.openModal}` : `${styles.modalBackground} ${styles.closeModal}`}>
+    <div
+      className={
+        menuModal ? `${styles.modalBackground} ${styles.openModal}` : `${styles.modalBackground} ${styles.closeModal}`
+      }>
       <div className={styles.menuModal}>
         <header className={styles.modalHeader}>
           <IoCloseOutline onClick={onclickMenuModal} className={styles.modalCloseIcon} />
