@@ -1,4 +1,3 @@
-// text
 import { useEffect, useState } from 'react';
 import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
@@ -32,18 +31,18 @@ function InfoForm({ content }: InfoFormProps) {
     setMbtiModal(!mbtiModal);
   }
 
-  // const [koreanValue, setKoreanValue] = useState(false);
-  // function KoreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
-  //   const inputValue = e.target.value;
-  //   const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
-  //   if (koreanRegex.test(inputValue)) {
-  //     setKoreanValue(false);
-  //     console.log('only korean', koreanValue);
-  //   } else {
-  //     setKoreanValue(true);
-  //     console.log('not only korean', koreanValue);
-  //   }
-  // }
+  const [koreanValue, setKoreanValue] = useState(false);
+  function KoreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
+    const inputValue = e.target.value;
+    const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
+    if (koreanRegex.test(inputValue)) {
+      setKoreanValue(false);
+      console.log('only korean', koreanValue);
+    } else {
+      setKoreanValue(true);
+      console.log('not only korean', koreanValue);
+    }
+  }
 
   const [userData, setUserData] = useState<UserData>({
     name: '',
@@ -93,14 +92,14 @@ function InfoForm({ content }: InfoFormProps) {
             <label>이름</label>
             <input
               onChange={handleChange}
+              onInput={KoreanValueOnly}
               type="text"
               name="name"
               value={userData.name}
               placeholder="이름을 입력해 주세요."
-              className={styles.inputArea}
-              // className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
+              className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
             />
-            {/* <div className={koreanValue ? styles.errorText : styles.errorNone}>한글로 입력해 주세요.</div> */}
+            <div className={koreanValue ? styles.errorText : styles.errorNone}>한글로 입력해 주세요.</div>
           </div>
           <div className={styles.infoInput}>
             <label>생년월일</label>
