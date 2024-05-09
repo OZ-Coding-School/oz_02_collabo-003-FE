@@ -37,10 +37,8 @@ function InfoForm({ content }: InfoFormProps) {
     const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
     if (koreanRegex.test(inputValue)) {
       setKoreanValue(false);
-      console.log('only korean', koreanValue);
     } else {
       setKoreanValue(true);
-      console.log('not only korean', koreanValue);
     }
   }
 
@@ -89,41 +87,48 @@ function InfoForm({ content }: InfoFormProps) {
         </div>
         <form onSubmit={handleSubmit} className={styles.infoForm}>
           <div className={styles.infoInput}>
-            <label>이름</label>
-            <input
-              onChange={handleChange}
-              onInput={KoreanValueOnly}
-              type="text"
-              name="name"
-              value={userData.name}
-              placeholder="이름을 입력해 주세요."
-              className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
-            />
+            <label>
+              이름
+              <input
+                onChange={handleChange}
+                onInput={KoreanValueOnly}
+                type="text"
+                name="name"
+                value={userData.name}
+                placeholder="이름을 입력해 주세요."
+                className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
+              />
+            </label>
+
             <div className={koreanValue ? styles.errorText : styles.errorNone}>한글로 입력해 주세요.</div>
           </div>
           <div className={styles.infoInput}>
-            <label>생년월일</label>
-            <input
-              onFocus={ClickBirthModal}
-              onChange={handleChange}
-              type="date"
-              name="birth"
-              value={userData.birth}
-              placeholder="생년월일을 설정해 주세요."
-              className={styles.inputArea}
-            />
+            <label>
+              생년월일
+              <input
+                onFocus={ClickBirthModal}
+                onChange={handleChange}
+                type="date"
+                name="birth"
+                value={userData.birth}
+                placeholder="생년월일을 설정해 주세요."
+                className={styles.inputArea}
+              />
+            </label>
           </div>
           <div className={styles.infoInput}>
-            <label>MBTI</label>
-            <input
-              onFocus={ClickMbtiModal}
-              onChange={handleChange}
-              type="text"
-              name="mbti"
-              value={userData.mbti}
-              placeholder="MBTI를 설정해 주세요."
-              className={styles.inputArea}
-            />
+            <label>
+              MBTI
+              <input
+                onFocus={ClickMbtiModal}
+                onChange={handleChange}
+                type="text"
+                name="mbti"
+                value={userData.mbti}
+                placeholder="MBTI를 설정해 주세요."
+                className={styles.inputArea}
+              />
+            </label>
           </div>
           <SubmitButton MoveHome={MoveHome} content={content} />
         </form>
