@@ -9,9 +9,11 @@ import { useNavigate } from 'react-router-dom';
 
 function Carousel() {
   const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
+  const imgList = ['today', 'zodiac', 'star', 'mbti'];
   const navigate = useNavigate();
   function MoveLogin() {
-    navigate('/login');
+    if (localStorage.length === 0) navigate('/login');
+    else navigate('/detail');
   }
   return (
     <div className="swiper-container">
@@ -31,7 +33,7 @@ function Carousel() {
         className="swiper-wrapper">
         {Slides.map((SlideContent: string, index: number) => (
           <SwiperSlide key={index} className="swiper-slide">
-            <CarouselBanner title={SlideContent} content="content" />
+            <CarouselBanner imgitem={imgList[index]} title={SlideContent} content="content" />
             <button onClick={MoveLogin} className="contentsDetail">
               운세
               <br />
