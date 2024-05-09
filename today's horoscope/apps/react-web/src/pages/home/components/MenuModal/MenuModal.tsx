@@ -1,24 +1,23 @@
 import './MenuModal.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './MenuModal.module.scss';
 
 type MenuModalProps = {
   menuModal: boolean;
   onclickMenuModal: () => void;
 };
 
-<<<<<<< HEAD
 function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   const navigate = useNavigate();
+
   function MoveEditInfo() {
     navigate('/edit-info');
   }
 
-  const [inputData, setInputData] = useState({
-    name: '',
-    birth: '',
-    mbti: '',
-  });
+  const [inputData, setInputData] = useState({ name: '', birth: '', mbti: '' });
+
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {
@@ -27,10 +26,7 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   }, []);
 
   return (
-    <div
-      className={
-        menuModal ? `${styles.modalBackground} ${styles.openModal}` : `${styles.modalBackground} ${styles.closeModal}`
-      }>
+    <div className={menuModal ? `${styles.modalBackground} ${styles.openModal}` : `${styles.modalBackground} ${styles.closeModal}`}>
       <div className={styles.menuModal}>
         <header className={styles.modalHeader}>
           <IoCloseOutline onClick={onclickMenuModal} className={styles.modalCloseIcon} />
@@ -49,25 +45,6 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
           </ul>
         </main>
       </div>
-=======
-function MenuModal({ onclickMenuModal }: MenuModalProps) {
-  return (
-    <div className="menuModal">
-      <header className="modalHeader">
-        <IoCloseOutline onClick={onclickMenuModal} className="modalCloseIcon" />
-        <h1 className="modalTitle">오늘의 운세</h1>
-      </header>
-      <main className="modalMain">
-        <div className="userInfo">
-          <div className="userName">닉네임</div>
-          <div className="userBirth">0000.00.00</div>
-        </div>
-        <ul className="menuList">
-          <li>개인정보수정</li>
-          <li>설정</li>
-        </ul>
-      </main>
->>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
     </div>
   );
 }
