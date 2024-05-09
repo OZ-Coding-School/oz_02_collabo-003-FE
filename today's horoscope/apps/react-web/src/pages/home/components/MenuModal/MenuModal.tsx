@@ -1,8 +1,7 @@
-// text
-import { useNavigate } from 'react-router-dom';
-import styles from './MenuModal.module.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './MenuModal.module.scss';
 
 type MenuModalProps = {
   menuModal: boolean;
@@ -11,15 +10,13 @@ type MenuModalProps = {
 
 function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   const navigate = useNavigate();
+
   function MoveEditInfo() {
     navigate('/edit-info');
   }
 
-  const [inputData, setInputData] = useState({
-    name: '',
-    birth: '',
-    mbti: '',
-  });
+  const [inputData, setInputData] = useState({ name: '', birth: '', mbti: '' });
+
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {
