@@ -1,3 +1,4 @@
+// text
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from '../modal.module.scss';
 import React from 'react';

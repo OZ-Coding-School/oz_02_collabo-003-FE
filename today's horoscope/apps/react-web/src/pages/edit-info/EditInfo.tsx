@@ -1,3 +1,4 @@
+// text
 import { useNavigate } from 'react-router-dom';
 import InfoForm from '../../components/infoForm/InfoForm';
 import styles from './EditInfo.module.scss';
