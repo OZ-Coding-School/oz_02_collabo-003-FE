@@ -9,12 +9,6 @@ interface InfoFormProps {
   content: string;
 }
 
-export interface UserData {
-  name: string;
-  birth: string;
-  mbti: string;
-}
-
 function InfoForm({ content }: InfoFormProps) {
   const navigate = useNavigate();
   function MoveHome() {
@@ -44,7 +38,7 @@ function InfoForm({ content }: InfoFormProps) {
   //   }
   // }
 
-  const [userData, setUserData] = useState<UserData>({
+  const [userData, setUserData] = useState({
     name: '',
     birth: '',
     mbti: '',
@@ -87,7 +81,7 @@ function InfoForm({ content }: InfoFormProps) {
             운세 결과에 중요한 영향을 미치니 정확하게 입력 해주세요.
           </div>
         </div>
-        <form id="userForm" onSubmit={handleSubmit} className={styles.infoForm}>
+        <form onSubmit={handleSubmit} className={styles.infoForm}>
           <div className={styles.infoInput}>
             <label>이름</label>
             <input
@@ -125,10 +119,10 @@ function InfoForm({ content }: InfoFormProps) {
               className={styles.inputArea}
             />
           </div>
-          <SubmitButton formId="userForm" MoveHome={MoveHome} content={content} />
+          <SubmitButton MoveHome={MoveHome} content={content} />
         </form>
       </main>
-      {mbtiModal ? <MbtiModal userData={userData} setUserData={setUserData} ClickMbtiModal={ClickMbtiModal} /> : null}
+      {mbtiModal ? <MbtiModal ClickMbtiModal={ClickMbtiModal} /> : null}
     </div>
   );
 }

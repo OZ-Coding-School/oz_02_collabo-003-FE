@@ -1,55 +1,30 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from '../modal.module.scss';
-import React from 'react';
 import './MbtiSwiper.scss';
-import { useState } from 'react';
-import { UserData } from '../../InfoForm';
 
 interface MbtiProps {
   ClickMbtiModal: () => void;
-  userData: UserData;
-  setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
-
-const MBTIList = [
-  'MBTI모름',
-  'ISTJ',
-  'ISTP',
-  'ISFJ',
-  'ISFP',
-  'INTJ',
-  'INTP',
-  'INFJ',
-  'INFP',
-  'ESTJ',
-  'ESTP',
-  'ESFJ',
-  'ESFP',
-  'ENTJ',
-  'ENTP',
-  'ENFJ',
-  'ENFP',
-];
-
-function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
-  const [mbtiText, setMbtiText] = useState('');
-
-  function handleSwipe() {
-    const activeSlideContent = document.querySelector('.swiper-slide-active')?.textContent;
-
-    if (activeSlideContent) {
-      setMbtiText(activeSlideContent);
-    }
-    console.log(mbtiText);
-  }
-
-  function handleClick() {
-    setUserData({
-      ...userData,
-      mbti: mbtiText,
-    });
-    ClickMbtiModal();
-  }
+function MbtiModal({ ClickMbtiModal }: MbtiProps) {
+  const MBTIList = [
+    'MBTI모름',
+    'ISTJ',
+    'ISTP',
+    'ISFJ',
+    'ISFP',
+    'INTJ',
+    'INTP',
+    'INFJ',
+    'INFP',
+    'ESTJ',
+    'ESTP',
+    'ESFJ',
+    'ESFP',
+    'ENTJ',
+    'ENTP',
+    'ENFJ',
+    'ENFP',
+  ];
   return (
     <div className={styles.modal}>
       <div className={styles.modalMain}>
@@ -60,8 +35,7 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
             loop={true}
             direction="vertical"
             centeredSlides={true}
-            className={styles.swiperWrapper}
-            onSlideChange={handleSwipe}>
+            className={styles.swiperWrapper}>
             {MBTIList.map((content, index) => (
               <SwiperSlide key={index} className={styles.swiperSlide}>
                 {content}
@@ -69,7 +43,7 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
             ))}
           </Swiper>
         </div>
-        <button onClick={handleClick} className={styles.button}>
+        <button onClick={ClickMbtiModal} className={styles.button}>
           적용하기
         </button>
       </div>
