@@ -7,6 +7,7 @@ import { EffectCoverflow } from 'swiper/modules';
 
 function Carousel() {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
   const imgList = ['today', 'zodiac', 'star', 'mbti'];
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ function Carousel() {
     if (localStorage.length === 0) navigate('/login');
     else navigate('/detail');
   }
+=======
+>>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
 =======
 >>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
   return (
@@ -33,6 +36,7 @@ function Carousel() {
         modules={[EffectCoverflow]}
         className="swiper-wrapper">
 <<<<<<< HEAD
+<<<<<<< HEAD
         {Slides.map((SlideContent: string, index: number) => (
           <SwiperSlide key={index} className="swiper-slide">
             <CarouselBanner imgitem={imgList[index]} title={SlideContent} content="content" />
@@ -46,6 +50,8 @@ function Carousel() {
           </SwiperSlide>
         ))}
 =======
+=======
+>>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
         <SwiperSlide className="swiper-slide">
           <CarouselBanner title="오늘의 운세" content="content" />
         </SwiperSlide>
@@ -58,6 +64,9 @@ function Carousel() {
         <SwiperSlide className="swiper-slide">
           <CarouselBanner title="오늘의 한마디" content="content" />
         </SwiperSlide>
+<<<<<<< HEAD
+>>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
+=======
 >>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
       </Swiper>
     </div>

@@ -1,6 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import styles from './CarouselBanner.module.scss';
+=======
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import './CarouselBanner.scss';
+>>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
 =======
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import './CarouselBanner.scss';
@@ -85,17 +90,23 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div className={styles.carouselBanner}>
       <img src={`public/K철학관img/섬/img_island_${imgitem}_${inputItem}.png`} className={styles.carouselImage} />
       <div className={styles.carouselContents}>
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.content}>{content}</div>
 =======
+=======
+>>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
     <div className="carouselBanner">
       <div className="carouselImage">이미지</div>
       <div className="carouselContents">
         <h1 className="title">{title}</h1>
         <div className="content">{content}</div>
+<<<<<<< HEAD
+>>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
+=======
 >>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
       </div>
       <button className="contentsDetail">

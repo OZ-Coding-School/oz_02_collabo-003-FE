@@ -8,6 +8,7 @@ type MenuModalProps = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   const navigate = useNavigate();
   function MoveEditInfo() {
@@ -52,6 +53,10 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
 =======
 function MenuModal({ onclickMenuModal }: MenuModalProps) {
   return (
+=======
+function MenuModal({ onclickMenuModal }: MenuModalProps) {
+  return (
+>>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
     <div className="menuModal">
       <header className="modalHeader">
         <IoCloseOutline onClick={onclickMenuModal} className="modalCloseIcon" />
@@ -67,6 +72,9 @@ function MenuModal({ onclickMenuModal }: MenuModalProps) {
           <li>설정</li>
         </ul>
       </main>
+<<<<<<< HEAD
+>>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
+=======
 >>>>>>> parent of 79b7788 (Merge pull request #44 from OZ-Coding-School/dev)
     </div>
   );
