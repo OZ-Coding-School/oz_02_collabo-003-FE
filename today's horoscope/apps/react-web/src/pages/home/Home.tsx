@@ -4,6 +4,7 @@ import Carousel from './components/Carousel/Carousel';
 import { IoMenuOutline } from 'react-icons/io5';
 import MenuModal from './components/MenuModal/MenuModal';
 
+// test
 function Home() {
   const [menuModal, setMenuModal] = useState<boolean>(false);
   function onclickMenuModal() {
