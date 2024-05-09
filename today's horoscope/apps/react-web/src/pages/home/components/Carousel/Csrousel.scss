@@ -1,19 +1,33 @@
 .swiper-container {
   width: 360px;
-  height: 670px;
-  margin: 0 auto;
+  height: 700px;
+  margin: 36px auto;
 }
 .swiper-wrapper {
-  margin: 0 55px;
+  margin: 0 60px;
+}
+.contentsDetail {
+  width: 68px;
+  height: 68px;
+  padding-top: 17px;
+  border-radius: 50%;
+  border: 0;
+  font-size: 9px;
+  position: fixed;
+  left: 84px;
+  top: 430px;
+  background: linear-gradient(45deg, #a3ff5b, #49c8ff);
+  display: none;
 }
 .swiper-slide-active {
-  z-index: 10;
   transition: 0.3s all;
   .contentsDetail {
     display: block;
   }
+  .carouselContents {
+    box-shadow: 10px 10px 30px rgba(128, 127, 127, 0.4);
+  }
 }
-
 .swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
   opacity: 0;
 }

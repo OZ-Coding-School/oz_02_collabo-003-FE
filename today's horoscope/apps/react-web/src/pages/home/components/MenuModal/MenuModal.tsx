@@ -1,4 +1,3 @@
-import './MenuModal.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
