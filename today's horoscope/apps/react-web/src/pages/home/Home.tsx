@@ -28,7 +28,11 @@ function Home() {
     <div className={styles.main} style={{ background: handleBackground() }}>
       <div className={styles.stateBar}></div>
       <header className={styles.mainHeader}>
-        <IoMenuOutline className={styles.menuIcon} onClick={onclickMenuModal} />
+        {localStorage.length === 0 ? (
+          <div className={styles.menuIcon}></div>
+        ) : (
+          <IoMenuOutline className={styles.menuIcon} onClick={onclickMenuModal} />
+        )}
       </header>
       <div className={styles.mainContents}>
         <div className={styles.mainLogo}>오늘의 운세</div>
