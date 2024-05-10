@@ -50,13 +50,15 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
         {Slides.map((SlideContent, index) => (
           <SwiperSlide id={`slide-${imgList[index]}`} key={index} className="swiper-slide">
             <CarouselBanner imgitem={imgList[index]} title={SlideContent} content="content" />
-            <button onClick={MoveLogin} className="contentsDetail">
-              운세
-              <br />
-              더보기
-              <br />
-              <MdKeyboardArrowDown size={30} />
-            </button>
+            {imgList[index] === 'today' ? null : (
+              <button onClick={MoveLogin} className="contentsDetail">
+                운세
+                <br />
+                더보기
+                <br />
+                <MdKeyboardArrowDown size={30} />
+              </button>
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
