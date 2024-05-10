@@ -9,15 +9,30 @@ function Home() {
   function onclickMenuModal() {
     setMenuModal(!menuModal);
   }
+
+  const [activeSlide, setActiveSlide] = useState('');
+
+  function handleBackground() {
+    if (activeSlide === 'today') {
+      return 'linear-gradient(45deg, #F4CFD8, #94E4FD)';
+    } else if (activeSlide === 'zodiac') {
+      return 'linear-gradient(45deg, #D2FCF9, #8CBAFF)';
+    } else if (activeSlide === 'star') {
+      return 'linear-gradient(45deg, #FCF3D2, #B6EE94)';
+    } else if (activeSlide === 'mbti') {
+      return 'linear-gradient(45deg, #D2F9FC, #C6B2FE)';
+    }
+  }
+
   return (
-    <div className={styles.main}>
+    <div className={styles.main} style={{ background: handleBackground() }}>
       <div className={styles.stateBar}></div>
       <header className={styles.mainHeader}>
         <IoMenuOutline className={styles.menuIcon} onClick={onclickMenuModal} />
       </header>
       <div className={styles.mainContents}>
         <div className={styles.mainLogo}>오늘의 운세</div>
-        <Carousel />
+        <Carousel activeSlide={activeSlide} setActiveSlide={setActiveSlide} />
       </div>
       <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />
     </div>

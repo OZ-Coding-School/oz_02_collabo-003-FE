@@ -1,4 +1,3 @@
-// text
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
@@ -8,14 +7,27 @@ import { EffectCoverflow } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
-function Carousel() {
-  const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
-  const imgList = ['today', 'zodiac', 'star', 'mbti'];
+interface swiperProps {
+  activeSlide: string;
+  setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
+}
+const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
+const imgList = ['today', 'zodiac', 'star', 'mbti'];
+function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
   const navigate = useNavigate();
 
   function MoveLogin() {
     if (localStorage.length === 0) navigate('/login');
     else navigate('/detail');
+  }
+
+  function handleSlwiper() {
+    const activeSlideId = document.querySelector('.swiper-slide-active')?.id;
+    if (activeSlideId) {
+      const activveIdcontent = activeSlideId.split('-')[1];
+      setActiveSlide(activveIdcontent);
+    }
+    console.log(activeSlide);
   }
 
   return (
@@ -33,9 +45,10 @@ function Carousel() {
           slideShadows: false,
         }}
         modules={[EffectCoverflow]}
+        onSlideChange={handleSlwiper}
         className="swiper-wrapper">
         {Slides.map((SlideContent, index) => (
-          <SwiperSlide key={index} className="swiper-slide">
+          <SwiperSlide id={`slide-${imgList[index]}`} key={index} className="swiper-slide">
             <CarouselBanner imgitem={imgList[index]} title={SlideContent} content="content" />
             <button onClick={MoveLogin} className="contentsDetail">
               운세
