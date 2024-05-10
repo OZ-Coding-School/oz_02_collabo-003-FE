@@ -1,4 +1,3 @@
-// text
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
