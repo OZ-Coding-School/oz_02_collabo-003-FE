@@ -42,14 +42,14 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
       } else setInputItem(inputData.mbti);
     } else if (imgitem === 'zodiac') {
       const birthData = inputData.birth;
-      const birthYear = birthData.split('.')[0];
+      const birthYear = birthData.split('-')[0];
       const zodiacIndex = parseInt(birthYear) % 12;
       setInputItem(zodiacList[zodiacIndex]);
     } else if (imgitem === 'star') {
       const birthData = inputData.birth;
-      const birthMonth = birthData.split('.')[1];
+      const birthMonth = birthData.split('-')[1];
       const month = parseInt(birthMonth);
-      const birthDay = birthData.split('.')[2];
+      const birthDay = birthData.split('-')[2];
       const day = parseInt(birthDay);
       parseInt(birthDay);
       if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
