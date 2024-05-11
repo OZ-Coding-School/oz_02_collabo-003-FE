@@ -34,7 +34,7 @@ const MBTIList = [
 function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
   const [mbtiText, setMbtiText] = useState('');
 
-  function handleSwipe() {
+  function handleSwiper() {
     const activeSlideContent = document.querySelector('.swiper-slide-active')?.textContent;
 
     if (activeSlideContent) {
@@ -54,16 +54,16 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
     <div className={styles.modal}>
       <div className={styles.modalMain}>
         <div className={styles.modalHeader}>MBTI</div>
-        <div className={styles.swiperContainer}>
+        <div className="swiper-container mbtiModal">
           <Swiper
             slidesPerView={5}
             loop={true}
             direction="vertical"
             centeredSlides={true}
-            className={styles.swiperWrapper}
-            onSlideChange={handleSwipe}>
+            className="swiper-wrapper"
+            onSlideChange={handleSwiper}>
             {MBTIList.map((content, index) => (
-              <SwiperSlide key={index} className={styles.swiperSlide}>
+              <SwiperSlide key={index} className="swiper-slide">
                 {content}
               </SwiperSlide>
             ))}

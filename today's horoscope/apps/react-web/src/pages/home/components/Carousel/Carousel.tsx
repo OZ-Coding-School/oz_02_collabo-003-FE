@@ -31,7 +31,7 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
   }
 
   return (
-    <div className="swiper-container">
+    <div className="swiper-container carousel">
       <Swiper
         spaceBetween={-150}
         loop={true}
@@ -40,7 +40,7 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
-          depth: 800,
+          depth: 900,
           modifier: 1,
           slideShadows: false,
         }}

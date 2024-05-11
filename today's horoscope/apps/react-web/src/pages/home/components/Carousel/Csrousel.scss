@@ -1,4 +1,4 @@
-.swiper-container {
+.carousel {
   width: 360px;
   height: 700px;
   margin: 36px auto;
@@ -28,6 +28,9 @@
     box-shadow: 10px 10px 30px rgba(128, 127, 127, 0.4);
   }
 }
-.swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
+.carousel
+  .swiper-slide:not(.carousel .swiper-slide-prev):not(.carousel .swiper-slide-active):not(
+    .carousel .swiper-slide-next
+  ) {
   opacity: 0;
 }
