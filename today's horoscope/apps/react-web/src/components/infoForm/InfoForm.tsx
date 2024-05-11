@@ -17,9 +17,9 @@ export interface UserData {
 
 function InfoForm({ content }: InfoFormProps) {
   const navigate = useNavigate();
-  function MoveHome() {
-    navigate('/');
-  }
+  // function MoveHome() {
+  //   navigate('/');
+  // }
 
   const [birthModal, setBirthModal] = useState(false);
   function ClickBirthModal() {
@@ -62,7 +62,7 @@ function InfoForm({ content }: InfoFormProps) {
       [name]: value,
     });
   }
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
     const inputData = {
@@ -72,6 +72,7 @@ function InfoForm({ content }: InfoFormProps) {
     };
 
     localStorage.setItem('userData', JSON.stringify(inputData));
+    navigate('/');
   }
 
   return (
@@ -85,7 +86,7 @@ function InfoForm({ content }: InfoFormProps) {
             운세 결과에 중요한 영향을 미치니 정확하게 입력 해주세요.
           </div>
         </div>
-        <form onSubmit={handleSubmit} className={styles.infoForm}>
+        <form className={styles.infoForm}>
           <div className={styles.infoInput}>
             <label>
               이름
@@ -130,7 +131,7 @@ function InfoForm({ content }: InfoFormProps) {
               />
             </label>
           </div>
-          <SubmitButton MoveHome={MoveHome} content={content} />
+          <SubmitButton handleSubmit={handleSubmit} content={content} />
         </form>
       </main>
       {mbtiModal ? <MbtiModal userData={userData} setUserData={setUserData} ClickMbtiModal={ClickMbtiModal} /> : null}
