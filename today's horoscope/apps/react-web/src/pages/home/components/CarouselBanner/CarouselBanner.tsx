@@ -1,4 +1,3 @@
-// text
 import { useEffect, useState } from 'react';
 import styles from './CarouselBanner.module.scss';
 
@@ -38,7 +37,9 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
 
     if (localStorage.length === 0) setInputItem('default');
     else if (imgitem === 'mbti') {
-      setInputItem(inputData.mbti);
+      if (inputData.mbti === 'MBTI모름') {
+        setInputItem('default');
+      } else setInputItem(inputData.mbti);
     } else if (imgitem === 'zodiac') {
       const birthData = inputData.birth;
       const birthYear = birthData.split('.')[0];
