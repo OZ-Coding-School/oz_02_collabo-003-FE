@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Styles from './Scroll.module.scss';
+import './Scroll.module.scss';
 
-const App: React.FC = () => {
-  const [scrollY, setScrollY] = useState(0);
+const ScrollingImage: React.FC = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const position = window.scrollY;
+      setScrollPosition(position); //
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -15,12 +16,11 @@ const App: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
   return (
-    <div className="container" style={{ paddingTop: `${scrollY}px` }}>
-      <div className={Styles.box}></div>
+    <div className="scrolling-container">
+      <div className="scrolling-image" style={{ transform: `translateY(${scrollPosition}px)` }} />
     </div>
   );
 };
 
-export default App;
+export default ScrollingImage;

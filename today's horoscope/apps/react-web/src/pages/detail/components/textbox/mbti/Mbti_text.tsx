@@ -1,4 +1,5 @@
 import React from 'react';
+import Styles from './Mbti_text.module.scss';
 
 interface MBTIFortunes {
   [key: string]: {
@@ -8,19 +9,19 @@ interface MBTIFortunes {
 }
 
 const mbtiFortunes: MBTIFortunes = {
-  ISTJ: {
+  INTJ: {
     fortune: '계획대로 차근차근 진행해보세요. 안정적인 결과를 얻을 거예요.',
     imageSrc: '/public/K철학관img/img_circle_mbti_istj.png',
   },
-  ISFJ: {
+  INFJ: {
     fortune: '주변 사람들을 배려하고 도와주는 일에 만족을 느낄 수 있는 날이에요.',
     imageSrc: '/public/K철학관img/img_circle_mbti_isfj.png',
   },
-  INFJ: {
+  INFP: {
     fortune: '오늘은 감수성이 풍부한 하루가 될 것입니다.',
     imageSrc: '/public/K철학관img/img_circle_mbti_infj.png',
   },
-  INTJ: {
+  INTP: {
     fortune: '오늘은 새로운 아이디어를 구상할 수 있는 날이에요. 창의력을 발휘하세요!',
     imageSrc: '/public/K철학관img/img_circle_mbti_intj.png',
   },
@@ -32,11 +33,11 @@ const mbtiFortunes: MBTIFortunes = {
     fortune: '자연의 아름다움을 느낄 수 있는 하루가 될 것입니다. 산책이나 그림을 그려보세요.',
     imageSrc: '/public/K철학관img/img_circle_mbti_isfp.png',
   },
-  INFP: {
+  ISTJ: {
     fortune: '창의력을 발휘하는 좋은 날이 될 거에요. 새로운 아이디어가 떠오를 거예요.',
     imageSrc: '/public/K철학관img/img_circle_mbti_infp.png',
   },
-  INTJ: {
+  ISFJ: {
     fortune: '목표를 설정하고 계획을 세우는 데에 집중하세요. 당신의 미래가 밝을 거예요.',
     imageSrc: '/public/K철학관img/img_circle_mbti_intj.png',
   },
@@ -77,14 +78,14 @@ const mbtiFortunes: MBTIFortunes = {
 const TextImage: React.FC = () => {
   const mbtiFortuneMessages = Object.entries(mbtiFortunes).map(([mbti, { fortune, imageSrc }]) => (
     <div key={mbti}>
-      <img src={imageSrc} alt={mbti} />
-      <h2>{mbti}</h2>
-      <p>{fortune}</p>
+      <img src={imageSrc} alt={mbti} className={Styles.mbtiImage} />
+      <h2 className={Styles.mbtiName}>{mbti}</h2>
+      <p className={Styles.mbtiTMI}>{fortune}</p>
     </div>
   ));
 
   return (
-    <div className={Styles.TextImage}>
+    <div>
       <ul>{mbtiFortuneMessages}</ul>
     </div>
   );
