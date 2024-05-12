@@ -33,7 +33,7 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
         <header className={styles.modalHeader}>
           <IoCloseOutline onClick={onclickMenuModal} className={styles.modalCloseIcon} />
           <h1 className={styles.modalTitle}>오늘의 운세</h1>
-          <img src="public/K철학관img/섬/img_island_today_default.png" className={styles.mainImg} />
+          <img src="public/K_img/island/img_island_today_default.png" className={styles.mainImg} />
         </header>
         <main className={styles.modalMain}>
           <div className={styles.userInfo}>
