@@ -37,7 +37,7 @@ function Home() {
         <div className={styles.mainLogo}>오늘의 운세</div>
         <Carousel activeSlide={activeSlide} setActiveSlide={setActiveSlide} />
       </div>
-      <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />
+      {menuModal && <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />}
     </div>
   );
 }

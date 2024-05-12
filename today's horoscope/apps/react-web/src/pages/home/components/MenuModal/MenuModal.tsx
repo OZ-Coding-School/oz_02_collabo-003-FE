@@ -25,11 +25,9 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   }, []);
 
   return (
-    <div
-      className={
-        menuModal ? `${styles.modalBackground} ${styles.openModal}` : `${styles.modalBackground} ${styles.closeModal}`
-      }>
-      <div className={styles.menuModal}>
+    <div className={styles.modalBackground}>
+      <div
+        className={menuModal ? `${styles.menuModal} ${styles.openModal}` : `${styles.menuModal} ${styles.closeModal}`}>
         <header className={styles.modalHeader}>
           <IoCloseOutline onClick={onclickMenuModal} className={styles.modalCloseIcon} />
           <h1 className={styles.modalTitle}>오늘의 운세</h1>
