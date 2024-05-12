@@ -5,6 +5,8 @@ import Mbti from '../pages/detail/mbti/Mbti';
 import Star from '../pages/detail/star/Star';
 import ZodiacMain from '../pages/detail/zodiac/Zodiac';
 import Zodiac from '../pages/detail/components/textbox/zodi/Zodi_text';
+import Login from '../pages/login/Login';
+import EditInfo from '../pages/edit-info/EditInfo';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
   {
     path: '/detail-zodiac/textimage',
     element: <Zodiac />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/edit-info',
+    element: <EditInfo />,
   },
 ]);
 
