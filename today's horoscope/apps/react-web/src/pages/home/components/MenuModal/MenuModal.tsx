@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './MenuModal.module.scss';
 
 type MenuModalProps = {
-  menuModal: boolean;
+  menuModal: boolean | null;
   onclickMenuModal: () => void;
 };
 
@@ -25,9 +25,11 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   }, []);
 
   return (
-    <div className={styles.modalBackground}>
-      <div
-        className={menuModal ? `${styles.menuModal} ${styles.openModal}` : `${styles.menuModal} ${styles.closeModal}`}>
+    <div
+      className={
+        menuModal ? `${styles.modalBackground} ${styles.openModal}` : `${styles.modalBackground} ${styles.closeModal}`
+      }>
+      <div className={styles.menuModal}>
         <header className={styles.modalHeader}>
           <IoCloseOutline onClick={onclickMenuModal} className={styles.modalCloseIcon} />
           <h1 className={styles.modalTitle}>오늘의 운세</h1>

@@ -5,9 +5,13 @@ import { IoMenuOutline } from 'react-icons/io5';
 import MenuModal from './components/MenuModal/MenuModal';
 
 function Home() {
-  const [menuModal, setMenuModal] = useState<boolean>(false);
+  const [menuModal, setMenuModal] = useState<boolean | null>(null);
   function onclickMenuModal() {
-    setMenuModal(!menuModal);
+    if (menuModal === null) {
+      setMenuModal(true);
+    } else {
+      setMenuModal(!menuModal);
+    }
   }
 
   const [activeSlide, setActiveSlide] = useState('');
@@ -37,7 +41,7 @@ function Home() {
         <div className={styles.mainLogo}>오늘의 운세</div>
         <Carousel activeSlide={activeSlide} setActiveSlide={setActiveSlide} />
       </div>
-      {menuModal && <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />}
+      {menuModal === null ? null : <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />}
     </div>
   );
 }
