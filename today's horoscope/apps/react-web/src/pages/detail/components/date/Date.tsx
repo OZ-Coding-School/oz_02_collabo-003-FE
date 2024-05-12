@@ -13,7 +13,7 @@ const MyComponent: React.FC = () => {
     const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
     const dayName = daysOfWeek[dayOfWeek];
 
-    const formattedDate = `${year}년 ${month}월 ${day}일 (${dayName})`;
+    const formattedDate = `${year}년 ${month}월 ${day}일 ${dayName}요일`;
 
     setToday(formattedDate);
   }, []);
