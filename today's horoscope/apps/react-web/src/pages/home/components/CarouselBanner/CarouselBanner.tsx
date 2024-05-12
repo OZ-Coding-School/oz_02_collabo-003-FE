@@ -82,7 +82,11 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
 
   return (
     <div className={styles.carouselBanner}>
-      <img src={`public/K_img/island/img_island_${imgitem}_${inputItem}.png`} className={styles.carouselImage} />
+      <img
+        src={`public/K_img/island/img_island_${imgitem}_${inputItem}.png`}
+        alt={`${imgitem} image`}
+        className={styles.carouselImage}
+      />
       <div className={styles.carouselContents}>
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.content}>{content}</div>
