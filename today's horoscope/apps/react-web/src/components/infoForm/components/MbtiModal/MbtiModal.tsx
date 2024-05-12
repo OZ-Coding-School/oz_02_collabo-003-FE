@@ -34,12 +34,11 @@ const MBTIList = [
 function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
   const [mbtiText, setMbtiText] = useState('');
 
-  function handleSwiper() {
-    const activeSlideContent = document.querySelector('.swiper-slide-active')?.textContent;
+  function handleSwiper(swiper: any) {
+    const activesilde = swiper.slides[swiper.activeIndex];
+    const activeSlideContent = activesilde.textContent;
 
-    if (activeSlideContent) {
-      setMbtiText(activeSlideContent);
-    }
+    setMbtiText(activeSlideContent);
     console.log(mbtiText);
   }
 
