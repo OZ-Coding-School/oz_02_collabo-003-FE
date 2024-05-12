@@ -50,6 +50,7 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
     });
     ClickMbtiModal();
   }
+
   return (
     <div className={styles.modal}>
       <div className={styles.modalMain}>

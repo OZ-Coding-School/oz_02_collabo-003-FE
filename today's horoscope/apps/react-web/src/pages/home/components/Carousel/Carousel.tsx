@@ -11,6 +11,7 @@ interface swiperProps {
   activeSlide: string;
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
 }
+
 const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
 const imgList = ['today', 'zodiac', 'star', 'mbti'];
 function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
@@ -21,12 +22,12 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
     else navigate('/detail');
   }
 
-  function handleSlwiper() {
-    const activeSlideId = document.querySelector('.swiper-slide-active')?.id;
-    if (activeSlideId) {
-      const activveIdcontent = activeSlideId.split('-')[1];
-      setActiveSlide(activveIdcontent);
-    }
+  function handleSlwiper(swiper: any) {
+    const activesilde = swiper.slides[swiper.activeIndex];
+    const activeSlideId = activesilde.id;
+    const activeIdcontent = activeSlideId.split('-')[1];
+
+    setActiveSlide(activeIdcontent);
     console.log(activeSlide);
   }
 

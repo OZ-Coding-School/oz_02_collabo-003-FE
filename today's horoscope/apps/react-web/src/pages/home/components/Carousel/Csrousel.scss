@@ -1,6 +1,6 @@
 .carousel {
   width: 360px;
-  height: 700px;
+  height: 100vh;
   margin: 36px auto;
 }
 .swiper-wrapper {
@@ -14,8 +14,8 @@
   border: 0;
   font-size: 9px;
   position: fixed;
-  left: 84px;
-  top: 430px;
+  left: 70px;
+  top: 410px;
   background: linear-gradient(45deg, #a3ff5b, #49c8ff);
   display: none;
 }
