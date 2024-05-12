@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+.head {
+  width: 100%;
+  height: 235px;
+  margin: auto;
+  top: 0;
+  background: linear-gradient(35deg, #d2fcf9, #8cbaff);
+  text-align: center;
+}
+
+.headtitle {
+  display: flex;
+}
+
+.Back {
+  display: flex;
+  float: left;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.LogoImg {
+  display: flex;
+  float: left;
+  margin-top: 33px;
+  width: 52px;
+  height: 21px;
+}
+
+.Share {
+  display: flex;
+  float: right;
+  margin-top: 33px;
+  margin-left: 220px;
+  width: 18px;
+  height: 20px;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 10px;
+  margin-top: 70px;
+}
+
+.zodiacImages {
+  display: inline-flex;
+  flex-direction: column;
+  width: 71.14px;
+  height: 71.14px;
+  margin-top: 45px;
+  margin-left: 32px;
+  margin-right: 10px;
+}
+
+.zodiacText {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
