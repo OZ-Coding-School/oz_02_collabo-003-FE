@@ -1,0 +1,50 @@
+.back {
+  display: flex;
+}
+
+.title {
+  display: flex;
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+.update {
+  display: flex;
+  color: #374151;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  .update {
+    display: flex;
+    color: #374151;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .update:hover {
+    background-color: #f3f4f6;
+  }
+
+  .underline {
+    display: flex;
+    margin-top: 10px; /* 여백을 조절할 수 있습니다. */
+    height: 1px; /* 밑줄의 두께를 조절할 수 있습니다. */
+    background-color: gray; /* 밑줄의 색상을 지정할 수 있습니다. */
+  }
+}
+
+.update:hover {
+  background-color: #f3f4f6;
+
+  .underline {
+    display: flex;
+    margin-top: 10px; /* 여백을 조절할 수 있습니다. */
+    height: 1px; /* 밑줄의 두께를 조절할 수 있습니다. */
+    background-color: gray; /* 밑줄의 색상을 지정할 수 있습니다. */
+  }
+}
