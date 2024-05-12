@@ -38,7 +38,6 @@
 .menuModal {
   width: 284px;
   height: 998px;
-  padding-top: 5px;
   margin-left: auto;
   margin-right: auto;
   position: fixed;
@@ -48,7 +47,6 @@
 .modalHeader {
   width: 284px;
   height: 35%;
-  padding: 32px 16px;
   text-align: right;
   background: linear-gradient(35deg, #f4cfd8, #94e4fd);
 }
@@ -67,6 +65,8 @@
 .mainImg {
   width: 240px;
   height: 240px;
+  margin: 10px auto;
+  display: block;
 }
 .modalMain {
   width: 284px;

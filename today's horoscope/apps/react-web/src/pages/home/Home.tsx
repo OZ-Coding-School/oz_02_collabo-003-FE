@@ -26,7 +26,6 @@ function Home() {
 
   return (
     <div className={styles.main} style={{ background: handleBackground() }}>
-      <div className={styles.stateBar}></div>
       <header className={styles.mainHeader}>
         {localStorage.length === 0 ? (
           <div className={styles.menuIcon}></div>
