@@ -12,6 +12,7 @@
   "dependencies": {
     "fortune": "^5.5.19",
     "react": "^18.2.0",
+    "react-date-picker": "^11.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.1.0",
     "react-router-dom": "^6.23.0",
