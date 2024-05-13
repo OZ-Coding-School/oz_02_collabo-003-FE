@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from '../modal.module.scss';
 import React from 'react';
-import './MbtiSwiper.scss';
+import './MbtiModal.scss';
 import { useState } from 'react';
 import { UserData } from '../../InfoForm';
 
