@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import swiper from 'swiper';
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
 import 'swiper/css';
@@ -17,12 +18,21 @@ const imgList = ['today', 'zodiac', 'star', 'mbti'];
 function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
   const navigate = useNavigate();
 
-  function MoveLogin() {
-    if (localStorage.length === 0) navigate('/login');
-    else navigate('/detail');
+  function MoveRoute(value: string) {
+    return () => {
+      if (localStorage.length === 0) {
+        navigate('/login');
+      } else if (value === 'mbti') {
+        navigate('/detail-mbti');
+      } else if (value === 'zodiac') {
+        navigate('/detail-zodiac/main');
+      } else if (value === 'star') {
+        navigate('/detail-star');
+      }
+    };
   }
 
-  function handleSlwiper(swiper: any) {
+  function handleSlwiper(swiper: swiper) {
     const activesilde = swiper.slides[swiper.activeIndex];
     const activeSlideId = activesilde.id;
     const activeIdcontent = activeSlideId.split('-')[1];
@@ -52,7 +62,7 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
           <SwiperSlide id={`slide-${imgList[index]}`} key={index} className="swiper-slide">
             <CarouselBanner imgitem={imgList[index]} title={SlideContent} content="content" />
             {imgList[index] === 'today' ? null : (
-              <button onClick={MoveLogin} className="contentsDetail">
+              <button onClick={MoveRoute(imgList[index])} className="contentsDetail">
                 운세
                 <br />
                 더보기
