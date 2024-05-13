@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoShareSocialOutline } from 'react-icons/io5';
 
 interface MBTIFortunes {
   [key: string]: {

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Date from '../components/date/Date';
-import Scroll from '../components/scroll/Scroll';
+import Date from '../../components/date/Date';
+import Scroll from '../../components/scroll/Scroll';
 import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
 import LogoImg from './img/text_logo_b.png';
 import Styles from './Zodiac.module.scss';
@@ -15,51 +15,51 @@ interface ZodiacFortunes {
 
 const zodiacFortunes: ZodiacFortunes = {
   쥐띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_mouse.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_mouse.png',
     text: '쥐띠',
   },
   소띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_cow.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_cow.png',
     text: '소띠',
   },
   호랑이띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_tiger.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_tiger.png',
     text: '호랑이띠',
   },
   토끼띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_rabbit.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_rabbit.png',
     text: '토끼띠',
   },
   용띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_dragon.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_dragon.png',
     text: '용띠',
   },
   뱀띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_snake.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_snake.png',
     text: '뱀띠',
   },
   말띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_horse.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_horse.png',
     text: '말띠',
   },
   양띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_sheep.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_sheep.png',
     text: '양띠',
   },
   원숭이띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_monkey.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_monkey.png',
     text: '원숭이띠',
   },
   닭띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_rooster.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_rooster.png',
     text: '닭띠',
   },
   개띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_dog.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_dog.png',
     text: '개띠',
   },
   돼지띠: {
-    imageSrc: '/public/K철학관img/img_circle_zodiac_pig.png',
+    imageSrc: '/public/K_img/img_circle_zodiac_pig.png',
     text: '돼지띠',
   },
 };

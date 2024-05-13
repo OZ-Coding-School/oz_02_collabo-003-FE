@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+
+.head {
+  width: 100%;
+  background: linear-gradient(180deg, #dbe1ff 0%, #eff2ff 100%);
+  text-align: center;
+  color: #191a1b;
+  position: fixed;
+  z-index: 9999;
+}
+
+.headtitle {
+  display: flex;
+  height: 30px;
+}
+
+.backIcon {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  position: fixed;
+  top: 0;
+}
+
+.LogoImg {
+  display: flex;
+  width: 53.33px;
+  height: 21.2px;
+  left: 53px;
+}
+
+.Share {
+  display: flex;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  margin-top: 32px;
+  right: 0;
+}
+
+.MbtiMainImg {
+  height: 200px;
+  top: 80px;
+  left: 80px;
+  width: 200px;
+  margin: auto;
+  display: block;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 28px;
+  margin: 10px;
+}
+
+.body {
+  display: flex;
+}/*# sourceMappingURL=Mbti.module.css.map */
