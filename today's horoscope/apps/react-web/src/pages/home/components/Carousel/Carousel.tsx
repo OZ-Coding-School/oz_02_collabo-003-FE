@@ -44,14 +44,14 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
   return (
     <div className="swiper-container carousel">
       <Swiper
-        spaceBetween={-150}
+        slidesPerView={2}
         loop={true}
-        effect={'coverflow'}
         centeredSlides={true}
+        effect={'coverflow'}
         coverflowEffect={{
           rotate: 0,
-          stretch: 0,
-          depth: 900,
+          stretch: 50,
+          depth: 500,
           modifier: 1,
           slideShadows: false,
         }}
