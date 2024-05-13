@@ -3,7 +3,7 @@ import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
 import MbtiModal from './components/MbtiModal/MbtiModal';
 import { useNavigate } from 'react-router-dom';
-// import BirthModal from './components/BirthModal/BirthModal';
+import BirthModal from './components/BirthModal/BirthModal';
 
 interface InfoFormProps {
   content: string;
@@ -17,9 +17,6 @@ export interface UserData {
 
 function InfoForm({ content }: InfoFormProps) {
   const navigate = useNavigate();
-  // function MoveHome() {
-  //   navigate('/');
-  // }
 
   const [birthModal, setBirthModal] = useState(false);
   function ClickBirthModal() {
@@ -109,7 +106,7 @@ function InfoForm({ content }: InfoFormProps) {
               <input
                 onFocus={ClickBirthModal}
                 onChange={handleChange}
-                type="date"
+                type="text"
                 name="birth"
                 value={userData.birth}
                 placeholder="생년월일을 설정해 주세요."
@@ -134,7 +131,11 @@ function InfoForm({ content }: InfoFormProps) {
           <SubmitButton handleSubmit={handleSubmit} content={content} />
         </form>
       </main>
-      {mbtiModal ? <MbtiModal userData={userData} setUserData={setUserData} ClickMbtiModal={ClickMbtiModal} /> : null}
+      {mbtiModal ? (
+        <MbtiModal userData={userData} setUserData={setUserData} ClickMbtiModal={ClickMbtiModal} />
+      ) : birthModal ? (
+        <BirthModal userData={userData} setUserData={setUserData} ClickBirthModal={ClickBirthModal} />
+      ) : null}
     </div>
   );
 }

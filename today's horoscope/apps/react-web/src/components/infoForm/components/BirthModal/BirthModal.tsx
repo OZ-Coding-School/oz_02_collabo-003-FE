@@ -1,30 +1,116 @@
 import styles from '../modal.module.scss';
-import { useState } from 'react';
-import DatePicker from 'react-mobile-datepicker';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useEffect, useState } from 'react';
+import { UserData } from '../../InfoForm';
+import './BirthModal.scss';
 
 interface BirthProps {
   ClickBirthModal: () => void;
+  userData: UserData;
+  setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
 
-function BirthModal({ ClickBirthModal }: BirthProps) {
-  const [time, setTime] = useState<Date>(new Date());
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+const currentYear = new Date().getFullYear();
+const yearList = Array.from({ length: 101 }, (_, index) => currentYear - index);
+const monthList = Array.from({ length: 12 }, (_, index) => index + 1);
+const dayList = Array.from({ length: 31 }, (_, index) => index + 1);
 
-  function handleToggle(nextIsOpen: typeof isOpen) {
-    setIsOpen(nextIsOpen);
+function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
+  const [birthText, setBirthText] = useState('');
+  const [activeYear, setActiveYear] = useState('');
+  const [activeMonth, setActiveMonth] = useState('');
+  const [activeDay, setActiveDay] = useState('');
+
+  function handleSwiper(swiper: any) {
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    const activeContent = activeSlide.textContent;
+    const swiperId = swiper.el.id;
+
+    let replaceContent = activeContent;
+
+    if (swiperId === 'yearSwiper') {
+      replaceContent = activeContent.replace('년', '');
+      setActiveYear(replaceContent);
+    } else if (swiperId === 'monthSwiper') {
+      replaceContent = activeContent.replace('월', '');
+      setActiveMonth(replaceContent);
+    } else if (swiperId === 'daySwiper') {
+      replaceContent = activeContent.replace('일', '');
+      setActiveDay(replaceContent);
+    }
   }
-  function handleSelect(nextTime: typeof time) {
-    setTime(nextTime);
-    setIsOpen(false);
+
+  function handleClick() {
+    setUserData({
+      ...userData,
+      birth: birthText,
+    });
+    ClickBirthModal();
   }
+
+  useEffect(() => {
+    const newBirthText = `${activeYear}-${activeMonth}-${activeDay}`;
+    setBirthText(newBirthText);
+    console.log(newBirthText);
+  }, [activeYear, activeMonth, activeDay]);
+
+  // useEffect(() => {
+  //   handleClick();
+  // }, [birthText]);
+
+  // useEffect(() => {
+  //   handleSwiper(swiper);
+  // }, [swiper]);
+
   return (
     <div className={styles.modal}>
       <div className={styles.modalMain}>
         <div className={styles.modalHeader}>생년월일</div>
-
-        <DatePicker value={time} isOpen={isOpen} onSelect={handleSelect} onCancel={() => handleToggle(false)} />
-
-        <button className={styles.button} onClick={ClickBirthModal}>
+        <div className="swiper-container birthModal">
+          <Swiper
+            slidesPerView={5}
+            loop={true}
+            direction="vertical"
+            centeredSlides={true}
+            className="swiper-wrapper"
+            id="yearSwiper"
+            onSlideChange={handleSwiper}>
+            {yearList.map((content, index) => (
+              <SwiperSlide key={index} className="swiper-slide">
+                {content}년
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <Swiper
+            slidesPerView={5}
+            loop={true}
+            direction="vertical"
+            centeredSlides={true}
+            className="swiper-wrapper"
+            id="monthSwiper"
+            onSlideChange={handleSwiper}>
+            {monthList.map((content, index) => (
+              <SwiperSlide key={index} className="swiper-slide">
+                {content}월
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <Swiper
+            slidesPerView={5}
+            loop={true}
+            direction="vertical"
+            centeredSlides={true}
+            className="swiper-wrapper"
+            id="daySwiper"
+            onSlideChange={handleSwiper}>
+            {dayList.map((content, index) => (
+              <SwiperSlide key={index} className="swiper-slide">
+                {content}일
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <button className={styles.button} onClick={handleClick}>
           적용하기
         </button>
       </div>
