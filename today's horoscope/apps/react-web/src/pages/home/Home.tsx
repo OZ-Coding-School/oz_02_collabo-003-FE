@@ -38,7 +38,7 @@ function Home() {
         )}
       </header>
       <div className={styles.mainContents}>
-        <div className={styles.mainLogo}>오늘의 운세</div>
+        <img src={`public/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.mainLogo} />
         <Carousel activeSlide={activeSlide} setActiveSlide={setActiveSlide} />
       </div>
       {menuModal === null ? null : <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />}
