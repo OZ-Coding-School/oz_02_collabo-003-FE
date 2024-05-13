@@ -76,7 +76,7 @@ function InfoForm({ content }: InfoFormProps) {
     <div>
       <main className={styles.main}>
         <div className={styles.mainHeader}>
-          <div className={styles.mainLogo}>오늘의 운세</div>
+          <img src={`public/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.mainLogo} />
           <div className={styles.headerContent}>
             오늘의 운세를 보기 위해선 기본 정보가 꼭 필요합니다
             <br />
