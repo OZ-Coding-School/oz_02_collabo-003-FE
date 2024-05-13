@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import swiper from 'swiper';
 import styles from '../modal.module.scss';
 import React from 'react';
 import './MbtiModal.scss';
@@ -34,12 +35,14 @@ const MBTIList = [
 function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
   const [mbtiText, setMbtiText] = useState('');
 
-  function handleSwiper(swiper: any) {
+  function handleSwiper(swiper: swiper) {
     const activesilde = swiper.slides[swiper.activeIndex];
-    const activeSlideContent = activesilde.textContent;
+    const activeSlideContent: string | null = activesilde.textContent;
 
-    setMbtiText(activeSlideContent);
-    console.log(mbtiText);
+    if (activeSlideContent !== null) {
+      setMbtiText(activeSlideContent);
+      console.log(mbtiText);
+    }
   }
 
   function handleClick() {

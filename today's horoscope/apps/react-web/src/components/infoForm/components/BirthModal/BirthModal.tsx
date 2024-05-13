@@ -1,5 +1,6 @@
 import styles from '../modal.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import swiper from 'swiper';
 import { useEffect, useState } from 'react';
 import { UserData } from '../../InfoForm';
 import './BirthModal.scss';
@@ -21,22 +22,23 @@ function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
   const [activeMonth, setActiveMonth] = useState('');
   const [activeDay, setActiveDay] = useState('');
 
-  function handleSwiper(swiper: any) {
+  function handleSwiper(swiper: swiper) {
     const activeSlide = swiper.slides[swiper.activeIndex];
-    const activeContent = activeSlide.textContent;
+    const activeContent: string | null = activeSlide.textContent;
     const swiperId = swiper.el.id;
 
-    let replaceContent = activeContent;
-
-    if (swiperId === 'yearSwiper') {
-      replaceContent = activeContent.replace('년', '');
-      setActiveYear(replaceContent);
-    } else if (swiperId === 'monthSwiper') {
-      replaceContent = activeContent.replace('월', '');
-      setActiveMonth(replaceContent);
-    } else if (swiperId === 'daySwiper') {
-      replaceContent = activeContent.replace('일', '');
-      setActiveDay(replaceContent);
+    let replaceContent: string | null = activeContent;
+    if (activeContent !== null) {
+      if (swiperId === 'yearSwiper') {
+        replaceContent = activeContent.replace('년', '');
+        setActiveYear(replaceContent);
+      } else if (swiperId === 'monthSwiper') {
+        replaceContent = activeContent.replace('월', '');
+        setActiveMonth(replaceContent);
+      } else if (swiperId === 'daySwiper') {
+        replaceContent = activeContent.replace('일', '');
+        setActiveDay(replaceContent);
+      }
     }
   }
 
@@ -53,14 +55,6 @@ function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
     setBirthText(newBirthText);
     console.log(newBirthText);
   }, [activeYear, activeMonth, activeDay]);
-
-  // useEffect(() => {
-  //   handleClick();
-  // }, [birthText]);
-
-  // useEffect(() => {
-  //   handleSwiper(swiper);
-  // }, [swiper]);
 
   return (
     <div className={styles.modal}>
