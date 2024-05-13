@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import swiper from 'swiper';
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
 import 'swiper/css';
@@ -22,7 +23,7 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
     else navigate('/detail');
   }
 
-  function handleSlwiper(swiper: any) {
+  function handleSlwiper(swiper: swiper) {
     const activesilde = swiper.slides[swiper.activeIndex];
     const activeSlideId = activesilde.id;
     const activeIdcontent = activeSlideId.split('-')[1];
