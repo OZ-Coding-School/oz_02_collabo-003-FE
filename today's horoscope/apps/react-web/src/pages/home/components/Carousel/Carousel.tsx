@@ -44,14 +44,14 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
   return (
     <div className="swiper-container carousel">
       <Swiper
-        spaceBetween={-150}
+        slidesPerView={2}
         loop={true}
-        effect={'coverflow'}
         centeredSlides={true}
+        effect={'coverflow'}
         coverflowEffect={{
           rotate: 0,
-          stretch: 0,
-          depth: 900,
+          stretch: 50,
+          depth: 500,
           modifier: 1,
           slideShadows: false,
         }}
@@ -61,15 +61,15 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
         {Slides.map((SlideContent, index) => (
           <SwiperSlide id={`slide-${imgList[index]}`} key={index} className="swiper-slide">
             <CarouselBanner imgitem={imgList[index]} title={SlideContent} content="content" />
-            {imgList[index] === 'today' ? null : (
-              <button onClick={MoveRoute(imgList[index])} className="contentsDetail">
-                운세
-                <br />
-                더보기
-                <br />
-                <MdKeyboardArrowDown size={30} />
-              </button>
-            )}
+            <button
+              onClick={MoveRoute(imgList[index])}
+              className={imgList[index] === 'today' ? 'contentsDetail' : 'contentsDetail activeContentDetail'}>
+              운세
+              <br />
+              더보기
+              <br />
+              <MdKeyboardArrowDown size={30} />
+            </button>
           </SwiperSlide>
         ))}
       </Swiper>

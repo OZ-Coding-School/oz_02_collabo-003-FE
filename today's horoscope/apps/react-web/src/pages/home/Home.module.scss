@@ -25,19 +25,22 @@
   padding: 0;
 }
 .mainContents {
-  width: 360px;
+  width: 100%;
   height: calc(100vh - 65.5px);
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .mainLogo {
   width: 160px;
   height: 72px;
-  font-size: 30px;
-  text-align: center;
-  color: white;
+  padding: 10px;
   margin-top: 34px;
+}
+@media (max-height: 738px) {
+  .mainLogo {
+    margin-top: 15px;
+  }
 }
