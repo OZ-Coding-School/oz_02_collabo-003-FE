@@ -32,8 +32,8 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
       <div className={styles.menuModal}>
         <header className={styles.modalHeader}>
           <IoCloseOutline onClick={onclickMenuModal} className={styles.modalCloseIcon} />
-          <img src={`public/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.modalTitle} />
-          <img src="public/K_img/island/img_island_today_default.png" alt="default image" className={styles.mainImg} />
+          <img src={`/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.modalTitle} />
+          <img src="/K_img/island/img_island_today_default.png" alt="default image" className={styles.mainImg} />
         </header>
         <main className={styles.modalMain}>
           <div className={styles.userInfo}>
