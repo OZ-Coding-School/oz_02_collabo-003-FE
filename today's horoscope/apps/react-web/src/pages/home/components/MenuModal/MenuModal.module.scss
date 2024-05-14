@@ -1,21 +1,17 @@
 @keyframes FadeOut {
   from {
-    opacity: 1;
     transform: translateX(0);
   }
   to {
-    opacity: 0;
     transform: translateX(-100%);
   }
 }
 
 @keyframes FadeIn {
   from {
-    opacity: 0;
     transform: translateX(-100%);
   }
   to {
-    opacity: 1;
     transform: translateX(0);
   }
 }
@@ -30,10 +26,10 @@
   z-index: 9;
 }
 .openModal .menuModal {
-  animation: FadeIn 0.5s ease-out forwards;
+  animation: FadeIn 0.3s ease-out forwards;
 }
 .closeModal .menuModal {
-  animation: FadeOut 0.5s ease-out forwards;
+  animation: FadeOut 0.3s ease-out forwards;
 }
 .menuModal {
   width: 284px;
