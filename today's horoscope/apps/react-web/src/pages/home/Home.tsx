@@ -39,7 +39,7 @@ function Home() {
       </header>
       <div className={styles.mainContents}>
         <img src={`/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.mainLogo} />
-        <Carousel activeSlide={activeSlide} setActiveSlide={setActiveSlide} />
+        <Carousel setActiveSlide={setActiveSlide} />
       </div>
       {menuModal === null ? null : <MenuModal menuModal={menuModal} onclickMenuModal={onclickMenuModal} />}
     </div>

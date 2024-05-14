@@ -9,13 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
 
 interface swiperProps {
-  activeSlide: string;
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
 const imgList = ['today', 'zodiac', 'star', 'mbti'];
-function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
+function Carousel({ setActiveSlide }: swiperProps) {
   const navigate = useNavigate();
 
   function MoveRoute(value: string) {
@@ -38,7 +37,6 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
     const activeIdcontent = activeSlideId.split('-')[1];
 
     setActiveSlide(activeIdcontent);
-    console.log(activeSlide);
   }
 
   return (
