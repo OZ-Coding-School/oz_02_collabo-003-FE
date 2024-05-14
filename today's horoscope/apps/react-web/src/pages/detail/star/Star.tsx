@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Date from '../components/date/Date';
-import Scroll from '../components/scroll/Scroll';
+import Date from '../../detail/components/date/Date';
 import Text from '../components/textbox/star/Star_text';
 import { IoChevronBack } from 'react-icons/io5';
 import { IoShareSocialOutline } from 'react-icons/io5';
@@ -18,7 +17,7 @@ const Fortune: React.FC = () => {
           <IoShareSocialOutline className={Styles.Share} />
         </div>
         <div>
-          <img src="/public/K철학관img/섬/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />
+          <img src="/public/K_img/island/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />
           <h1 className={Styles.title}>
             별자리
             <br />
@@ -28,7 +27,6 @@ const Fortune: React.FC = () => {
         <Date />
       </div>
       <div className={Styles.body}>
-        <Scroll />
         <Text />
       </div>
     </div>

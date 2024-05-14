@@ -89,6 +89,15 @@ const TextImage: React.FC = () => {
       <ul>{mbtiFortuneMessages}</ul>
     </div>
   );
+  return (
+    <div className="App">
+      <div className="scroll-container">
+        {/* 조건부 렌더링을 사용하여 화면 너비에 따라 이미지 표시 여부 결정 */}
+        <img className="hidden-image" src="your-image-url.jpg" alt="Your Image" />
+        {/* 여기에 스크롤이 필요한 내용 추가 */}
+      </div>
+    </div>
+  );
 };
 
 export default TextImage;
