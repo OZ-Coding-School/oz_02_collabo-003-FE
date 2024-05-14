@@ -1,4 +1,3 @@
-// text
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -9,20 +8,16 @@
   box-sizing: border-box;
   color: #191a1b;
   font-family: 'Pretendard-Regular';
+  margin: 16px;
 }
 .main {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: auto;
   background: linear-gradient(45deg, #f4cfd8, #94e4fd);
 }
-.stateBar {
-  width: 100%;
-  height: 32px;
-}
 .mainHeader {
-  width: 360px;
-  padding: 0 16px;
+  width: 100%;
 }
 .menuIcon {
   width: 30px;
@@ -30,18 +25,22 @@
   padding: 0;
 }
 .mainContents {
-  width: 360px;
-  height: 980px;
+  width: 100%;
+  height: calc(100vh - 65.5px);
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 .mainLogo {
   width: 160px;
   height: 72px;
-  font-size: 30px;
-  text-align: center;
-  color: white;
+  padding: 10px;
   margin-top: 34px;
+}
+@media (max-height: 738px) {
+  .mainLogo {
+    margin-top: 15px;
+  }
 }
