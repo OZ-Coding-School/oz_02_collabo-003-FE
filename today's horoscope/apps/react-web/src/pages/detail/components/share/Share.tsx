@@ -1,4 +1,5 @@
 import React from 'react';
+import Styles from './Share.module.scss';
 
 interface MBTIFortunes {
   [key: string]: {
@@ -35,10 +36,6 @@ const mbtiFortunes: MBTIFortunes = {
   INFP: {
     fortune: '창의력을 발휘하는 좋은 날이 될 거에요. 새로운 아이디어가 떠오를 거예요.',
     imageSrc: '/public/K철학관img/img_circle_mbti_infp.png',
-  },
-  INTJ: {
-    fortune: '목표를 설정하고 계획을 세우는 데에 집중하세요. 당신의 미래가 밝을 거예요.',
-    imageSrc: '/public/K철학관img/img_circle_mbti_intj.png',
   },
   ESTP: {
     fortune: '대담한 시도를 해보세요. 새로운 경험이 당신을 기다리고 있어요!',
