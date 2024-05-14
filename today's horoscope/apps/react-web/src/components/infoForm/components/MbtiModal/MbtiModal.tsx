@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import swiper from 'swiper';
 import styles from '../modal.module.scss';
 import React from 'react';
-import './MbtiSwiper.scss';
+import './MbtiModal.scss';
 import { useState } from 'react';
 import { UserData } from '../../InfoForm';
 
@@ -34,13 +35,14 @@ const MBTIList = [
 function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
   const [mbtiText, setMbtiText] = useState('');
 
-  function handleSwipe() {
-    const activeSlideContent = document.querySelector('.swiper-slide-active')?.textContent;
+  function handleSwiper(swiper: swiper) {
+    const activesilde = swiper.slides[swiper.activeIndex];
+    const activeSlideContent: string | null = activesilde.textContent;
 
-    if (activeSlideContent) {
+    if (activeSlideContent !== null) {
       setMbtiText(activeSlideContent);
+      console.log(mbtiText);
     }
-    console.log(mbtiText);
   }
 
   function handleClick() {
@@ -50,20 +52,21 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
     });
     ClickMbtiModal();
   }
+
   return (
     <div className={styles.modal}>
       <div className={styles.modalMain}>
         <div className={styles.modalHeader}>MBTI</div>
-        <div className={styles.swiperContainer}>
+        <div className="swiper-container mbtiModal">
           <Swiper
             slidesPerView={5}
             loop={true}
             direction="vertical"
             centeredSlides={true}
-            className={styles.swiperWrapper}
-            onSlideChange={handleSwipe}>
+            className="swiper-wrapper"
+            onSlideChange={handleSwiper}>
             {MBTIList.map((content, index) => (
-              <SwiperSlide key={index} className={styles.swiperSlide}>
+              <SwiperSlide key={index} className="swiper-slide">
                 {content}
               </SwiperSlide>
             ))}

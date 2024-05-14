@@ -8,7 +8,7 @@
   box-sizing: border-box;
   color: #191a1b;
   font-family: 'Pretendard-Regular';
-  padding: 16px;
+  margin: 16px;
 }
 .stateBar {
   width: 100%;
@@ -21,14 +21,15 @@
 .backIcon {
   width: 30px;
   height: 30px;
-  margin: 8px 16px;
   padding: 0;
   position: fixed;
-  top: 32;
+  top: 0;
 }
 .headerTitle {
+  width: 100%;
   font-size: 16px;
   font-weight: 500;
-  line-height: 48px;
+  line-height: 30px;
+  margin-top: 16px;
   text-align: center;
 }

@@ -8,7 +8,7 @@
   box-sizing: border-box;
   color: #191a1b;
   font-family: 'Pretendard-Regular';
-  padding: 16px;
+  margin: 16px;
 }
 .modal {
   width: 100%;
@@ -44,6 +44,7 @@
   color: white;
   background-color: #191a1b;
   border: 0;
+  margin: 0;
   position: fixed;
   bottom: 0;
 }

@@ -10,7 +10,6 @@ function Login() {
   }
   return (
     <div>
-      <div className={styles.stateBar}></div>
       <header className={styles.header}>
         <IoChevronBack onClick={MoveHome} className={styles.backIcon} />
         <div className={styles.headerTitle}>정보입력</div>

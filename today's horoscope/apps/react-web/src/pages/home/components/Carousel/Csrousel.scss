@@ -1,10 +1,30 @@
-.swiper-container {
-  width: 360px;
-  height: 700px;
-  margin: 36px auto;
+.carousel {
+  width: 500px;
+  height: 100vh;
+  margin: 36px 0;
+  overflow: hidden;
 }
-.swiper-wrapper {
-  margin: 0 60px;
+.carousel .swiper-wrapper {
+  width: 100%;
+  margin: auto;
+}
+.carousel .swiper-slide-active .activeContentDetail {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.carousel .swiper-slide-active .carouselContents {
+  box-shadow: 10px 10px 30px rgba(128, 127, 127, 0.4);
+}
+
+.carousel .swiper-slide-next {
+  margin: 0;
+}
+.carousel
+  .swiper-slide:not(.carousel .swiper-slide-prev):not(.carousel .swiper-slide-active):not(
+    .carousel .swiper-slide-next
+  ) {
+  opacity: 0;
 }
 .contentsDetail {
   width: 68px;
@@ -14,20 +34,14 @@
   border: 0;
   font-size: 9px;
   position: fixed;
-  left: 84px;
-  top: 430px;
+  left: 70px;
+  top: 410px;
   background: linear-gradient(45deg, #a3ff5b, #49c8ff);
-  display: none;
-}
-.swiper-slide-active {
-  transition: 0.3s all;
-  .contentsDetail {
-    display: block;
-  }
-  .carouselContents {
-    box-shadow: 10px 10px 30px rgba(128, 127, 127, 0.4);
-  }
-}
-.swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
   opacity: 0;
+}
+
+@media (max-height: 738px) {
+  .carousel {
+    margin: 0;
+  }
 }
