@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
-import { MdKeyboardArrowDown } from 'react-icons/md';
+import { IoIosArrowDown } from 'react-icons/io';
 
 interface swiperProps {
   activeSlide: string;
@@ -68,7 +68,7 @@ function Carousel({ activeSlide, setActiveSlide }: swiperProps) {
               <br />
               더보기
               <br />
-              <MdKeyboardArrowDown size={30} />
+              <IoIosArrowDown className="detailIcon" size={30} />
             </button>
           </SwiperSlide>
         ))}
