@@ -1,50 +1,107 @@
+* {
+  box-sizing: border-box; /* 요소의 너비와 높이 계산 방법을 조정 */
+}
+
 .back {
-  display: flex;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 8px 16px 8px 30px; /* margin-left를 margin shorthand에 통합 */
+  position: relative; /* top 속성을 적용하기 위해 position 추가 */
+  top: 32px; /* 단위 추가 */
 }
 
 .title {
-  display: flex;
-  margin-top: 20px;
-  font-size: 22px;
+  display: inline-block; /* inline 대신 inline-block 사용 추천, 더 나은 컨트롤 가능 */
+  text-align: center;
+  font-size: 16px;
+  width: 100%; /* 가운데 정렬을 위해 width 100% 추가 */
+}
+
+.now {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .update {
-  display: flex;
-  color: #374151;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border: 1px solid #cbd5e0;
-  border-radius: 0.375rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  .update {
-    display: flex;
-    color: #374151;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border: 1px solid #cbd5e0;
-    border-radius: 0.375rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  }
-
-  .update:hover {
-    background-color: #f3f4f6;
-  }
-
-  .underline {
-    display: flex;
-    margin-top: 10px; /* 여백을 조절할 수 있습니다. */
-    height: 1px; /* 밑줄의 두께를 조절할 수 있습니다. */
-    background-color: gray; /* 밑줄의 색상을 지정할 수 있습니다. */
-  }
+  width: 81px;
+  height: 32px;
+  padding: 6px 16px;
+  margin: 0 auto; /* 가운데 정렬을 위해 margin auto 사용 */
+  border-radius: 12px;
+  border: 1px solid #515355;
+  background-color: #ffffff;
+  position: relative; /* top, left 속성을 적용하기 위해 position 추가 */
+  top: 108px;
+  left: 50%; /* 가운데 정렬을 위해 left 50% 사용 */
+  transform: translateX(-50%); /* 자신의 너비의 절반만큼 왼쪽으로 이동하여 완전히 가운데 정렬 */
 }
 
-.update:hover {
-  background-color: #f3f4f6;
+.underline {
+  width: 328px;
+  margin-top: 60px;
+  border-top: 1px solid rgba(234, 234, 234, 1); /* height 대신 border-top 사용 */
+  position: relative; /* top 속성을 적용하기 위해 position 추가 */
+  top: 169px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-  .underline {
-    display: flex;
-    margin-top: 10px; /* 여백을 조절할 수 있습니다. */
-    height: 1px; /* 밑줄의 두께를 조절할 수 있습니다. */
-    background-color: gray; /* 밑줄의 색상을 지정할 수 있습니다. */
-  }
+.noti {
+  font-size: 12px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block; /* switch의 위치 조정이 용이하도록 display 변경 */
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.switch .slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: #2196f3;
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
