@@ -29,15 +29,20 @@
 .contentsDetail {
   width: 68px;
   height: 68px;
-  padding-top: 17px;
+  padding-top: 12px;
   border-radius: 50%;
   border: 0;
-  font-size: 9px;
+  font-weight: 700;
+  font-size: 10px;
   position: fixed;
   left: 70px;
   top: 410px;
   background: linear-gradient(45deg, #a3ff5b, #49c8ff);
   opacity: 0;
+}
+.detailIcon {
+  padding: 0;
+  margin: 0;
 }
 
 @media (max-height: 738px) {

@@ -41,7 +41,6 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
 
     if (activeSlideContent !== null) {
       setMbtiText(activeSlideContent);
-      console.log(mbtiText);
     }
   }
 

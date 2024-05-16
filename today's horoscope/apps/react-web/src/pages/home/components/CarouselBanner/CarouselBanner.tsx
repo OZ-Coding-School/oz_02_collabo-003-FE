@@ -39,7 +39,10 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
     else if (imgitem === 'mbti') {
       if (inputData.mbti === 'MBTI모름') {
         setInputItem('default');
-      } else setInputItem(inputData.mbti);
+      } else {
+        const mbti = inputData.mbti;
+        setInputItem(mbti.toLowerCase());
+      }
     } else if (imgitem === 'zodiac') {
       const birthData = inputData.birth;
       const birthYear = birthData.split('-')[0];
@@ -83,7 +86,7 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
   return (
     <div className={styles.carouselBanner}>
       <img
-        src={`public/K_img/island/img_island_${imgitem}_${inputItem}.png`}
+        src={`/K_img/island/img_island_${imgitem}_${inputItem}.png`}
         alt={`${imgitem} image`}
         className={styles.carouselImage}
       />
