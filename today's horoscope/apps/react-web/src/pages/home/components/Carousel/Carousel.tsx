@@ -58,7 +58,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
         className="swiper-wrapper">
         {Slides.map((SlideContent, index) => (
           <SwiperSlide id={`slide-${imgList[index]}`} key={index} className="swiper-slide">
-            <CarouselBanner imgitem={imgList[index]} title={SlideContent} content="content" />
+            <CarouselBanner imgitem={imgList[index]} title={SlideContent} />
             <button
               onClick={MoveRoute(imgList[index])}
               className={imgList[index] === 'today' ? 'contentsDetail' : 'contentsDetail activeContentDetail'}>
