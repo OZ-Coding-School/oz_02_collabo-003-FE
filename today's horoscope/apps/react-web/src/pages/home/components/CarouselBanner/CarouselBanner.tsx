@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import styles from './CarouselBanner.module.scss';
+import APIS from '../../../../services/api';
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '../../../../services/queryKeys';
 
 interface carouselContents {
   title: string;
-  content: string;
   imgitem: string;
 }
 
@@ -22,19 +24,34 @@ const zodiacList = [
   'sheep',
 ];
 
-function CarouselBanner({ title, content, imgitem }: carouselContents) {
+function CarouselBanner({ title, imgitem }: carouselContents) {
   const [inputData, setInputData] = useState({
     name: '',
     birth: '',
     mbti: '',
   });
+  const storedData = localStorage.getItem('userData');
+
+  const { data: userData } = useQuery({
+    queryKey: QUERY_KEYS.USER_DATA,
+    queryFn: () => {
+      if(inputData.mbti)
+      return APIS.getUserDataAPI(inputData?.birth, inputData?.mbti),
+    }
+  });
+  console.log(inputData);
+
+  // let bannerContent;
+  // if (imgitem === 'mbti') bannerContent = mbtiData;
+  // else if (imgitem === 'star') bannerContent = starData;
+  // else if (imgitem === 'zodiac') bannerContent = zodiacData;
+  // else bannerContent = todayData;
+
   const [inputItem, setInputItem] = useState('');
   useEffect(() => {
-    const storedData = localStorage.getItem('userData');
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
-
     if (localStorage.length === 0) setInputItem('default');
     else if (imgitem === 'mbti') {
       if (inputData.mbti === 'MBTI모름') {
@@ -81,7 +98,7 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
         setInputItem('pisces');
       } else setInputItem('default');
     } else setInputItem('default');
-  }, [imgitem, inputData.birth, inputData.mbti]);
+  }, [imgitem]);
 
   return (
     <div className={styles.carouselBanner}>
@@ -92,7 +109,7 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
       />
       <div className={styles.carouselContents}>
         <h1 className={styles.title}>{title}</h1>
-        <div className={styles.content}>{content}</div>
+        {/* <div className={styles.content}>{bannerContent}</div> */}
       </div>
     </div>
   );
