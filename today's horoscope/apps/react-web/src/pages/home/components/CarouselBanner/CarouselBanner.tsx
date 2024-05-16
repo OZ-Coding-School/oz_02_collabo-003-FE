@@ -3,6 +3,7 @@ import styles from './CarouselBanner.module.scss';
 import APIS from '../../../../services/api';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '../../../../services/queryKeys';
+import dayjs from 'dayjs';
 
 interface carouselContents {
   title: string;
@@ -31,15 +32,15 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
     mbti: '',
   });
   const storedData = localStorage.getItem('userData');
+  const objectStoredData = JSON.parse(storedData as string);
+  const birth = dayjs(objectStoredData?.birth);
+  const formattedBirth = birth.format('YYYYMMDD');
 
   const { data: userData } = useQuery({
     queryKey: QUERY_KEYS.USER_DATA,
-    queryFn: () => {
-      if(inputData.mbti)
-      return APIS.getUserDataAPI(inputData?.birth, inputData?.mbti),
-    }
+    queryFn: () => APIS.getUserDataAPI(formattedBirth, objectStoredData?.mbti),
   });
-  console.log(inputData);
+  // console.log(inputData);
 
   // let bannerContent;
   // if (imgitem === 'mbti') bannerContent = mbtiData;
@@ -98,7 +99,7 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
         setInputItem('pisces');
       } else setInputItem('default');
     } else setInputItem('default');
-  }, [imgitem]);
+  }, [imgitem, inputData.birth, inputData.mbti, storedData]);
 
   return (
     <div className={styles.carouselBanner}>
