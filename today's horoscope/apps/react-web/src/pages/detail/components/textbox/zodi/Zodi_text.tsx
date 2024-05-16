@@ -1,7 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Date from '../../date/Date';
 import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
-import LogoImg from './img/text_logo_b.png';
 import Styles from './Zodi_text.module.scss';
 
 interface ZodiacFortunes {
@@ -35,12 +35,16 @@ const zodiacFortunes: ZodiacFortunes = {
 };
 
 const TextImage: React.FC = () => {
+  const navigate = useNavigate();
+  function MoveHome() {
+    navigate('/');
+  }
   return (
     <div className={Styles.container}>
       <div className={Styles.head}>
         <div className={Styles.headtitle}>
-          <IoChevronBack className={Styles.Back} />
-          <img src={LogoImg} alt="로고" className={Styles.LogoImg} />
+          <IoChevronBack onClick={MoveHome} className={Styles.Back} />
+          <img src="/public/K_img/K-logo-icon/text_logo_b.png" alt="logo" className={Styles.LogoImg} />
           <IoShareSocialOutline className={Styles.Share} />
         </div>
         <div className={Styles.title}>

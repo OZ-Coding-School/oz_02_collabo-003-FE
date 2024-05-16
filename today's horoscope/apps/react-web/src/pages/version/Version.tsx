@@ -72,10 +72,12 @@ const Version: React.FC = () => {
 
       {showUpdatePopup && (
         <div className={Styles.popup}>
-          <h2>새로운 버전이 있습니다!</h2>
-          <p>업데이트를 진행하시겠습니까?</p>
-          <button onClick={handleUpdateConfirm}>확인</button>
-          <button onClick={handleUpdateCancel}>취소</button>
+          <h2>새로운 버전이 있습니다</h2>
+          <p> 업데이트를 진행하시겠습니까?</p>
+          <div className={Styles.buttonContainer}>
+            <button onClick={handleUpdateConfirm}>확인</button>
+            <button onClick={handleUpdateCancel}>취소</button>
+          </div>
         </div>
       )}
     </div>

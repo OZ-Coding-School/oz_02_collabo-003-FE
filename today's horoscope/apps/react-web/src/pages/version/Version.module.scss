@@ -3,85 +3,80 @@
   width: 100%;
 }
 
-.versionContainer,
-.notificationContainer {
-  display: flex; /* flexbox를 사용하여 아이템들을 가로로 정렬합니다 */
-  align-items: center; /* 세로 방향으로 중앙 정렬 */
-  justify-content: flex-start; /* 아이템들을 컨테이너의 시작 부분에서 정렬 */
-  padding-left: 24px;
-  padding-right: 24px;
-}
-
 .back {
   width: 30px;
   height: 30px;
+  margin: 8px 16px;
   padding: 0;
-  margin: 8px 16px 8px 30px; /* margin-left를 margin shorthand에 통합 */
-  position: relative; /* top 속성을 적용하기 위해 position 추가 */
-  top: 32px; /* 단위 추가 */
+  position: fixed;
+  top: 32;
 }
 
 .title {
-  display: inline-block; /* inline 대신 inline-block 사용 추천, 더 나은 컨트롤 가능 */
-  padding-left: 10px;
+  padding-top: 20px;
   text-align: center;
   font-size: 16px;
 }
 
-.versionTitle {
-  display: inline-block;
-  line-height: 25px;
-  padding-top: 40px;
-  margin-top: 0;
+.versionContainer.versionContainer,
+.notificationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
 }
 
-.now {
+.versionTitle,
+.notificationContainer {
+  display: inline-block;
+  padding-top: 35px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.now,
+.pushnoti {
   font-size: 16px;
   font-weight: bold;
 }
 
-.nowversion {
+.nowversion,
+.noti {
   font-size: 12px;
 }
 
 .update {
   width: 81px;
   height: 32px;
-  margin-top: 42px;
-  margin-left: -80px;
-  padding: 6px 16px;
-  border-radius: 12px;
-  border: 1px solid #515355;
+  top: 169px;
+  left: 255px;
   background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  color: #515355;
+  margin-top: 25px;
+  padding: 6px 10px 6px 10px;
+  border: 1px solid #515355;
+  border-radius: 12px;
+  cursor: pointer;
+
+  &:hover {
+    color: #d3d3d3;
+    background-color: #ffffff;
+    border: 1px solid #d3d3d3;
+  }
 }
 
 .underline {
   width: 328px;
   border: 1px solid #eaeaea; /* height 대신 border-top 사용 */
   position: absolute; /* top 속성을 적용하기 위해 position 추가 */
-  top: 169px;
+  top: 160px;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.pushnoti {
-  display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.noti {
-  font-size: 12px;
 }
 
 .switch {
   position: relative;
   display: inline-block;
-  padding-top: 35px;
   line-height: 25px;
   text-align: left;
   font-size: 16px;
@@ -94,14 +89,12 @@
 }
 
 .switch .slider {
-  display: inline-block;
   position: absolute;
-  cursor: pointer;
+  content: '';
   width: 48px;
   height: 24px;
-  top: 43px;
+  margin-top: -38px;
   right: 0;
-  bottom: 0;
   border-radius: 100px;
   background: #eaeaea;
   transition: 0.5s;
@@ -116,7 +109,7 @@
   top: 2px;
   left: 2px;
   border-radius: 100px;
-  background-color: white;
+  background-color: #ffffff;
   transition: 0.5s;
 }
 
@@ -126,4 +119,63 @@
 
 .switch input:checked + .slider:before {
   transform: translateX(24px);
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 312px;
+  height: 182px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 3px 4px 16px 0px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  z-index: 1000;
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+
+    h2 {
+      margin-bottom: 10px;
+      color: #191a1b;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    p {
+      color: #515355;
+      opacity: 0.6;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      background-color: #ffffff; // 배경색을 #ffffff로 설정
+      color: #191a1b; // 글자색을 #191A1B로 설정
+
+      &:not(:last-child) {
+        border-right: 1px solid #d1d1d1;
+      }
+      &:active {
+        background-color: #ddd;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
 }
