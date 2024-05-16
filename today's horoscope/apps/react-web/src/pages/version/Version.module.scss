@@ -1,5 +1,15 @@
 * {
-  box-sizing: border-box; /* 요소의 너비와 높이 계산 방법을 조정 */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.versionContainer,
+.notificationContainer {
+  display: flex; /* flexbox를 사용하여 아이템들을 가로로 정렬합니다 */
+  align-items: center; /* 세로 방향으로 중앙 정렬 */
+  justify-content: flex-start; /* 아이템들을 컨테이너의 시작 부분에서 정렬 */
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .back {
@@ -13,9 +23,16 @@
 
 .title {
   display: inline-block; /* inline 대신 inline-block 사용 추천, 더 나은 컨트롤 가능 */
+  padding-left: 10px;
   text-align: center;
   font-size: 16px;
-  width: 100%; /* 가운데 정렬을 위해 width 100% 추가 */
+}
+
+.versionTitle {
+  display: inline-block;
+  line-height: 25px;
+  padding-top: 40px;
+  margin-top: 0;
 }
 
 .now {
@@ -23,28 +40,38 @@
   font-weight: bold;
 }
 
+.nowversion {
+  font-size: 12px;
+}
+
 .update {
   width: 81px;
   height: 32px;
+  margin-top: 42px;
+  margin-left: -80px;
   padding: 6px 16px;
-  margin: 0 auto; /* 가운데 정렬을 위해 margin auto 사용 */
   border-radius: 12px;
   border: 1px solid #515355;
   background-color: #ffffff;
-  position: relative; /* top, left 속성을 적용하기 위해 position 추가 */
-  top: 108px;
-  left: 50%; /* 가운데 정렬을 위해 left 50% 사용 */
-  transform: translateX(-50%); /* 자신의 너비의 절반만큼 왼쪽으로 이동하여 완전히 가운데 정렬 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .underline {
   width: 328px;
-  margin-top: 60px;
-  border-top: 1px solid rgba(234, 234, 234, 1); /* height 대신 border-top 사용 */
-  position: relative; /* top 속성을 적용하기 위해 position 추가 */
+  border: 1px solid #eaeaea; /* height 대신 border-top 사용 */
+  position: absolute; /* top 속성을 적용하기 위해 position 추가 */
   top: 169px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.pushnoti {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .noti {
@@ -53,9 +80,11 @@
 
 .switch {
   position: relative;
-  display: inline-block; /* switch의 위치 조정이 용이하도록 display 변경 */
-  width: 60px;
-  height: 34px;
+  display: inline-block;
+  padding-top: 35px;
+  line-height: 25px;
+  text-align: left;
+  font-size: 16px;
 }
 
 .switch input {
@@ -65,43 +94,36 @@
 }
 
 .switch .slider {
+  display: inline-block;
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
+  width: 48px;
+  height: 24px;
+  top: 43px;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
+  border-radius: 100px;
+  background: #eaeaea;
+  transition: 0.5s;
 }
 
 .switch .slider:before {
+  display: inline;
   position: absolute;
   content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  left: 2px;
+  border-radius: 100px;
   background-color: white;
-  transition: 0.4s;
+  transition: 0.5s;
 }
 
 .switch input:checked + .slider {
-  background-color: #2196f3;
-}
-
-.switch input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  background-color: #191a1b;
 }
 
 .switch input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+  transform: translateX(24px);
 }
