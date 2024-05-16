@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useRef } from 'react';
-import { BackHandler, Platform, View } from 'react-native';
+import { BackHandler, Platform, Text, View } from 'react-native';
 import WebView from 'react-native-webview';
 
 export default function Native() {
@@ -32,7 +32,7 @@ export default function Native() {
         javaScriptEnabled={true}
         allowsbackforwardnavigationgestures={true}
         source={{ uri: 'https://today-s-horoscope.vercel.app/' }}
-        style={{ marginTop: 22, flex: 1 }}
+        // style={{ marginTop: 22, flex: 1 }}
       />
     </View>
   );
