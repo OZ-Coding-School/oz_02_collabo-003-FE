@@ -3,8 +3,18 @@ import styles from './Home.module.scss';
 import Carousel from './components/Carousel/Carousel';
 import { IoMenuOutline } from 'react-icons/io5';
 import MenuModal from './components/MenuModal/MenuModal';
+import APIS from '../../services/api';
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '../../services/queryKeys';
 
 function Home() {
+  const { data } = useQuery({
+    queryKey: QUERY_KEYS.MBTI,
+    queryFn: () => APIS.getMbtiDataAPI(),
+  });
+
+  console.log(data);
+
   const [menuModal, setMenuModal] = useState<boolean | null>(null);
   function onclickMenuModal() {
     if (menuModal === null) {
