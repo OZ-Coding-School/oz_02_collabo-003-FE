@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 interface carouselContents {
   title: string;
   imgitem: string;
+  user: string;
 }
 
 const zodiacList = [
@@ -24,8 +25,7 @@ const zodiacList = [
   'horse',
   'sheep',
 ];
-
-function CarouselBanner({ title, imgitem }: carouselContents) {
+function CarouselBanner({ title, imgitem, user }: carouselContents) {
   const [inputData, setInputData] = useState({
     name: '',
     birth: '',
@@ -47,10 +47,27 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
-    if (localStorage.length === 0) setInputItem('default');
-    else if (imgitem === 'mbti') {
+    const bannerDefaultText = `
+  오늘의 ${title} 보기
+  나만의 ${title}별 운세를
+  보고 싶다면
+  ${user}을 설정 해 주세요!
+`;
+    if (localStorage.length === 0) {
+      if (imgitem === 'today') {
+        setMsg(userData?.today_msg?.luck_msg);
+      } else {
+        setMsg(bannerDefaultText);
+      }
+      setInputItem('default');
+    }
+
+    if (localStorage.length === 0 && imgitem !== 'today') {
+      setMsg(bannerDefaultText);
+    } else if (imgitem === 'mbti') {
       if (inputData.mbti === 'MBTI모름') {
         setInputItem('default');
+        setMsg(bannerDefaultText);
       } else {
         const mbti = inputData.mbti;
         setInputItem(mbti.toLowerCase());
@@ -99,7 +116,9 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
       setInputItem('default');
       setMsg(userData?.today_msg?.luck_msg);
     }
-  }, [imgitem, inputData.birth, inputData.mbti, storedData, userData]);
+  }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
+
+  console.log(msg);
 
   return (
     <div className={styles.carouselBanner}>

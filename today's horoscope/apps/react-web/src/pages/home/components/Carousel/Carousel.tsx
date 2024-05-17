@@ -12,7 +12,8 @@ interface swiperProps {
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Slides = ['오늘의 한마디', '오늘의 운세', '별자리 운세', 'MBTI 운세'];
+const Slides = ['오늘의 한마디', '띠별 운세', '별자리 운세', 'MBTI 운세'];
+const user = ['', '생년월일', '생년월일', 'MBTI'];
 const imgList = ['today', 'zodiac', 'star', 'mbti'];
 function Carousel({ setActiveSlide }: swiperProps) {
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
         className="swiper-wrapper">
         {Slides.map((SlideContent, index) => (
           <SwiperSlide id={`slide-${imgList[index]}`} key={index} className="swiper-slide">
-            <CarouselBanner imgitem={imgList[index]} title={SlideContent} />
+            <CarouselBanner imgitem={imgList[index]} user={user[index]} title={SlideContent} />
             <button
               onClick={MoveRoute(imgList[index])}
               className={
