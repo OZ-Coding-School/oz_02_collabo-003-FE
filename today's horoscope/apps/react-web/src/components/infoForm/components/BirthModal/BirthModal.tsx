@@ -11,8 +11,7 @@ interface BirthProps {
   setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
 
-const currentYear = new Date().getFullYear();
-const yearList = Array.from({ length: 101 }, (_, index) => currentYear - index);
+const yearList = Array.from({ length: 48 }, (_, index) => 2007 - index);
 const monthList = Array.from({ length: 12 }, (_, index) => index + 1);
 const dayList = Array.from({ length: 31 }, (_, index) => index + 1);
 
@@ -62,7 +61,6 @@ function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
         <div className="swiper-container birthModal">
           <Swiper
             slidesPerView={5}
-            loop={true}
             direction="vertical"
             centeredSlides={true}
             className="swiper-wrapper"
@@ -76,7 +74,6 @@ function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
           </Swiper>
           <Swiper
             slidesPerView={5}
-            loop={true}
             direction="vertical"
             centeredSlides={true}
             className="swiper-wrapper"
@@ -90,7 +87,6 @@ function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
           </Swiper>
           <Swiper
             slidesPerView={5}
-            loop={true}
             direction="vertical"
             centeredSlides={true}
             className="swiper-wrapper"
@@ -102,6 +98,7 @@ function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="active-swiper"></div>
         </div>
         <button className={styles.button} onClick={handleClick}>
           적용하기
