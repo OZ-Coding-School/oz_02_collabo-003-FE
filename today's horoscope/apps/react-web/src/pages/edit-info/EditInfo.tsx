@@ -14,7 +14,7 @@ function EditInfo() {
         <IoChevronBack onClick={MoveHome} className={styles.backIcon} />
         <div className={styles.headerTitle}>정보수정</div>
       </header>
-      <InfoForm content="수정완료" />
+      <InfoForm alertText="정보수정" content="수정완료" />
     </div>
   );
 }

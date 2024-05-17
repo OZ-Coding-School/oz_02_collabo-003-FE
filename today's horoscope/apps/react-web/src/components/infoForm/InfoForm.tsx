@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import BirthModal from './components/BirthModal/BirthModal';
 
 interface InfoFormProps {
+  alertText: string;
   content: string;
 }
 
@@ -15,7 +16,7 @@ export interface UserData {
   mbti: string;
 }
 
-function InfoForm({ content }: InfoFormProps) {
+function InfoForm({ alertText, content }: InfoFormProps) {
   const navigate = useNavigate();
 
   const [birthModal, setBirthModal] = useState(false);
@@ -69,6 +70,7 @@ function InfoForm({ content }: InfoFormProps) {
     };
 
     localStorage.setItem('userData', JSON.stringify(inputData));
+    alert(`${alertText}을 완료하였습니다.`);
     navigate('/');
   }
 
