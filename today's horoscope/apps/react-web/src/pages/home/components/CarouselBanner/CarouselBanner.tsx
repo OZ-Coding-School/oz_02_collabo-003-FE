@@ -40,14 +40,8 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
     queryKey: QUERY_KEYS.USER_DATA,
     queryFn: () => APIS.getUserDataAPI(formattedBirth, objectStoredData?.mbti),
   });
-  // console.log(inputData);
 
-  // let bannerContent;
-  // if (imgitem === 'mbti') bannerContent = mbtiData;
-  // else if (imgitem === 'star') bannerContent = starData;
-  // else if (imgitem === 'zodiac') bannerContent = zodiacData;
-  // else bannerContent = todayData;
-
+  const [msg, setMsg] = useState('');
   const [inputItem, setInputItem] = useState('');
   useEffect(() => {
     if (storedData) {
@@ -60,12 +54,14 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
       } else {
         const mbti = inputData.mbti;
         setInputItem(mbti.toLowerCase());
+        setMsg(userData?.mbti_msg?.luck_msg);
       }
     } else if (imgitem === 'zodiac') {
       const birthData = inputData.birth;
       const birthYear = birthData.split('-')[0];
       const zodiacIndex = parseInt(birthYear) % 12;
       setInputItem(zodiacList[zodiacIndex]);
+      setMsg(userData?.zodiac_msg?.luck_msg);
     } else if (imgitem === 'star') {
       const birthData = inputData.birth;
       const birthMonth = birthData.split('-')[1];
@@ -98,8 +94,12 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
       } else if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) {
         setInputItem('pisces');
       } else setInputItem('default');
-    } else setInputItem('default');
-  }, [imgitem, inputData.birth, inputData.mbti, storedData]);
+      setMsg(userData?.star_msg?.luck_msg);
+    } else {
+      setInputItem('default');
+      setMsg(userData?.today_msg?.luck_msg);
+    }
+  }, [imgitem, inputData.birth, inputData.mbti, storedData, userData]);
 
   return (
     <div className={styles.carouselBanner}>
@@ -110,7 +110,7 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
       />
       <div className={styles.carouselContents}>
         <h1 className={styles.title}>{title}</h1>
-        {/* <div className={styles.content}>{bannerContent}</div> */}
+        <div className={styles.content}>{msg}</div>
       </div>
     </div>
   );
