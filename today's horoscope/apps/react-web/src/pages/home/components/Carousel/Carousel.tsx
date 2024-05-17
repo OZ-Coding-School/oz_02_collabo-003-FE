@@ -61,11 +61,26 @@ function Carousel({ setActiveSlide }: swiperProps) {
             <CarouselBanner imgitem={imgList[index]} title={SlideContent} />
             <button
               onClick={MoveRoute(imgList[index])}
-              className={imgList[index] === 'today' ? 'contentsDetail' : 'contentsDetail activeContentDetail'}>
-              운세
-              <br />
-              더보기
-              <br />
+              className={
+                localStorage.length !== 0 && imgList[index] === 'today'
+                  ? 'contentsDetail'
+                  : 'contentsDetail activeContentDetail'
+              }>
+              {localStorage.length === 0 ? (
+                <div>
+                  오늘의 운세
+                  <br />
+                  더보기
+                  <br />
+                </div>
+              ) : (
+                <div>
+                  운세
+                  <br />
+                  더보기
+                  <br />
+                </div>
+              )}
               <IoIosArrowDown className="detailIcon" size={30} />
             </button>
           </SwiperSlide>
