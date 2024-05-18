@@ -20,7 +20,6 @@ const Fortune: React.FC = () => {
         <div className={Styles.headicon}>
           <IoChevronBack onClick={MoveHome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-
           <IoShareSocialOutline className={Styles.Share} />
         </div>
         <div>

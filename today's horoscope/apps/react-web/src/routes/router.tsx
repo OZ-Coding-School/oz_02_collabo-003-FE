@@ -7,7 +7,6 @@ import ZodiacMain from '../pages/detail/main/zodiac/Zodiac';
 import Zodiac from '../pages/detail/components/textbox/zodi/Zodi_text';
 import Login from '../pages/login/Login';
 import EditInfo from '../pages/edit-info/EditInfo';
-import Version from '../pages/version/Version';
 
 const router = createBrowserRouter([
   {
@@ -41,10 +40,6 @@ const router = createBrowserRouter([
   {
     path: '/edit-info',
     element: <EditInfo />,
-  },
-  {
-    path: '/version',
-    element: <Version />,
   },
 ]);
 
