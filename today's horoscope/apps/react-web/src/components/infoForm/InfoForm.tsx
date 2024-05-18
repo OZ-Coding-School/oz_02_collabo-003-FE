@@ -63,7 +63,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
   function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
-    if (koreanValue) {
+    if (koreanValue || !userData.name || !userData.birth || !userData.mbti) {
       return;
     }
 
