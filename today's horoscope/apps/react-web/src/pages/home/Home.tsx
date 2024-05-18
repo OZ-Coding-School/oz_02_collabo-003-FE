@@ -31,7 +31,7 @@ function Home() {
   return (
     <div className={styles.main} style={{ background: handleBackground() }}>
       <header className={styles.mainHeader}>
-        {localStorage.length === 0 ? (
+        {localStorage.userData === undefined ? (
           <div className={styles.menuIcon}></div>
         ) : (
           <IoMenuOutline className={styles.menuIcon} onClick={onclickMenuModal} />

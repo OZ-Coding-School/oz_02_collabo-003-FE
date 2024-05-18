@@ -21,7 +21,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
 
   function MoveRoute(value: string) {
     return () => {
-      if (localStorage.length === 0) {
+      if (localStorage.userData === undefined) {
         navigate('/login');
       } else if (value === 'mbti') {
         navigate('/detail-mbti');
@@ -88,11 +88,11 @@ function Carousel({ setActiveSlide }: swiperProps) {
             <button
               onClick={MoveRoute(imgValue[index])}
               className={
-                localStorage.length !== 0 && imgValue[index] === 'today'
+                localStorage.userData !== undefined && imgValue[index] === 'today'
                   ? 'contentsDetail'
                   : 'contentsDetail activeContentDetail'
               }>
-              {localStorage.length === 0 ? (
+              {localStorage.userData === undefined ? (
                 <div>
                   오늘의 운세
                   <br />

@@ -52,12 +52,10 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
     });
     ClickMbtiModal();
   }
-  // const storedData = localStorage.getItem('userData');
-  // const objectStoredData = storedData ? JSON.parse(storedData) : null;
 
   const [sliceMBTIList, setSliceMBTIList] = useState<string[]>([]);
   useEffect(() => {
-    if (localStorage.length !== 0) {
+    if (localStorage.userData !== undefined) {
       const storedData = localStorage.getItem('userData');
       const objectStoredData = storedData ? JSON.parse(storedData) : null;
       const startIndex = MBTIList.indexOf(objectStoredData.mbti);
