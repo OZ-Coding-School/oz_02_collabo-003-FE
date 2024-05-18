@@ -74,6 +74,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
     };
 
     localStorage.setItem('userData', JSON.stringify(inputData));
+    localStorage.removeItem('activeBanner');
     alert(`${alertText}을 완료하였습니다.`);
     navigate('/');
   }
