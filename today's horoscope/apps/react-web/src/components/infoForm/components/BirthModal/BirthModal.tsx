@@ -53,7 +53,6 @@ function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
   useEffect(() => {
     const newBirthText = `${activeYear}-${activeMonth}-${activeDay}`;
     setBirthText(newBirthText);
-    console.log(newBirthText);
   }, [activeYear, activeMonth, activeDay]);
 
   return (

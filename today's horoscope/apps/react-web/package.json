@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.36.2",
+    "axios": "^1.6.8",
+    "dayjs": "^1.11.11",
     "fortune": "^5.5.19",
     "react": "^18.2.0",
     "react-date-picker": "^11.0.0",
