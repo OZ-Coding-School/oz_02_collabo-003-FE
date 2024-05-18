@@ -63,6 +63,10 @@ function InfoForm({ alertText, content }: InfoFormProps) {
   function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
+    if (koreanValue) {
+      return;
+    }
+
     const inputData = {
       name: userData.name,
       birth: userData.birth,
