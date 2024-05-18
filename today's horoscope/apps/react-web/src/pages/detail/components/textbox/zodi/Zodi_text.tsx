@@ -70,6 +70,7 @@ const TextImage: React.FC = () => {
       </div>
       <div className={Styles.body}>
         <img src="/K_img/img_circle_zodiac_rabbit.png" alt="rabbit" className={Styles.zodiacImages} />
+
         <div>
           {Object.keys(zodiacFortunes).map(zodiacSign => (
             <div className={Styles.point} key={zodiacSign}>
