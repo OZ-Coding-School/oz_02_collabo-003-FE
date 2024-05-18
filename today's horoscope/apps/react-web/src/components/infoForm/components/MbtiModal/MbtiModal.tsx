@@ -53,11 +53,11 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
     ClickMbtiModal();
   }
 
-  const [sliceMBTIList, setSliceMBTIList] = useState<string[]>([]);
+  const [sliceMBTIList, setSliceMBTIList] = useState<string[]>(MBTIList);
   useEffect(() => {
-    if (localStorage.userData !== undefined) {
-      const storedData = localStorage.getItem('userData');
-      const objectStoredData = storedData ? JSON.parse(storedData) : null;
+    const storedData = localStorage.getItem('userData');
+    if (storedData) {
+      const objectStoredData = JSON.parse(storedData);
       const startIndex = MBTIList.indexOf(objectStoredData.mbti);
       const preSlicedList = MBTIList.slice(0, startIndex);
       const nextSlicedList = MBTIList.slice(startIndex);
