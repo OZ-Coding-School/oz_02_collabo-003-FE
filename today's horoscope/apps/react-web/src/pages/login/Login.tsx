@@ -14,7 +14,7 @@ function Login() {
         <IoChevronBack onClick={MoveHome} className={styles.backIcon} />
         <div className={styles.headerTitle}>정보입력</div>
       </header>
-      <InfoForm content="저장하기" />
+      <InfoForm alertText="정보입력" content="저장하기" />
     </div>
   );
 }

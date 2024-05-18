@@ -32,7 +32,7 @@
   animation: FadeOut 0.3s ease-out forwards;
 }
 .menuModal {
-  width: 284px;
+  width: 90%;
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
@@ -41,7 +41,7 @@
   z-index: 10;
 }
 .modalHeader {
-  width: 284px;
+  width: 90%;
   height: 45vh;
   text-align: right;
   background: linear-gradient(35deg, #f4cfd8, #94e4fd);
@@ -65,7 +65,7 @@
   display: block;
 }
 .modalMain {
-  width: 284px;
+  width: 90%;
   height: 55vh;
   padding: 16px;
   background-color: white;
@@ -99,7 +99,7 @@
   line-height: 20px;
 }
 .menuList {
-  width: 240px;
+  width: 80%;
   height: 94px;
   font-size: 14px;
   margin-top: 10vh;

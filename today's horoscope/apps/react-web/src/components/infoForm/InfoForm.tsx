@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import BirthModal from './components/BirthModal/BirthModal';
 
 interface InfoFormProps {
+  alertText: string;
   content: string;
 }
 
@@ -15,7 +16,7 @@ export interface UserData {
   mbti: string;
 }
 
-function InfoForm({ content }: InfoFormProps) {
+function InfoForm({ alertText, content }: InfoFormProps) {
   const navigate = useNavigate();
 
   const [birthModal, setBirthModal] = useState(false);
@@ -62,6 +63,10 @@ function InfoForm({ content }: InfoFormProps) {
   function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
+    if (koreanValue) {
+      return;
+    }
+
     const inputData = {
       name: userData.name,
       birth: userData.birth,
@@ -69,6 +74,7 @@ function InfoForm({ content }: InfoFormProps) {
     };
 
     localStorage.setItem('userData', JSON.stringify(inputData));
+    alert(`${alertText}을 완료하였습니다.`);
     navigate('/');
   }
 
@@ -76,7 +82,7 @@ function InfoForm({ content }: InfoFormProps) {
     <div>
       <main className={styles.main}>
         <div className={styles.mainHeader}>
-          <img src={`public/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.mainLogo} />
+          <img src={`/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.mainLogo} />
           <div className={styles.headerContent}>
             오늘의 운세를 보기 위해선 기본 정보가 꼭 필요합니다
             <br />
