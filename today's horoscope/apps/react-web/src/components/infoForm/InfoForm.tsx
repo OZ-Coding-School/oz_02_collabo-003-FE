@@ -84,9 +84,9 @@ function InfoForm({ alertText, content }: InfoFormProps) {
         <div className={styles.mainHeader}>
           <img src={`/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.mainLogo} />
           <div className={styles.headerContent}>
-            오늘의 운세를 보기 위해선 기본 정보가 꼭 필요합니다
+            오늘의 운세를 보기 위해 기본 정보가 필요합니다
             <br />
-            운세 결과에 중요한 영향을 미치니 정확하게 입력 해주세요.
+            운세 결과에 영향을 미치니 정확하게 입력 해주세요.
           </div>
         </div>
         <form className={styles.infoForm}>
