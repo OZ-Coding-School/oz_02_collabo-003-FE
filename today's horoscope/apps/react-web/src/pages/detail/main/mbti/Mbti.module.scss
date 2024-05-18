@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+.head {
+  width: 100%;
+  height: 378px;
+  background: linear-gradient(180deg, #dbe1ff 0%, #eff2ff 100%);
+  text-align: center;
+  color: #191a1b;
+  position: fixed;
+  z-index: 9999;
+}
+
+.headicon {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0; /* 화면 전체 너비를 사용 */
+  padding: 0;
+  justify-content: space-between;
+}
+
+.Back {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin-left: 20px;
+  position: relative;
+  position: fixed;
+  top: 20px;
+}
+
+.Share {
+  width: 24px;
+  height: 24px;
+  content: '';
+  padding: 0;
+  position: relative;
+  position: fixed;
+  top: 20px;
+  right: 0;
+}
+
+.LogoImg {
+  display: flex;
+  position: relative;
+  width: 53.33px;
+  height: 21.2px;
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
+.MbtiMainImg {
+  height: 200px;
+  width: 200px;
+  margin-top: 80px;
+}
+
+.title {
+  top: 280px;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 28px;
+}
+
+.body {
+  display: flex;
+}

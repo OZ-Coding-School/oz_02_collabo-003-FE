@@ -3,11 +3,9 @@
 }
 
 .head {
-  background: linear-gradient(180deg, #ffd9ebda 0%, #fbd8efcb 100%);
   width: 100%;
-  height: 80px;
-  margin: auto;
-  position: fixed;
+  height: 194px;
+  background: linear-gradient(180deg, #dbe1ff 0%, #eff2ff 100%);
 }
 
 .headicon {
@@ -51,63 +49,40 @@
   margin-left: 60px;
 }
 
-.body {
-  padding-left: 24px;
-  padding-right: 24px;
-}
-
 .title {
-  padding-top: 188px;
-  padding-left: 24px;
-  text-align: left;
+  padding: 12px;
+  padding-top: 90px;
+  text-align: center;
   font-size: 25px;
-  line-height: 1.6;
-}
-
-.headtitle {
-  font-size: 22px;
   font-weight: bold;
-}
-
-.date {
-  font-size: 14px;
-}
-
-.zodiactitle {
-  display: flex;
-  font-weight: bold;
+  line-height: 1.2;
 }
 
 .zodiacImages {
-  position: fixed;
-  display: inline-flex;
   flex-direction: column;
-  margin-top: 92px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calc(100% - 64px); /* 양쪽 끝 넓이를 32px로 유지 */
+  display: inline-flex;
+  justify-content: space-around; /* 혹은 space-between */
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img {
   width: 80px;
   height: 80px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 35.5px; /* 상단 간격을 20px로 조정 */
+  margin-left: 20px; /* 좌측 간격 유지 */
+  margin-right: 20px; /* 우측 간격 유지 */
+  /* 하단 간격을 20px로 조정 */
 }
 
-.point {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  line-height: 1.5;
-}
-
-.point .test {
+.zodiacText {
   font-weight: bold;
-  font-size: 16px;
-}
-
-.point .text {
-  font-weight: bold;
-  margin-top: 264px;
-  margin-bottom: 0;
-  font-size: 16px;
-}
-
-.point .fortune {
+  text-align: center;
   margin-top: 8px;
-  margin-bottom: -232px;
-  font-size: 12px;
+  margin-bottom: -10px;
 }

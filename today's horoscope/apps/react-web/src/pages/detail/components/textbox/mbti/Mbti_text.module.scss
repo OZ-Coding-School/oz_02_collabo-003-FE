@@ -1,27 +1,28 @@
 .mbtiImage {
   display: flex;
   flex-direction: column;
-  margin-top: 27.8px;
-  margin-left: 35px;
-  margin-bottom: 30px;
-  width: 71.14px;
-  height: 71.14px;
+  margin-top: 402px;
+  margin-left: 25px;
+  margin-bottom: 24px;
+  width: 80px;
+  height: 80px;
 }
+
 .mbtiName {
   display: flex;
   font-weight: bold;
-  margin-top: -85px;
-  margin-left: 135px;
+  font-size: 16px;
+  margin-top: -95px;
+  margin-left: 121px;
+  margin-bottom: 0;
 }
 
 .mbtiTMI {
   display: flex;
-  margin-top: 5px;
-  margin-left: 135px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
-.cnt {
-  padding-top: 320px;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 4px;
+  margin-left: 121px;
+  margin-right: 25px;
+  margin-bottom: -330px;
 }
