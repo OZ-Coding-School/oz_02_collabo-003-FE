@@ -7,6 +7,7 @@ function EditInfo() {
   const navigate = useNavigate();
   function MoveHome() {
     navigate('/');
+    localStorage.removeItem('activeBanner');
   }
   return (
     <div>
