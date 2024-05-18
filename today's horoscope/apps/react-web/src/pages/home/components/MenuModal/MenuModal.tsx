@@ -14,6 +14,9 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   function MoveEditInfo() {
     navigate('/edit-info');
   }
+  function MoveVersion() {
+    navigate('/version');
+  }
 
   const [inputData, setInputData] = useState({ name: '', birth: '', mbti: '' });
 
@@ -43,7 +46,7 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
           </div>
           <ul className={styles.menuList}>
             <li onClick={MoveEditInfo}>개인정보수정</li>
-            <li>설정</li>
+            <li onClick={MoveVersion}>설정</li>
           </ul>
         </main>
       </div>
