@@ -7,6 +7,7 @@ import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useEffect, useState } from 'react';
 
 interface swiperProps {
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
@@ -29,15 +30,39 @@ function Carousel({ setActiveSlide }: swiperProps) {
       } else if (value === 'star') {
         navigate('/detail-star');
       }
+      localStorage.setItem('activeBanner', value);
     };
   }
+  const [slidesValue, setSlidesValue] = useState<string[]>(Slides);
+  const [imgValue, setImgValue] = useState<string[]>(imgList);
+  useEffect(() => {
+    const activeBanner = localStorage.getItem('activeBanner');
+    if (activeBanner !== null) {
+      const activeIndex = imgList.indexOf(activeBanner);
+      if (activeIndex !== -1) {
+        const preList = Slides.slice(activeIndex);
+        const nextList = Slides.slice(0, activeIndex);
+        const slicedList = preList.concat(nextList);
+        const preImgList = imgList.slice(activeIndex);
+        const nextImgList = imgList.slice(0, activeIndex);
+        const slicedImgList = preImgList.concat(nextImgList);
+        setSlidesValue(slicedList);
+        setImgValue(slicedImgList);
+      } else {
+        setSlidesValue(Slides);
+      }
+    }
+  }, []);
 
   function handleSlwiper(swiper: swiper) {
-    const activesilde = swiper.slides[swiper.activeIndex];
-    const activeSlideId = activesilde.id;
-    const activeIdcontent = activeSlideId.split('-')[1];
-
-    setActiveSlide(activeIdcontent);
+    if (swiper && swiper.slides && swiper.slides.length > 0) {
+      const activeSlide = swiper.slides[swiper.activeIndex];
+      if (activeSlide) {
+        const activeSlideId = activeSlide.id;
+        const activeIdContent = activeSlideId.split('-')[1];
+        setActiveSlide(activeIdContent);
+      }
+    }
   }
 
   return (
@@ -57,13 +82,13 @@ function Carousel({ setActiveSlide }: swiperProps) {
         modules={[EffectCoverflow]}
         onSlideChange={handleSlwiper}
         className="swiper-wrapper">
-        {Slides.map((SlideContent, index) => (
-          <SwiperSlide id={`slide-${imgList[index]}`} key={index} className="swiper-slide">
-            <CarouselBanner imgitem={imgList[index]} user={user[index]} title={SlideContent} />
+        {slidesValue.map((SlideContent, index) => (
+          <SwiperSlide id={`slide-${imgValue[index]}`} key={index} className="swiper-slide">
+            <CarouselBanner imgitem={imgValue[index]} user={user[index]} title={SlideContent} />
             <button
-              onClick={MoveRoute(imgList[index])}
+              onClick={MoveRoute(imgValue[index])}
               className={
-                localStorage.length !== 0 && imgList[index] === 'today'
+                localStorage.length !== 0 && imgValue[index] === 'today'
                   ? 'contentsDetail'
                   : 'contentsDetail activeContentDetail'
               }>

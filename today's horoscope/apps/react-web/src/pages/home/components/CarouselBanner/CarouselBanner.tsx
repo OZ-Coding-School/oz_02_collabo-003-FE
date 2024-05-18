@@ -114,8 +114,6 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
     }
   }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
 
-  console.log(msg);
-
   return (
     <div className={styles.carouselBanner}>
       <img
