@@ -47,7 +47,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
-    const bannerDefaultText = `오늘의 ${title} 보기\n\n나만의 ${title}별 운세를\n보고 싶다면\n${user}을 설정 해 주세요!
+    const bannerDefaultText = `오늘의 ${title} 보기\n\n나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!
 `;
     if (localStorage.userData === undefined) {
       if (imgitem === 'today') {
