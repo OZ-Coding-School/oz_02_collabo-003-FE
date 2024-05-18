@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Scroll from '../../scroll/Scroll';
 import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
 import Styles from './Zodi_text.module.scss';
 
@@ -70,7 +69,6 @@ const TextImage: React.FC = () => {
         </div>
       </div>
       <div className={Styles.body}>
-        <Scroll />
         <img src="/K_img/img_circle_zodiac_rabbit.png" alt="rabbit" className={Styles.zodiacImages} />
         <div>
           {Object.keys(zodiacFortunes).map(zodiacSign => (
