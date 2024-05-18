@@ -1,4 +1,3 @@
-// text
 .button {
   width: 312px;
   height: 48px;
@@ -10,8 +9,13 @@
   font-weight: 700;
   line-height: 20px;
   position: fixed;
-  bottom: 39px;
+  bottom: 2vh;
 }
 .button:hover {
   background-color: #d3d3d3;
+}
+@media (min-height: 905px) {
+  .button {
+    bottom: 20vh;
+  }
 }

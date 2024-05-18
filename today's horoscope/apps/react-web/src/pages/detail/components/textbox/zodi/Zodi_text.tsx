@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Date from '../../date/Date';
+
 import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
 import Styles from './Zodi_text.module.scss';
 
@@ -35,25 +35,42 @@ const zodiacFortunes: ZodiacFortunes = {
 };
 
 const TextImage: React.FC = () => {
+  const [today, setToday] = useState('');
   const navigate = useNavigate();
   function MoveHome() {
-    navigate('/');
+    navigate(-1);
   }
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+    const dayOfWeek = currentDate.getDay();
+    const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+    const dayName = daysOfWeek[dayOfWeek];
+
+    const formattedDate = `${year}년 ${month}월 ${day}일 ${dayName}요일`;
+
+    setToday(formattedDate);
+  }, []);
+
   return (
     <div className={Styles.container}>
       <div className={Styles.head}>
-        <div className={Styles.headtitle}>
+        <div className={Styles.headicon}>
           <IoChevronBack onClick={MoveHome} className={Styles.Back} />
-          <img src="/public/K_img/K-logo-icon/text_logo_b.png" alt="logo" className={Styles.LogoImg} />
+          <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
           <IoShareSocialOutline className={Styles.Share} />
         </div>
         <div className={Styles.title}>
-          <h1 className={Styles.zodiactitle}>토끼띠 오늘의 운세</h1>
-          <Date />
+          <h1 className={Styles.headtitle}>토끼띠 오늘의 운세</h1>
+          <p className={Styles.date}>{today}</p>
         </div>
       </div>
       <div className={Styles.body}>
-        <img src="/public/K_img/img_circle_zodiac_rabbit.png" alt="rabbit" className={Styles.zodiacImages} />
+        <img src="/K_img/img_circle_zodiac_rabbit.png" alt="rabbit" className={Styles.zodiacImages} />
+
         <div>
           {Object.keys(zodiacFortunes).map(zodiacSign => (
             <div className={Styles.point} key={zodiacSign}>

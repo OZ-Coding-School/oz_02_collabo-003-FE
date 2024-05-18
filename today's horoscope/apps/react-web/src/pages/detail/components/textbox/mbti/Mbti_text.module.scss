@@ -1,0 +1,28 @@
+.mbtiImage {
+  display: flex;
+  flex-direction: column;
+  margin-top: 402px;
+  margin-left: 25px;
+  margin-bottom: 24px;
+  width: 80px;
+  height: 80px;
+}
+
+.mbtiName {
+  display: flex;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: -95px;
+  margin-left: 121px;
+  margin-bottom: 0;
+}
+
+.mbtiTMI {
+  display: flex;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 4px;
+  margin-left: 121px;
+  margin-right: 25px;
+  margin-bottom: -330px;
+}

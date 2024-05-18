@@ -1,0 +1,45 @@
+.carouselBanner {
+  width: 240px;
+  height: 494px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carouselImage {
+  width: 240px;
+  height: 240px;
+  position: fixed;
+  top: 0px;
+  z-index: 2;
+}
+
+.carouselContents {
+  width: 209px;
+  height: 260px;
+  padding: 50px 24px;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 10px 10px 20px 1px rgba(57, 57, 57, 0.2);
+  position: fixed;
+  top: 196px;
+}
+
+.carouselContents > .title {
+  width: 161px;
+  height: 24px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+}
+
+.carouselContents > .content {
+  width: 161px;
+  height: 120px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #323538;
+  line-height: 20px;
+  text-align: center;
+}/*# sourceMappingURL=CarouselBanner.module.css.map */

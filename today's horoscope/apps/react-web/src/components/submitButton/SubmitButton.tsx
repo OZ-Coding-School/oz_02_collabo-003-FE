@@ -1,14 +1,13 @@
-// text
 import styles from './SubmitButton.module.scss';
 
 interface SubmitButtonProps {
   content: string;
-  MoveHome: () => void;
+  handleSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
 
-function SubmitButton({ content, MoveHome }: SubmitButtonProps) {
+function SubmitButton({ content, handleSubmit }: SubmitButtonProps) {
   return (
-    <button type="submit" onClick={MoveHome} className={styles.button}>
+    <button type="submit" onClick={handleSubmit} className={styles.button}>
       {content}
     </button>
   );

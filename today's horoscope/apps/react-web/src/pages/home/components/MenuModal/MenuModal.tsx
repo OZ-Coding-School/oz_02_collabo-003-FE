@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './MenuModal.module.scss';
 
 type MenuModalProps = {
-  menuModal: boolean;
+  menuModal: boolean | null;
   onclickMenuModal: () => void;
 };
 
@@ -32,8 +32,8 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
       <div className={styles.menuModal}>
         <header className={styles.modalHeader}>
           <IoCloseOutline onClick={onclickMenuModal} className={styles.modalCloseIcon} />
-          <h1 className={styles.modalTitle}>오늘의 운세</h1>
-          <img src="public/K철학관img/섬/img_island_today_default.png" className={styles.mainImg} />
+          <img src={`/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.modalTitle} />
+          <img src="/K_img/island/img_island_today_default.png" alt="default image" className={styles.mainImg} />
         </header>
         <main className={styles.modalMain}>
           <div className={styles.userInfo}>
