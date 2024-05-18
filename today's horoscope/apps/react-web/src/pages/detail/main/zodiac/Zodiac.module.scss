@@ -4,64 +4,85 @@
 
 .head {
   width: 100%;
-  height: 235px;
-  margin: auto;
-  top: 0;
-  background: linear-gradient(35deg, #d2fcf9, #8cbaff);
-  text-align: center;
+  height: 194px;
+  background: linear-gradient(180deg, #dbe1ff 0%, #eff2ff 100%);
 }
 
-.headtitle {
+.headicon {
   display: flex;
+  align-items: center;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0; /* 화면 전체 너비를 사용 */
+  padding: 0;
+  justify-content: space-between;
 }
 
 .Back {
-  display: flex;
-  float: left;
-  margin-top: 25px;
-  margin-left: 10px;
-  margin-right: 5px;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin-left: 20px;
+  position: relative;
+  position: fixed;
+  top: 20px;
+}
+
+.Share {
+  width: 24px;
+  height: 24px;
+  content: '';
+  padding: 0;
+  position: relative;
+  position: fixed;
+  top: 20px;
+  right: 0;
 }
 
 .LogoImg {
   display: flex;
-  float: left;
-  margin-top: 33px;
-  width: 52px;
-  height: 21px;
-}
-
-.Share {
-  display: flex;
-  float: right;
-  margin-top: 33px;
-  margin-left: 220px;
-  width: 18px;
-  height: 20px;
+  position: relative;
+  width: 53.33px;
+  height: 21.2px;
+  margin-top: 10px;
+  margin-left: 60px;
 }
 
 .title {
+  padding: 12px;
+  padding-top: 90px;
+  text-align: center;
   font-size: 25px;
   font-weight: bold;
   line-height: 1.2;
-  margin: 10px;
-  margin-top: 70px;
 }
 
 .zodiacImages {
-  display: inline-flex;
   flex-direction: column;
-  width: 71.14px;
-  height: 71.14px;
-  margin-top: 45px;
-  margin-left: 32px;
-  margin-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calc(100% - 64px); /* 양쪽 끝 넓이를 32px로 유지 */
+  display: inline-flex;
+  justify-content: space-around; /* 혹은 space-between */
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img {
+  width: 80px;
+  height: 80px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 35.5px; /* 상단 간격을 20px로 조정 */
+  margin-left: 20px; /* 좌측 간격 유지 */
+  margin-right: 20px; /* 우측 간격 유지 */
+  /* 하단 간격을 20px로 조정 */
 }
 
 .zodiacText {
   font-weight: bold;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 8px;
+  margin-bottom: -10px;
 }

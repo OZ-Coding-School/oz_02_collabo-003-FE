@@ -1,23 +1,26 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Date from '../../components/date/Date';
 import Text from '../../components/textbox/mbti/Mbti_text';
-import { IoChevronBack } from 'react-icons/io5';
-import LogoImg from './img/text_logo_b.png';
+
+import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
+
 import Styles from './Mbti.module.scss';
 
 const Fortune: React.FC = () => {
   const navigate = useNavigate();
   function MoveHome() {
-    navigate('/');
+    navigate(-1);
   }
 
   return (
-    <div>
+    <div className={Styles.container}>
       <div className={Styles.head}>
-        <div>
-          <IoChevronBack onClick={MoveHome} className={Styles.backIcon} />
-          <img src={LogoImg} alt="로고" className={Styles.LogoImg} />
+        <div className={Styles.headicon}>
+          <IoChevronBack onClick={MoveHome} className={Styles.Back} />
+          <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
+          <IoShareSocialOutline className={Styles.Share} />
         </div>
         <div>
           <img src="/public/K_img/island/img_island_mbti_default.png" alt="main" className={Styles.MbtiMainImg} />

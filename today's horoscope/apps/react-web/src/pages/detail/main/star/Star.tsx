@@ -1,24 +1,29 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Date from '../../components/date/Date';
-import Scroll from '../../components/scroll/Scroll';
 import Text from '../../components/textbox/star/Star_text';
-import { IoChevronBack } from 'react-icons/io5';
-import { IoShareSocialOutline } from 'react-icons/io5';
-import LogoImg from './img/text_logo_b.png';
+
+import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
+
 import Styles from './Star.module.scss';
 
 const Fortune: React.FC = () => {
+  const navigate = useNavigate();
+  function MoveHome() {
+    navigate(-1);
+  }
+
   return (
     <div className={Styles.container}>
       <div className={Styles.head}>
-        <div className={Styles.headtitle}>
-          <IoChevronBack className={Styles.Back} />
-          <img src={LogoImg} alt="로고" className={Styles.LogoImg} />
+        <div className={Styles.headicon}>
+          <IoChevronBack onClick={MoveHome} className={Styles.Back} />
+          <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
           <IoShareSocialOutline className={Styles.Share} />
         </div>
         <div>
-          <img src="/public/K철학관img/섬/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />
+          <img src="/public/K_img/island/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />
           <h1 className={Styles.title}>
             별자리
             <br />
@@ -28,7 +33,6 @@ const Fortune: React.FC = () => {
         <Date />
       </div>
       <div className={Styles.body}>
-        <Scroll />
         <Text />
       </div>
     </div>
