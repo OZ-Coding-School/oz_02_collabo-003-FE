@@ -82,6 +82,9 @@
 .errorNone {
   display: none;
 }
+.infoForm .inputRequired:invalid {
+  border: 1px solid #e10000;
+}
 @media (max-height: 656px) {
   .mainLogo {
     margin: 0;

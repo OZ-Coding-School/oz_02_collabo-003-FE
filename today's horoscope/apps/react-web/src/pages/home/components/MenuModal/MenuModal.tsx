@@ -2,6 +2,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './MenuModal.module.scss';
+import { UserData } from '../../../../components/infoForm/InfoForm';
 
 type MenuModalProps = {
   menuModal: boolean | null;
@@ -9,16 +10,16 @@ type MenuModalProps = {
 };
 
 function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
+  const [inputData, setInputData] = useState<UserData>({ name: '', birth: '', mbti: '' });
+
   const navigate = useNavigate();
 
-  function MoveEditInfo() {
+  function moveEditInfo() {
     navigate('/edit-info');
   }
-  function MoveVersion() {
+  function moveVersion() {
     navigate('/version');
   }
-
-  const [inputData, setInputData] = useState({ name: '', birth: '', mbti: '' });
 
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
@@ -45,8 +46,8 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
             <div className={styles.userMBTI}>{inputData.mbti}</div>
           </div>
           <ul className={styles.menuList}>
-            <li onClick={MoveEditInfo}>개인정보수정</li>
-            <li onClick={MoveVersion}>설정</li>
+            <li onClick={moveEditInfo}>개인정보수정</li>
+            <li onClick={moveVersion}>설정</li>
           </ul>
         </main>
       </div>

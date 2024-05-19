@@ -6,7 +6,7 @@ import { UserData } from '../../InfoForm';
 import './BirthModal.scss';
 
 interface BirthProps {
-  ClickBirthModal: () => void;
+  clickBirthModal: () => void;
   userData: UserData;
   setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
@@ -15,11 +15,11 @@ const yearList = Array.from({ length: 48 }, (_, index) => 2007 - index);
 const monthList = Array.from({ length: 12 }, (_, index) => index + 1);
 const dayList = Array.from({ length: 31 }, (_, index) => index + 1);
 
-function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
-  const [birthText, setBirthText] = useState('');
-  const [activeYear, setActiveYear] = useState('');
-  const [activeMonth, setActiveMonth] = useState('');
-  const [activeDay, setActiveDay] = useState('');
+function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
+  const [birthText, setBirthText] = useState<string>('');
+  const [activeYear, setActiveYear] = useState<string>('');
+  const [activeMonth, setActiveMonth] = useState<string>('');
+  const [activeDay, setActiveDay] = useState<string>('');
 
   function handleSwiper(swiper: swiper) {
     const activeSlide = swiper.slides[swiper.activeIndex];
@@ -46,7 +46,7 @@ function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
       ...userData,
       birth: birthText,
     });
-    ClickBirthModal();
+    clickBirthModal();
   }
 
   useEffect(() => {
