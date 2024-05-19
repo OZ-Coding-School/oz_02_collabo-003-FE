@@ -17,14 +17,17 @@ function Home() {
   }
 
   function handleBackground() {
-    if (activeSlide === 'today') {
-      return 'linear-gradient(45deg, #F4CFD8, #94E4FD)';
-    } else if (activeSlide === 'zodiac') {
-      return 'linear-gradient(45deg, #D2FCF9, #8CBAFF)';
-    } else if (activeSlide === 'star') {
-      return 'linear-gradient(45deg, #FCF3D2, #B6EE94)';
-    } else if (activeSlide === 'mbti') {
-      return 'linear-gradient(45deg, #D2F9FC, #C6B2FE)';
+    switch (activeSlide) {
+      case 'today':
+        return 'linear-gradient(45deg, #F4CFD8, #94E4FD)';
+      case 'zodiac':
+        return 'linear-gradient(45deg, #D2FCF9, #8CBAFF)';
+      case 'star':
+        return 'linear-gradient(45deg, #FCF3D2, #B6EE94)';
+      case 'mbti':
+        return 'linear-gradient(45deg, #D2F9FC, #C6B2FE)';
+      default:
+        return 'none';
     }
   }
 
