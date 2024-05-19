@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
-import Styles from './Zodi_text.module.scss';
+import Styles from './ZodiText.module.scss';
 
 interface ZodiacFortunes {
   [key: string]: {

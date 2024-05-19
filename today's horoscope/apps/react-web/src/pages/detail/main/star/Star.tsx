@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Date from '../../components/date/Date';
-import Text from '../../components/textbox/star/Star_text';
+import Text from '../../components/textbox/star/StarText';
 
 import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
 

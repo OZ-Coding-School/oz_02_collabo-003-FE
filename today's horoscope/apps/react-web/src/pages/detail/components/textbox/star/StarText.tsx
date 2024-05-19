@@ -1,5 +1,5 @@
 import React from 'react';
-import Styles from './Star_text.module.scss';
+import Styles from './StarText.module.scss';
 
 interface StarFortunes {
   [key: string]: {

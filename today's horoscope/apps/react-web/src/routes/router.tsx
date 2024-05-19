@@ -4,7 +4,7 @@ import About from '../pages/about/About';
 import Mbti from '../pages/detail/main/mbti/Mbti';
 import Star from '../pages/detail/main/star/Star';
 import ZodiacMain from '../pages/detail/main/zodiac/Zodiac';
-import Zodiac from '../pages/detail/components/textbox/zodi/Zodi_text';
+import Zodiac from '../pages/detail/components/textbox/zodi/ZodiText';
 import Login from '../pages/login/Login';
 import EditInfo from '../pages/edit-info/EditInfo';
 
