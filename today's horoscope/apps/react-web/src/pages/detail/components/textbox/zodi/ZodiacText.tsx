@@ -39,7 +39,7 @@ const TextImage: React.FC = () => {
   const [today, setToday] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const { zodiacData } = location.state || {};
+  const { zodiacData } = location.state;
 
   function movehome() {
     navigate(-1);

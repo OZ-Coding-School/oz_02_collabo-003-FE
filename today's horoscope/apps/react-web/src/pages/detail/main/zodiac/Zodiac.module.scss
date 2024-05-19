@@ -30,17 +30,6 @@
   top: 20px;
 }
 
-.Share {
-  width: 24px;
-  height: 24px;
-  content: '';
-  padding: 0;
-  position: relative;
-  position: fixed;
-  top: 20px;
-  right: 0;
-}
-
 .LogoImg {
   display: flex;
   position: relative;
@@ -51,21 +40,30 @@
 }
 
 .title {
-  padding: 12px;
-  padding-top: 90px;
+  padding: 0;
+  margin-top: 96px;
   text-align: center;
   font-size: 25px;
   font-weight: bold;
   line-height: 1.2;
 }
 
+.date {
+  top: 158px;
+  font-size: 14px;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.002em;
+  text-align: center;
+  color: #515355;
+}
+
 .zodiacImages {
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: calc(100% - 64px);
-  display: inline-flex;
-  justify-content: space-around; /* 혹은 space-between */
+  padding-left: 32px;
+  padding-right: 32px;
+  display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -73,16 +71,15 @@
 .img {
   width: 80px;
   height: 80px;
-  display: inline-flex;
+  margin-top: 226px;
+  display: flex;
   align-items: center;
-  margin-top: 35.5px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-bottom: 18px; /* 이미지 사이의 수직 간격 조정 */
 }
 
 .zodiacText {
   font-weight: bold;
   text-align: center;
   margin-top: 8px;
-  margin-bottom: -10px;
+  margin-bottom: 8px; /* 음수 마진은 유효하지 않으므로 수정 */
 }

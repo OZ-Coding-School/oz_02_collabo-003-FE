@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-
 import QUERY_KEYS from '../../../../services/queryKeys';
 import APIS from '../../../../services/api';
 
 import Share from '../../components/kakao/Kakao';
-import Date from '../../components/date/Date';
 
 import { IoChevronBack } from 'react-icons/io5';
 import Styles from './Zodiac.module.scss';
@@ -70,16 +68,12 @@ const zodiacFortunes: ZodiacFortunes = {
 };
 
 const Fortune: React.FC = () => {
+  const [today, setToday] = useState('');
   const navigate = useNavigate();
-
-  const storedData = localStorage.getItem('userData');
-  const objectStoredData = JSON.parse(storedData as string);
-  const birth = objectStoredData.birth;
-  const year = birth.split('-')[0];
 
   const { data: zodiacData } = useQuery({
     queryKey: QUERY_KEYS.USER_DATA,
-    queryFn: () => APIS.getZodiacDataAPI(year),
+    queryFn: () => APIS.getZodiacDataAPI('{year}'),
   });
 
   const handleImageClick = (zodiacSign: string) => {
@@ -90,6 +84,20 @@ const Fortune: React.FC = () => {
   function movehome() {
     navigate(-1);
   }
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+    const dayOfWeek = currentDate.getDay();
+    const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+    const dayName = daysOfWeek[dayOfWeek];
+
+    const formattedDate = `${year}년 ${month}월 ${day}일 ${dayName}요일`;
+
+    setToday(formattedDate);
+  }, []);
 
   return (
     <div className={Styles.container}>
@@ -105,8 +113,8 @@ const Fortune: React.FC = () => {
             <br />
             오늘의 운세
           </h1>
+          <p className={Styles.date}>{today}</p>
         </div>
-        <Date />
       </div>
       <div className={Styles.body}>
         <div>

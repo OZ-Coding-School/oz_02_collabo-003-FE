@@ -8,7 +8,6 @@
   background: linear-gradient(180deg, #dbe1ff 0%, #eff2ff 100%);
   text-align: center;
   color: #191a1b;
-
   position: fixed;
   z-index: 9999;
 }
@@ -32,17 +31,6 @@
   position: relative;
   position: fixed;
   top: 20px;
-}
-
-.Share {
-  width: 24px;
-  height: 24px;
-  content: '';
-  padding: 0;
-  position: relative;
-  position: fixed;
-  top: 20px;
-  right: 0;
 }
 
 .LogoImg {
