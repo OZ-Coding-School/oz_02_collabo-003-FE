@@ -60,11 +60,12 @@ function InfoForm({ alertText, content }: InfoFormProps) {
       [name]: value,
     });
   }
+  const [requiredValue, setRequiredValue] = useState<boolean>(false);
   function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
     if (koreanValue || !userData.name || !userData.birth || !userData.mbti) {
-      return;
+      return setRequiredValue(!requiredValue);
     }
 
     const inputData = {
@@ -101,7 +102,14 @@ function InfoForm({ alertText, content }: InfoFormProps) {
                 name="name"
                 value={userData.name}
                 placeholder="이름을 입력해 주세요."
-                className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
+                required
+                className={
+                  koreanValue
+                    ? `${styles.error} ${styles.inputArea}`
+                    : requiredValue
+                      ? `${styles.inputRequired} ${styles.inputArea}`
+                      : styles.inputArea
+                }
               />
             </label>
 
@@ -117,7 +125,8 @@ function InfoForm({ alertText, content }: InfoFormProps) {
                 name="birth"
                 value={userData.birth}
                 placeholder="생년월일을 설정해 주세요."
-                className={styles.inputArea}
+                required
+                className={requiredValue ? `${styles.inputRequired} ${styles.inputArea}` : styles.inputArea}
               />
             </label>
           </div>
@@ -131,7 +140,8 @@ function InfoForm({ alertText, content }: InfoFormProps) {
                 name="mbti"
                 value={userData.mbti}
                 placeholder="MBTI를 설정해 주세요."
-                className={styles.inputArea}
+                required
+                className={requiredValue ? `${styles.inputRequired} ${styles.inputArea}` : styles.inputArea}
               />
             </label>
           </div>
