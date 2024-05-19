@@ -16,10 +16,10 @@ const monthList = Array.from({ length: 12 }, (_, index) => index + 1);
 const dayList = Array.from({ length: 31 }, (_, index) => index + 1);
 
 function BirthModal({ ClickBirthModal, userData, setUserData }: BirthProps) {
-  const [birthText, setBirthText] = useState('');
-  const [activeYear, setActiveYear] = useState('');
-  const [activeMonth, setActiveMonth] = useState('');
-  const [activeDay, setActiveDay] = useState('');
+  const [birthText, setBirthText] = useState<string>('');
+  const [activeYear, setActiveYear] = useState<string>('');
+  const [activeMonth, setActiveMonth] = useState<string>('');
+  const [activeDay, setActiveDay] = useState<string>('');
 
   function handleSwiper(swiper: swiper) {
     const activeSlide = swiper.slides[swiper.activeIndex];

@@ -6,6 +6,7 @@ import MenuModal from './components/MenuModal/MenuModal';
 
 function Home() {
   const [menuModal, setMenuModal] = useState<boolean | null>(null);
+  const [activeSlide, setActiveSlide] = useState<string>('');
   function onclickMenuModal() {
     if (menuModal === null) {
       setMenuModal(true);
@@ -13,8 +14,6 @@ function Home() {
       setMenuModal(!menuModal);
     }
   }
-
-  const [activeSlide, setActiveSlide] = useState('');
 
   function handleBackground() {
     if (activeSlide === 'today') {

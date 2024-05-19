@@ -33,7 +33,8 @@ const MBTIList = [
 ];
 
 function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
-  const [mbtiText, setMbtiText] = useState('');
+  const [mbtiText, setMbtiText] = useState<string>('');
+  const [sliceMBTIList, setSliceMBTIList] = useState<string[]>(MBTIList);
 
   function handleSwiper(swiper: swiper) {
     const activesilde = swiper.slides[swiper.activeIndex];
@@ -53,7 +54,6 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
     ClickMbtiModal();
   }
 
-  const [sliceMBTIList, setSliceMBTIList] = useState<string[]>(MBTIList);
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {

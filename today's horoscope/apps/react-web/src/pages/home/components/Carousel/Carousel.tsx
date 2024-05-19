@@ -16,7 +16,10 @@ interface swiperProps {
 const Slides = ['오늘의 한마디', '띠별 운세', '별자리 운세', 'MBTI 운세'];
 const user = ['', '생년월일', '생년월일', 'MBTI'];
 const imgList = ['today', 'zodiac', 'star', 'mbti'];
+
 function Carousel({ setActiveSlide }: swiperProps) {
+  const [slidesValue, setSlidesValue] = useState<string[]>(Slides);
+  const [imgValue, setImgValue] = useState<string[]>(imgList);
   const navigate = useNavigate();
 
   function MoveRoute(value: string) {
@@ -33,8 +36,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
       localStorage.setItem('activeBanner', value);
     };
   }
-  const [slidesValue, setSlidesValue] = useState<string[]>(Slides);
-  const [imgValue, setImgValue] = useState<string[]>(imgList);
+
   useEffect(() => {
     const activeBanner = localStorage.getItem('activeBanner');
     if (activeBanner !== null) {

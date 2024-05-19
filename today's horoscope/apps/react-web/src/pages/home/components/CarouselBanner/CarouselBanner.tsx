@@ -4,6 +4,7 @@ import APIS from '../../../../services/api';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '../../../../services/queryKeys';
 import dayjs from 'dayjs';
+import { UserData } from '../../../../components/infoForm/InfoForm';
 
 interface carouselContents {
   title: string;
@@ -26,11 +27,14 @@ const zodiacList = [
   'sheep',
 ];
 function CarouselBanner({ title, imgitem, user }: carouselContents) {
-  const [inputData, setInputData] = useState({
+  const [inputData, setInputData] = useState<UserData>({
     name: '',
     birth: '',
     mbti: '',
   });
+  const [msg, setMsg] = useState<string>('');
+  const [inputItem, setInputItem] = useState<string>('');
+
   const storedData = localStorage.getItem('userData');
   const objectStoredData = JSON.parse(storedData as string);
   const birth = dayjs(objectStoredData?.birth);
@@ -41,8 +45,6 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
     queryFn: () => APIS.getUserDataAPI(formattedBirth, objectStoredData?.mbti),
   });
 
-  const [msg, setMsg] = useState('');
-  const [inputItem, setInputItem] = useState('');
   useEffect(() => {
     if (storedData) {
       setInputData(JSON.parse(storedData));

@@ -17,19 +17,25 @@ export interface UserData {
 }
 
 function InfoForm({ alertText, content }: InfoFormProps) {
+  const [userData, setUserData] = useState<UserData>({
+    name: '',
+    birth: '',
+    mbti: '',
+  });
+  const [birthModal, setBirthModal] = useState<boolean>(false);
+  const [mbtiModal, setMbtiModal] = useState<boolean>(false);
+  const [koreanValue, setKoreanValue] = useState<boolean>(false);
+  const [requiredValue, setRequiredValue] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const [birthModal, setBirthModal] = useState(false);
   function ClickBirthModal() {
     setBirthModal(!birthModal);
   }
 
-  const [mbtiModal, setMbtiModal] = useState(false);
   function ClickMbtiModal() {
     setMbtiModal(!mbtiModal);
   }
 
-  const [koreanValue, setKoreanValue] = useState(false);
   function KoreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = e.target.value;
     const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
@@ -39,12 +45,6 @@ function InfoForm({ alertText, content }: InfoFormProps) {
       setKoreanValue(true);
     }
   }
-
-  const [userData, setUserData] = useState<UserData>({
-    name: '',
-    birth: '',
-    mbti: '',
-  });
 
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
@@ -60,7 +60,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
       [name]: value,
     });
   }
-  const [requiredValue, setRequiredValue] = useState<boolean>(false);
+
   function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
