@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { IoShareSocialOutline } from 'react-icons/io5';
-import Styles from './Share.module.scss';
+import Styles from './Kakao.module.scss';
 
 declare global {
   interface Window {

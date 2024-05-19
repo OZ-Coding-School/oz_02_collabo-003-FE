@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import kakaoShare from '../../components/kakao/Kakao';
+import Share from '../../components/kakao/Kakao';
 import Date from '../../components/date/Date';
 import Text from '../../components/textbox/star/StarText';
 
@@ -22,7 +22,7 @@ const Fortune: React.FC = () => {
           <IoChevronBack onClick={MoveHome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
 
-          <KakaoShare />
+          <Share />
         </div>
         <div>
           <img src="/public/K_img/island/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />

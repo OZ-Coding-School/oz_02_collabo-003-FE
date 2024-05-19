@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '../../../../../services/queryKeys';
 import APIS from '../../../../../services/api';
+
 import Styles from './MbtiText.module.scss';
 
 interface MBTIFortunes {

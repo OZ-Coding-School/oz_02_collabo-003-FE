@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '../../../../../services/queryKeys';
 import APIS from '../../../../../services/api';
+
 import Styles from './StarText.module.scss';
 
 interface StarFortunes {

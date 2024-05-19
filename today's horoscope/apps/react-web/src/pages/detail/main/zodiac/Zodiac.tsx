@@ -1,5 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
+import QUERY_KEYS from '../../../../services/queryKeys';
+import APIS from '../../../../services/api';
+
 import Share from '../../components/kakao/Kakao';
 import Date from '../../components/date/Date';
 
@@ -66,17 +71,25 @@ const zodiacFortunes: ZodiacFortunes = {
 
 const Fortune: React.FC = () => {
   const navigate = useNavigate();
-  function nextlevel() {
-    navigate('/detail-zodiac/textimage');
-  }
+
+  const storedData = localStorage.getItem('userData');
+  const objectStoredData = JSON.parse(storedData as string);
+  const birth = objectStoredData.birth;
+  const year = birth.split('-')[0];
+
+  const { data: zodiacData } = useQuery({
+    queryKey: QUERY_KEYS.USER_DATA,
+    queryFn: () => APIS.getZodiacDataAPI(year),
+  });
+
+  const handleImageClick = (zodiacSign: string) => {
+    const selectedZodiacData = zodiacFortunes[zodiacSign];
+    navigate('/detail-zodiac/textimage', { state: { ...selectedZodiacData, additionalData: zodiacData } });
+  };
 
   function movehome() {
     navigate(-1);
   }
-
-  const handleZodiacClick = (zodiacSign: string) => {
-    navigate('/detail-zodiac/textimage', { state: { zodiacSign, ...zodiacFortunes[zodiacSign] } });
-  };
 
   return (
     <div className={Styles.container}>
@@ -98,13 +111,8 @@ const Fortune: React.FC = () => {
       <div className={Styles.body}>
         <div>
           {Object.keys(zodiacFortunes).map((zodiacSign, index) => (
-            <div key={index} className={Styles.zodiacImages} onClick={() => handleZodiacClick(zodiacSign)}>
-              <img
-                src={zodiacFortunes[zodiacSign].imageSrc}
-                alt={zodiacSign}
-                onClick={nextlevel}
-                className={Styles.img}
-              />
+            <div key={index} className={Styles.zodiacImages} onClick={() => handleImageClick(zodiacSign)}>
+              <img src={zodiacFortunes[zodiacSign].imageSrc} alt={zodiacSign} className={Styles.img} />
               <div className={Styles.zodiacText}>{zodiacFortunes[zodiacSign].text}</div>
             </div>
           ))}

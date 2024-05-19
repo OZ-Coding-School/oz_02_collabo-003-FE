@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
-import QUERY_KEYS from '../../../../../services/queryKeys';
-import APIS from '../../../../../services/api';
-
-import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
+import Share from '../../kakao/Kakao';
 import Styles from './ZodiacText.module.scss';
+import { IoChevronBack } from 'react-icons/io5';
 
 interface ZodiacFortunes {
   [key: string]: {
@@ -41,14 +38,12 @@ const zodiacFortunes: ZodiacFortunes = {
 const TextImage: React.FC = () => {
   const [today, setToday] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const { zodiacData } = location.state || {};
+
   function movehome() {
     navigate(-1);
   }
-
-  const location = useLocation();
-  const state = location.state as { zodiacSign: string; [key: string]: string | number | boolean };
-
-  console.log(state);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -64,27 +59,16 @@ const TextImage: React.FC = () => {
     setToday(formattedDate);
   }, []);
 
-  const storedData = localStorage.getItem('userData');
-  const objectStoredData = JSON.parse(storedData as string);
-  const birth = objectStoredData.birth;
-  const year = birth.split('-')[0];
-
-  const { data: zodiacData } = useQuery({
-    queryKey: QUERY_KEYS.USER_DATA,
-    queryFn: () => APIS.getZodiacDataAPI(year),
-  });
-
-  console.log(zodiacData);
-
   return (
     <div className={Styles.container}>
       <div className={Styles.head}>
         <div className={Styles.headicon}>
           <IoChevronBack onClick={movehome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-          <IoShareSocialOutline className={Styles.Share} />
+          <Share />
         </div>
         <div className={Styles.title}>
+          <div>{JSON.stringify(zodiacData)}</div>
           <h1 className={Styles.headtitle}>토끼띠 오늘의 운세</h1>
           <p className={Styles.date}>{today}</p>
         </div>
