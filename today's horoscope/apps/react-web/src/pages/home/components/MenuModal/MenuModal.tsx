@@ -14,10 +14,10 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
 
   const navigate = useNavigate();
 
-  function MoveEditInfo() {
+  function moveEditInfo() {
     navigate('/edit-info');
   }
-  function MoveVersion() {
+  function moveVersion() {
     navigate('/version');
   }
 
@@ -46,8 +46,8 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
             <div className={styles.userMBTI}>{inputData.mbti}</div>
           </div>
           <ul className={styles.menuList}>
-            <li onClick={MoveEditInfo}>개인정보수정</li>
-            <li onClick={MoveVersion}>설정</li>
+            <li onClick={moveEditInfo}>개인정보수정</li>
+            <li onClick={moveVersion}>설정</li>
           </ul>
         </main>
       </div>

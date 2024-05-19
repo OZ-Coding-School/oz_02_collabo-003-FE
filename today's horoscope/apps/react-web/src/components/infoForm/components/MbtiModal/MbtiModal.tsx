@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { UserData } from '../../InfoForm';
 
 interface MbtiProps {
-  ClickMbtiModal: () => void;
+  clickMbtiModal: () => void;
   userData: UserData;
   setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
@@ -32,7 +32,7 @@ const MBTIList = [
   'ENFP',
 ];
 
-function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
+function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
   const [mbtiText, setMbtiText] = useState<string>('');
   const [sliceMBTIList, setSliceMBTIList] = useState<string[]>(MBTIList);
 
@@ -51,7 +51,7 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
       ...userData,
       mbti: mbtiText,
     });
-    ClickMbtiModal();
+    clickMbtiModal();
   }
 
   useEffect(() => {

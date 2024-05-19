@@ -22,7 +22,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   const [imgValue, setImgValue] = useState<string[]>(imgList);
   const navigate = useNavigate();
 
-  function MoveRoute(value: string) {
+  function moveDetail(value: string) {
     return () => {
       if (localStorage.userData === undefined) {
         navigate('/login');
@@ -88,7 +88,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
           <SwiperSlide id={`slide-${imgValue[index]}`} key={index} className="swiper-slide">
             <CarouselBanner imgitem={imgValue[index]} user={user[index]} title={SlideContent} />
             <button
-              onClick={MoveRoute(imgValue[index])}
+              onClick={moveDetail(imgValue[index])}
               className={
                 localStorage.userData !== undefined && imgValue[index] === 'today'
                   ? 'contentsDetail'

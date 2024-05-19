@@ -28,15 +28,15 @@ function InfoForm({ alertText, content }: InfoFormProps) {
   const [requiredValue, setRequiredValue] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  function ClickBirthModal() {
+  function clickBirthModal() {
     setBirthModal(!birthModal);
   }
 
-  function ClickMbtiModal() {
+  function clickMbtiModal() {
     setMbtiModal(!mbtiModal);
   }
 
-  function KoreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
+  function koreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = e.target.value;
     const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
     if (koreanRegex.test(inputValue)) {
@@ -97,7 +97,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
               이름
               <input
                 onChange={handleChange}
-                onInput={KoreanValueOnly}
+                onInput={koreanValueOnly}
                 type="text"
                 name="name"
                 value={userData.name}
@@ -119,7 +119,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
             <label>
               생년월일
               <input
-                onFocus={ClickBirthModal}
+                onFocus={clickBirthModal}
                 onChange={handleChange}
                 type="text"
                 name="birth"
@@ -134,7 +134,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
             <label>
               MBTI
               <input
-                onFocus={ClickMbtiModal}
+                onFocus={clickMbtiModal}
                 onChange={handleChange}
                 type="text"
                 name="mbti"
@@ -149,9 +149,9 @@ function InfoForm({ alertText, content }: InfoFormProps) {
         </form>
       </main>
       {mbtiModal ? (
-        <MbtiModal userData={userData} setUserData={setUserData} ClickMbtiModal={ClickMbtiModal} />
+        <MbtiModal userData={userData} setUserData={setUserData} clickMbtiModal={clickMbtiModal} />
       ) : birthModal ? (
-        <BirthModal userData={userData} setUserData={setUserData} ClickBirthModal={ClickBirthModal} />
+        <BirthModal userData={userData} setUserData={setUserData} clickBirthModal={clickBirthModal} />
       ) : null}
     </div>
   );

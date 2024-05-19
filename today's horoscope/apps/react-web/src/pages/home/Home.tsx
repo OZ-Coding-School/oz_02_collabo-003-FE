@@ -7,6 +7,7 @@ import MenuModal from './components/MenuModal/MenuModal';
 function Home() {
   const [menuModal, setMenuModal] = useState<boolean | null>(null);
   const [activeSlide, setActiveSlide] = useState<string>('');
+
   function onclickMenuModal() {
     if (menuModal === null) {
       setMenuModal(true);
