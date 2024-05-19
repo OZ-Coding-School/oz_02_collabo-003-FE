@@ -12,7 +12,7 @@ interface carouselContents {
   user: string;
 }
 
-const zodiacList = [
+const zodiacList: string[] = [
   'monkey',
   'rooster',
   'dog',

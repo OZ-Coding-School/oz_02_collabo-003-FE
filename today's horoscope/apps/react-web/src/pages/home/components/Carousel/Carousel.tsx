@@ -13,9 +13,9 @@ interface swiperProps {
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Slides = ['오늘의 한마디', '띠별 운세', '별자리 운세', 'MBTI 운세'];
-const user = ['', '생년월일', '생년월일', 'MBTI'];
-const imgList = ['today', 'zodiac', 'star', 'mbti'];
+const Slides: string[] = ['오늘의 한마디', '띠별 운세', '별자리 운세', 'MBTI 운세'];
+const user: string[] = ['', '생년월일', '생년월일', 'MBTI'];
+const imgList: string[] = ['today', 'zodiac', 'star', 'mbti'];
 
 function Carousel({ setActiveSlide }: swiperProps) {
   const [slidesValue, setSlidesValue] = useState<string[]>(Slides);
