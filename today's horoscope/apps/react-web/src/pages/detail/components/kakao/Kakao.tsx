@@ -21,7 +21,7 @@ const kakaoShare: React.FC = () => {
     window.Kakao.Link.sendDefault({
       objectType: 'feed',
       content: {
-        title: '공유할 제목',
+        title: '오늘의 운세',
         description: '공유할 설명',
         imageUrl: '공유할 이미지 URL',
         link: {
@@ -31,7 +31,7 @@ const kakaoShare: React.FC = () => {
       },
       buttons: [
         {
-          title: '웹으로 보기',
+          title: '오늘의 운세',
           link: {
             mobileWebUrl: '공유할 URL',
             webUrl: '공유할 URL',

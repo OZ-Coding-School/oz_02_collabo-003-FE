@@ -50,8 +50,7 @@
 
 .date {
   top: 158px;
-  font-size: 14px;
-  font-family: Pretendard;
+  margin-top: 6px;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -61,8 +60,7 @@
 }
 
 .zodiacImages {
-  padding-left: 32px;
-  padding-right: 32px;
+  padding: 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -72,14 +70,16 @@
   width: 80px;
   height: 80px;
   margin-top: 226px;
+  margin-left: 32px;
   display: flex;
   align-items: center;
-  margin-bottom: 18px; /* 이미지 사이의 수직 간격 조정 */
+  margin-bottom: 0;
 }
 
 .zodiacText {
   font-weight: bold;
+  padding: 0;
   text-align: center;
-  margin-top: 8px;
-  margin-bottom: 8px; /* 음수 마진은 유효하지 않으므로 수정 */
+  padding-left: 52px;
+  padding-top: 8px;
 }
