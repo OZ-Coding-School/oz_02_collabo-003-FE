@@ -148,11 +148,8 @@ function InfoForm({ alertText, content }: InfoFormProps) {
           <SubmitButton handleSubmit={handleSubmit} content={content} />
         </form>
       </main>
-      {mbtiModal ? (
-        <MbtiModal userData={userData} setUserData={setUserData} clickMbtiModal={clickMbtiModal} />
-      ) : birthModal ? (
-        <BirthModal userData={userData} setUserData={setUserData} clickBirthModal={clickBirthModal} />
-      ) : null}
+      {mbtiModal && <MbtiModal userData={userData} setUserData={setUserData} clickMbtiModal={clickMbtiModal} />}
+      {birthModal && <BirthModal userData={userData} setUserData={setUserData} clickBirthModal={clickBirthModal} />}
     </div>
   );
 }
