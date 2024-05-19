@@ -1,10 +1,9 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
+import Share from '../../components/kakao/Kakao';
 import Date from '../../components/date/Date';
 
-import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
-
+import { IoChevronBack } from 'react-icons/io5';
 import Styles from './Zodiac.module.scss';
 
 interface ZodiacFortunes {
@@ -67,17 +66,25 @@ const zodiacFortunes: ZodiacFortunes = {
 
 const Fortune: React.FC = () => {
   const navigate = useNavigate();
-  function MoveHome() {
+  function nextlevel() {
+    navigate('/detail-zodiac/textimage');
+  }
+
+  function movehome() {
     navigate(-1);
   }
+
+  const handleZodiacClick = (zodiacSign: string) => {
+    navigate('/detail-zodiac/textimage', { state: { zodiacSign, ...zodiacFortunes[zodiacSign] } });
+  };
 
   return (
     <div className={Styles.container}>
       <div className={Styles.head}>
         <div className={Styles.headicon}>
-          <IoChevronBack onClick={MoveHome} className={Styles.Back} />
+          <IoChevronBack onClick={movehome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-          <IoShareSocialOutline className={Styles.Share} />
+          <Share />
         </div>
         <div>
           <h1 className={Styles.title}>
@@ -91,8 +98,13 @@ const Fortune: React.FC = () => {
       <div className={Styles.body}>
         <div>
           {Object.keys(zodiacFortunes).map((zodiacSign, index) => (
-            <div key={index} className={Styles.zodiacImages}>
-              <img src={zodiacFortunes[zodiacSign].imageSrc} alt={zodiacSign} className={Styles.img} />
+            <div key={index} className={Styles.zodiacImages} onClick={() => handleZodiacClick(zodiacSign)}>
+              <img
+                src={zodiacFortunes[zodiacSign].imageSrc}
+                alt={zodiacSign}
+                onClick={nextlevel}
+                className={Styles.img}
+              />
               <div className={Styles.zodiacText}>{zodiacFortunes[zodiacSign].text}</div>
             </div>
           ))}

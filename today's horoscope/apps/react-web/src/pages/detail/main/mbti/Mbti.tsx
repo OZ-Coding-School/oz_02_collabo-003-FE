@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Date from '../../components/date/Date';
-import Text from '../../components/textbox/mbti/Mbti_text';
+import Text from '../../components/textbox/mbti/MbtiText';
 
 import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
 
@@ -23,7 +23,7 @@ const Fortune: React.FC = () => {
           <IoShareSocialOutline className={Styles.Share} />
         </div>
         <div>
-          <img src="/public/K_img/island/img_island_mbti_default.png" alt="main" className={Styles.MbtiMainImg} />
+          <img src="/K_img/island/img_island_mbti_default.png" alt="main" className={Styles.MbtiMainImg} />
           <h1 className={Styles.title}>
             MBTI
             <br />

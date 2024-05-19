@@ -1,5 +1,8 @@
 import React from 'react';
-import Styles from './Star_text.module.scss';
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '../../../../../services/queryKeys';
+import APIS from '../../../../../services/api';
+import Styles from './StarText.module.scss';
 
 interface StarFortunes {
   [key: string]: {
@@ -67,6 +70,13 @@ const TextImage: React.FC = () => {
       <p className={Styles.starTMI}>{fortune}</p>
     </div>
   ));
+
+  const { data: starData } = useQuery({
+    queryKey: QUERY_KEYS.USER_DATA,
+    queryFn: () => APIS.getStarDataAPI(),
+  });
+
+  console.log(starData);
 
   return (
     <div>
