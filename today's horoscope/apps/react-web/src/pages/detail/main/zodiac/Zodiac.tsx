@@ -50,7 +50,7 @@ const zodiacFortunes: ZodiacFortunes = {
     text: '양띠',
   },
   원숭이띠: {
-    imageSrc: '/public/K_img/img_circle_zodiac_monkey.png',
+    imageSrc: '/K_img/img_circle_zodiac_monkey.png',
     text: '원숭이띠',
   },
   닭띠: {
