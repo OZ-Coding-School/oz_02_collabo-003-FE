@@ -18,7 +18,7 @@ const MyComponent: React.FC = () => {
     setToday(formattedDate);
   }, []);
 
-  return <h1 className={Styles.date}>{today}</h1>;
+  return <h1 className={Styles.oneDay}>{today}</h1>;
 };
 
 export default MyComponent;

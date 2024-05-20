@@ -1,5 +1,10 @@
 import React from 'react';
-import Styles from './Mbti_text.module.scss';
+
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '../../../../../services/queryKeys';
+import APIS from '../../../../../services/api';
+
+import Styles from './MbtiText.module.scss';
 
 interface MBTIFortunes {
   [key: string]: {
@@ -88,18 +93,16 @@ const TextImage: React.FC = () => {
     </div>
   ));
 
+  const { data: mbtiData } = useQuery({
+    queryKey: QUERY_KEYS.USER_DATA,
+    queryFn: () => APIS.getMbtiDataAPI(),
+  });
+
+  console.log(mbtiData);
+
   return (
     <div className={Styles.cnt}>
       <ul>{mbtiFortuneMessages}</ul>
-    </div>
-  );
-  return (
-    <div className="App">
-      <div className="scroll-container">
-        {/* 조건부 렌더링을 사용하여 화면 너비에 따라 이미지 표시 여부 결정 */}
-        <img className="hidden-image" src="your-image-url.jpg" alt="Your Image" />
-        {/* 여기에 스크롤이 필요한 내용 추가 */}
-      </div>
     </div>
   );
 };

@@ -1,126 +1,129 @@
 * {
   box-sizing: border-box;
-  width: 100%;
+  color: #191a1b;
+  font-family: 'Pretendard-Regular';
+  margin: 16px;
 }
-
+.versionHeader {
+  width: 100%;
+  height: 48px;
+}
 .back {
   width: 30px;
   height: 30px;
-  margin: 8px 16px;
   padding: 0;
   position: fixed;
-  top: 32;
+  top: 0;
 }
-
 .title {
-  padding-top: 20px;
-  text-align: center;
+  width: 100%;
   font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-top: 16px;
+  text-align: center;
 }
 
-.versionContainer.versionContainer,
-.notificationContainer {
+.versionContents {
+  width: 344px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px;
+  padding: 16px;
+  border-bottom: 1px solid #eaeaea;
+}
+.pushContents {
+  width: 344px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
 }
 
-.versionTitle,
-.notificationContainer {
-  display: inline-block;
-  padding-top: 35px;
-  line-height: 1.2;
-  text-align: left;
-}
-
-.now,
-.pushnoti {
+.textTitle {
   font-size: 16px;
   font-weight: bold;
+  padding: 5px 0;
 }
-
-.nowversion,
-.noti {
+.textSub {
   font-size: 12px;
+  padding: 5px 0;
 }
-
-.update {
+.updateButton {
   width: 81px;
   height: 32px;
-  top: 169px;
-  left: 255px;
   background-color: #ffffff;
   color: #515355;
-  margin-top: 25px;
   padding: 6px 10px 6px 10px;
   border: 1px solid #515355;
   border-radius: 12px;
-  cursor: pointer;
-
-  &:hover {
-    color: #d3d3d3;
-    background-color: #ffffff;
-    border: 1px solid #d3d3d3;
-  }
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.underline {
-  width: 328px;
-  border: 1px solid #eaeaea; /* height 대신 border-top 사용 */
-  position: absolute; /* top 속성을 적용하기 위해 position 추가 */
-  top: 160px;
-  left: 50%;
-  transform: translateX(-50%);
+.updateButton:hover {
+  color: #d3d3d3;
+  border: 1px solid #d3d3d3;
 }
-
-.switch {
-  position: relative;
+.wrapper {
   display: inline-block;
-  line-height: 25px;
-  text-align: left;
+  width: 60px;
+  height: 30px;
+  margin: 16px;
+  position: relative;
+}
+.wrapper input[type='checkbox'] {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+.wrapper label {
+  padding-left: 70px;
+  line-height: 30px;
   font-size: 16px;
 }
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.switch .slider {
+.wrapper label::after {
   position: absolute;
+  top: 3px;
+  left: 4px;
   content: '';
-  width: 48px;
+  width: 24px;
   height: 24px;
-  margin-top: -38px;
-  right: 0;
-  border-radius: 100px;
-  background: #eaeaea;
-  transition: 0.5s;
+  background: #fff;
+  border-radius: 100%;
+  transition: all 0.3s;
 }
-
-.switch .slider:before {
-  display: inline;
+.wrapper label::before {
   position: absolute;
+  top: 0;
+  left: 0;
   content: '';
-  width: 20px;
-  height: 20px;
-  top: 2px;
-  left: 2px;
-  border-radius: 100px;
-  background-color: #ffffff;
-  transition: 0.5s;
+  width: 60px;
+  height: 30px;
+  border-radius: 20px;
+  background: #eaeaea;
+  box-sizing: border-box;
+}
+.wrapper input[type='checkbox']:checked + label::after {
+  transform: translateX(28px);
+  background: #fff;
+}
+.wrapper input[type='checkbox']:checked + label::before {
+  background: #191a1b;
 }
 
-.switch input:checked + .slider {
+.popupBackground {
+  width: 100%;
+  height: 998px;
   background-color: #191a1b;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
 }
-
-.switch input:checked + .slider:before {
-  transform: translateX(24px);
-}
-
 .popup {
   display: flex;
   flex-direction: column;
@@ -133,49 +136,46 @@
   padding: 20px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 3px 4px 16px 0px rgba(0, 0, 0, 0.08);
   text-align: center;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.button-container {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.popupTitle {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 5px;
+}
 
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    margin-top: auto;
-    width: 100%;
+.popupText {
+  margin: 5px;
+  color: #515355;
+  opacity: 0.6;
+  font-size: 16px;
+}
 
-    h2 {
-      margin-bottom: 10px;
-      color: #191a1b;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    p {
-      color: #515355;
-      opacity: 0.6;
-      font-size: 16px;
-    }
-
-    button {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: opacity 0.3s;
-      background-color: #ffffff; // 배경색을 #ffffff로 설정
-      color: #191a1b; // 글자색을 #191A1B로 설정
-
-      &:not(:last-child) {
-        border-right: 1px solid #d1d1d1;
-      }
-      &:active {
-        background-color: #ddd;
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-    }
-  }
+.buttonContainer > button {
+  width: 70px;
+  height: 32px;
+  padding: 5px 10px;
+  margin: 0 16px;
+  border-radius: 8px;
+  border: 1px solid #515355;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #191a1b;
+}
+.buttonContainer > button:hover {
+  color: #d3d3d3;
+  border: 1px solid #d3d3d3;
 }
