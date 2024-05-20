@@ -7,14 +7,17 @@ import APIS from '../../../../../services/api';
 import Styles from './MbtiText.module.scss';
 import { ClipLoader } from 'react-spinners';
 
-interface MBTIFortunes {
-  [key: string]: {
-    fortune: string;
-    imageSrc: string;
-  };
+interface MbtiFortunes {
+  msg_id: number;
+  imageSrc: string;
+  categoriy: string;
+  luck_msg: string;
+  attribute1: string;
+  attribute2: string;
+  gpt_id: number;
 }
 
-const mbtiFortunes: MBTIFortunes = {
+const MbtiFortunes = {
   INTJ: {
     fortune:
       '능력이 부족하니 알찬 결실을 거두기가 만무한 실정입니다. 현재 상황을 냉정히 평가하고 부족한 부분을 보완해야 합니다. ',
@@ -84,22 +87,19 @@ const mbtiFortunes: MBTIFortunes = {
 };
 
 const TextImage: React.FC = () => {
-  const mbtiFortuneMessages = Object.entries(mbtiFortunes).map(([mbti, { fortune, imageSrc }]) => (
-    <div key={mbti}>
-      <img src={imageSrc} alt={mbti} className={Styles.mbtiImage} />
-      <div className={Styles.message}>
-        <h2 className={Styles.mbtiName}>{mbti}</h2>
-        <p className={Styles.mbtiTMI}>{fortune}</p>
-      </div>
-    </div>
-  ));
-
   const { data: mbtiData, isLoading } = useQuery({
     queryKey: QUERY_KEYS.MBTI,
     queryFn: () => APIS.getMbtiDataAPI(),
   });
-
-  console.log(mbtiData);
+  const mbtiFortuneMessages = mbtiData?.map((individualMbti: MbtiFortunes, index: string) => (
+    <div key={index}>
+      <img src={individualMbti.imageSrc} alt="mbtiImage" className={Styles.mbtiImage} />
+      <div className={Styles.message}>
+        <h2 className={Styles.mbtiName}>{individualMbti.attribute1}</h2>
+        <p className={Styles.mbtiTMI}>{individualMbti.luck_msg}</p>
+      </div>
+    </div>
+  ));
 
   return (
     <div className={Styles.cnt}>
