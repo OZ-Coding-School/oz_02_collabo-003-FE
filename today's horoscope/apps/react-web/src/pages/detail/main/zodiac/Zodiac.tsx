@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import QUERY_KEYS from '../../../../services/queryKeys';
-import APIS from '../../../../services/api';
 
 import Share from '../../components/kakao/Kakao';
 
@@ -71,16 +68,6 @@ const Fortune: React.FC = () => {
   const [today, setToday] = useState('');
   const navigate = useNavigate();
 
-  const { data: zodiacData } = useQuery({
-    queryKey: QUERY_KEYS.USER_DATA,
-    queryFn: () => APIS.getZodiacDataAPI('{year}'),
-  });
-
-  const handleImageClick = (zodiacSign: string) => {
-    const selectedZodiacData = zodiacFortunes[zodiacSign];
-    navigate('/detail-zodiac/textimage', { state: { ...selectedZodiacData, additionalData: zodiacData } });
-  };
-
   function movehome() {
     navigate(-1);
   }
@@ -119,7 +106,7 @@ const Fortune: React.FC = () => {
       <div className={Styles.body}>
         <div>
           {Object.keys(zodiacFortunes).map((zodiacSign, index) => (
-            <div key={index} className={Styles.zodiacImages} onClick={() => handleImageClick(zodiacSign)}>
+            <div key={index} className={Styles.zodiacImages}>
               <img src={zodiacFortunes[zodiacSign].imageSrc} alt={zodiacSign} className={Styles.img} />
               <div className={Styles.zodiacText}>{zodiacFortunes[zodiacSign].text}</div>
             </div>
