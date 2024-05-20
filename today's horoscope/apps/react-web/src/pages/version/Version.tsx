@@ -40,6 +40,7 @@ const Version: React.FC = () => {
 
   return (
     <div className={Styles.versionContainer}>
+      <div className={Styles.statusBar}></div>
       <div className={Styles.versionHeader}>
         <IoChevronBack onClick={moveHome} className={Styles.back} />
         <h1 className={Styles.title}>설정</h1>

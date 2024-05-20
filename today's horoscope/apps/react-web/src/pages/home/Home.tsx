@@ -33,6 +33,7 @@ function Home() {
 
   return (
     <div className={styles.main} style={{ background: handleBackground() }}>
+      <div className={styles.statusBar}></div>
       <header className={styles.mainHeader}>
         {localStorage.userData === undefined ? (
           <div className={styles.menuIcon}></div>
