@@ -20,6 +20,7 @@ const imgList: string[] = ['today', 'zodiac', 'star', 'mbti'];
 function Carousel({ setActiveSlide }: swiperProps) {
   const [slidesValue, setSlidesValue] = useState<string[]>(Slides);
   const [imgValue, setImgValue] = useState<string[]>(imgList);
+  const [userValue, setUserValue] = useState<string[]>(user);
   const navigate = useNavigate();
 
   function moveDetail(value: string) {
@@ -45,11 +46,18 @@ function Carousel({ setActiveSlide }: swiperProps) {
         const preList = Slides.slice(activeIndex);
         const nextList = Slides.slice(0, activeIndex);
         const slicedList = preList.concat(nextList);
+
         const preImgList = imgList.slice(activeIndex);
         const nextImgList = imgList.slice(0, activeIndex);
         const slicedImgList = preImgList.concat(nextImgList);
+
+        const preUserList = user.slice(activeIndex);
+        const nextUserList = user.slice(0, activeIndex);
+        const slicedUserList = preUserList.concat(nextUserList);
+
         setSlidesValue(slicedList);
         setImgValue(slicedImgList);
+        setUserValue(slicedUserList);
       } else {
         setSlidesValue(Slides);
       }
@@ -86,7 +94,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
         className="swiper-wrapper">
         {slidesValue.map((SlideContent, index) => (
           <SwiperSlide id={`slide-${imgValue[index]}`} key={index} className="swiper-slide">
-            <CarouselBanner imgitem={imgValue[index]} user={user[index]} title={SlideContent} />
+            <CarouselBanner imgitem={imgValue[index]} user={userValue[index]} title={SlideContent} />
             <button
               onClick={moveDetail(imgValue[index])}
               className={
