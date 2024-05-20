@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Share from '../../components/kakao/Kakao';
 import Date from '../../components/date/Date';
-import Text from '../../components/textbox/star/Star_text';
+import Text from '../../components/textbox/star/StarText';
 
-import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
+import { IoChevronBack } from 'react-icons/io5';
 
 import Styles from './Star.module.scss';
 
@@ -20,7 +21,7 @@ const Fortune: React.FC = () => {
         <div className={Styles.headicon}>
           <IoChevronBack onClick={MoveHome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-          <IoShareSocialOutline className={Styles.Share} />
+          <Share />
         </div>
         <div>
           <img src="/public/K_img/island/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />

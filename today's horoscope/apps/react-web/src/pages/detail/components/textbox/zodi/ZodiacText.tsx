@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
-import Styles from './Zodi_text.module.scss';
+import Share from '../../kakao/Kakao';
+import Styles from './ZodiacText.module.scss';
+import { IoChevronBack } from 'react-icons/io5';
 
 interface ZodiacFortunes {
   [key: string]: {
@@ -37,7 +38,10 @@ const zodiacFortunes: ZodiacFortunes = {
 const TextImage: React.FC = () => {
   const [today, setToday] = useState('');
   const navigate = useNavigate();
-  function MoveHome() {
+  const location = useLocation();
+  const { zodiacData } = location.state || {};
+
+  function movehome() {
     navigate(-1);
   }
 
@@ -59,11 +63,12 @@ const TextImage: React.FC = () => {
     <div className={Styles.container}>
       <div className={Styles.head}>
         <div className={Styles.headicon}>
-          <IoChevronBack onClick={MoveHome} className={Styles.Back} />
+          <IoChevronBack onClick={movehome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-          <IoShareSocialOutline className={Styles.Share} />
+          <Share />
         </div>
         <div className={Styles.title}>
+          <div>{JSON.stringify(zodiacData)}</div>
           <h1 className={Styles.headtitle}>토끼띠 오늘의 운세</h1>
           <p className={Styles.date}>{today}</p>
         </div>
