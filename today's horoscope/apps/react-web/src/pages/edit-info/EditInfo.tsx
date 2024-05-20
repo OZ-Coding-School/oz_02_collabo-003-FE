@@ -11,6 +11,7 @@ function EditInfo() {
   }
   return (
     <div>
+      <div className={styles.statusBar}></div>
       <header className={styles.header}>
         <IoChevronBack onClick={moveHome} className={styles.backIcon} />
         <div className={styles.headerTitle}>정보수정</div>
