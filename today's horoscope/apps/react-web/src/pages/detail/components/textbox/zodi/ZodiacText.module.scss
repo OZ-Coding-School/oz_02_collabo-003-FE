@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+}
+
+.head {
+  background: linear-gradient(180deg, #ffd9ebda 0%, #fbd8efcb 100%);
+  width: 100%;
+  height: 80px;
+  margin: auto;
+  position: fixed;
+}
+
+.headicon {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0; /* 화면 전체 너비를 사용 */
+  padding: 0;
+  justify-content: space-between;
+}
+
+.Back {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin-left: 20px;
+  position: relative;
+  position: fixed;
+  top: 20px;
+}
+
+.Share {
+  width: 24px;
+  height: 24px;
+  content: '';
+  padding: 0;
+  position: relative;
+  position: fixed;
+  top: 20px;
+  right: 0;
+}
+
+.LogoImg {
+  display: flex;
+  position: relative;
+  width: 53.33px;
+  height: 21.2px;
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.body {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.title {
+  padding-top: 188px;
+  padding-left: 24px;
+  text-align: left;
+  font-size: 25px;
+  line-height: 1.6;
+}
+
+.headtitle {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 14px;
+  color: #515355;
+}
+
+.zodiactitle {
+  display: flex;
+  font-weight: bold;
+}
+
+.zodiacImages {
+  position: fixed;
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 92px;
+  width: 80px;
+  height: 80px;
+}
+
+.point {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.point .test {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.point .text {
+  font-weight: bold;
+  margin-top: 264px;
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.point .fortune {
+  margin-top: 8px;
+  margin-bottom: -232px;
+  font-size: 12px;
+}

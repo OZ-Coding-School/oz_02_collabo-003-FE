@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+  color: #191a1b;
+  font-family: 'Pretendard-Regular';
+  margin: 16px;
+}
+.versionHeader {
+  width: 100%;
+  height: 48px;
+}
+.statusBar {
+  width: 100%;
+  height: 16px;
+  margin: 0;
+}
+.back {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  margin-top: 32px;
+  position: fixed;
+  top: 0;
+}
+.title {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.versionContents {
+  width: 344px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eaeaea;
+}
+.pushContents {
+  width: 344px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.textTitle {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 0;
+}
+.textSub {
+  font-size: 12px;
+  padding: 5px 0;
+}
+.updateButton {
+  width: 81px;
+  height: 32px;
+  background-color: #ffffff;
+  color: #515355;
+  padding: 6px 10px 6px 10px;
+  border: 1px solid #515355;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.updateButton:hover {
+  color: #d3d3d3;
+  border: 1px solid #d3d3d3;
+}
+.wrapper {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin: 16px;
+  position: relative;
+}
+.wrapper input[type='checkbox'] {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+.wrapper label {
+  padding-left: 70px;
+  line-height: 30px;
+  font-size: 16px;
+}
+.wrapper label::after {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  content: '';
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 100%;
+  transition: all 0.3s;
+}
+.wrapper label::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 60px;
+  height: 30px;
+  border-radius: 20px;
+  background: #eaeaea;
+  box-sizing: border-box;
+}
+.wrapper input[type='checkbox']:checked + label::after {
+  transform: translateX(28px);
+  background: #fff;
+}
+.wrapper input[type='checkbox']:checked + label::before {
+  background: #191a1b;
+}
+
+.popupBackground {
+  width: 100%;
+  height: 998px;
+  background-color: #191a1b;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+}
+.popup {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 312px;
+  height: 182px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  text-align: center;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.button-container {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.popupTitle {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 5px;
+}
+
+.popupText {
+  margin: 5px;
+  color: #515355;
+  opacity: 0.6;
+  font-size: 16px;
+}
+
+.buttonContainer > button {
+  width: 70px;
+  height: 32px;
+  padding: 5px 10px;
+  margin: 0 16px;
+  border-radius: 8px;
+  border: 1px solid #515355;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #191a1b;
+}
+.buttonContainer > button:hover {
+  color: #d3d3d3;
+  border: 1px solid #d3d3d3;
+}

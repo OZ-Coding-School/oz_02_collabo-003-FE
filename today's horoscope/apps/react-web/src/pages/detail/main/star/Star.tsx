@@ -1,20 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Date from '../../detail/components/date/Date';
-import Text from '../components/textbox/star/Star_text';
+import Share from '../../components/kakao/Kakao';
+import Date from '../../components/date/Date';
+import Text from '../../components/textbox/star/StarText';
+
 import { IoChevronBack } from 'react-icons/io5';
-import { IoShareSocialOutline } from 'react-icons/io5';
-import LogoImg from './img/text_logo_b.png';
+
 import Styles from './Star.module.scss';
 
 const Fortune: React.FC = () => {
+  const navigate = useNavigate();
+  function MoveHome() {
+    navigate(-1);
+  }
+
   return (
     <div className={Styles.container}>
       <div className={Styles.head}>
-        <div className={Styles.headtitle}>
-          <IoChevronBack className={Styles.Back} />
-          <img src={LogoImg} alt="로고" className={Styles.LogoImg} />
-          <IoShareSocialOutline className={Styles.Share} />
+        <div className={Styles.headicon}>
+          <IoChevronBack onClick={MoveHome} className={Styles.Back} />
+          <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
+          <Share />
         </div>
         <div>
           <img src="/public/K_img/island/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />

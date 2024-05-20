@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react';
 import styles from './CarouselBanner.module.scss';
+import APIS from '../../../../services/api';
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '../../../../services/queryKeys';
+import dayjs from 'dayjs';
+import { UserData } from '../../../../components/infoForm/InfoForm';
+import { ClipLoader } from 'react-spinners';
 
 interface carouselContents {
   title: string;
-  content: string;
   imgitem: string;
+  user: string;
 }
 
-const zodiacList = [
+const zodiacList: string[] = [
   'monkey',
   'rooster',
   'dog',
@@ -21,33 +27,57 @@ const zodiacList = [
   'horse',
   'sheep',
 ];
-
-function CarouselBanner({ title, content, imgitem }: carouselContents) {
-  const [inputData, setInputData] = useState({
+function CarouselBanner({ title, imgitem, user }: carouselContents) {
+  const [inputData, setInputData] = useState<UserData>({
     name: '',
     birth: '',
     mbti: '',
   });
-  const [inputItem, setInputItem] = useState('');
+  const [msg, setMsg] = useState<string>('');
+  const [inputItem, setInputItem] = useState<string>('');
+
+  const storedData = localStorage.getItem('userData');
+  const objectStoredData = JSON.parse(storedData as string);
+  const birth = dayjs(objectStoredData?.birth);
+  const formattedBirth = birth.format('YYYYMMDD');
+
+  const { data: userData, isLoading } = useQuery({
+    queryKey: QUERY_KEYS.USER_DATA,
+    queryFn: () => APIS.getUserDataAPI(formattedBirth, objectStoredData?.mbti),
+  });
+
   useEffect(() => {
-    const storedData = localStorage.getItem('userData');
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
+    const bannerDefaultText = `오늘의 ${title} 보기\n\n나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!
+`;
+    if (localStorage.userData === undefined) {
+      if (imgitem === 'today') {
+        setMsg(userData?.today_msg?.luck_msg);
+      } else {
+        setMsg(bannerDefaultText);
+      }
+      setInputItem('default');
+    }
 
-    if (localStorage.length === 0) setInputItem('default');
-    else if (imgitem === 'mbti') {
+    if (localStorage.userData === undefined && imgitem !== 'today') {
+      setMsg(bannerDefaultText);
+    } else if (imgitem === 'mbti') {
       if (inputData.mbti === 'MBTI모름') {
         setInputItem('default');
+        setMsg(bannerDefaultText);
       } else {
         const mbti = inputData.mbti;
         setInputItem(mbti.toLowerCase());
+        setMsg(userData?.mbti_msg?.luck_msg);
       }
     } else if (imgitem === 'zodiac') {
       const birthData = inputData.birth;
       const birthYear = birthData.split('-')[0];
       const zodiacIndex = parseInt(birthYear) % 12;
       setInputItem(zodiacList[zodiacIndex]);
+      setMsg(userData?.zodiac_msg?.luck_msg);
     } else if (imgitem === 'star') {
       const birthData = inputData.birth;
       const birthMonth = birthData.split('-')[1];
@@ -80,8 +110,12 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
       } else if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) {
         setInputItem('pisces');
       } else setInputItem('default');
-    } else setInputItem('default');
-  }, [imgitem, inputData.birth, inputData.mbti]);
+      setMsg(userData?.star_msg?.luck_msg);
+    } else {
+      setInputItem('default');
+      setMsg(userData?.today_msg?.luck_msg);
+    }
+  }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
 
   return (
     <div className={styles.carouselBanner}>
@@ -91,8 +125,16 @@ function CarouselBanner({ title, content, imgitem }: carouselContents) {
         className={styles.carouselImage}
       />
       <div className={styles.carouselContents}>
-        <h1 className={styles.title}>{title}</h1>
-        <div className={styles.content}>{content}</div>
+        {isLoading ? (
+          <div className={styles.loading}>
+            <ClipLoader color="#36d7b7" size={60} />
+          </div>
+        ) : (
+          <>
+            <h1 className={styles.title}>{title}</h1>
+            <div className={styles.content}>{msg}</div>
+          </>
+        )}
       </div>
     </div>
   );
