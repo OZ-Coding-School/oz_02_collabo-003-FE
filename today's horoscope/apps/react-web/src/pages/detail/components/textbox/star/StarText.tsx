@@ -5,6 +5,7 @@ import QUERY_KEYS from '../../../../../services/queryKeys';
 import APIS from '../../../../../services/api';
 
 import Styles from './StarText.module.scss';
+import { ClipLoader } from 'react-spinners';
 
 interface StarFortunes {
   [key: string]: {
@@ -65,6 +66,11 @@ const starFortunes: StarFortunes = {
 };
 
 const TextImage: React.FC = () => {
+  const { data: starData, isLoading } = useQuery({
+    queryKey: QUERY_KEYS.STAR,
+    queryFn: () => APIS.getStarDataAPI(),
+  });
+
   const starFortuneMessages = Object.entries(starFortunes).map(([star, { fortune, imageSrc }]) => (
     <div key={star}>
       <img src={imageSrc} alt={star} className={Styles.starImage} />
@@ -73,16 +79,19 @@ const TextImage: React.FC = () => {
     </div>
   ));
 
-  const { data: starData } = useQuery({
-    queryKey: QUERY_KEYS.USER_DATA,
-    queryFn: () => APIS.getStarDataAPI(),
-  });
-
   console.log(starData);
 
   return (
     <div>
-      <ul>{starFortuneMessages}</ul>
+      <ul>
+        {isLoading ? (
+          <div className={Styles.loading}>
+            <ClipLoader color="#36d7b7" size={60} />
+          </div>
+        ) : (
+          starFortuneMessages
+        )}
+      </ul>
     </div>
   );
 };

@@ -51,6 +51,13 @@
   margin-left: 60px;
 }
 
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .body {
   padding-left: 24px;
   padding-right: 24px;

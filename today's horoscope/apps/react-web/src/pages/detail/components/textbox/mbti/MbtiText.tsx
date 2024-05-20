@@ -5,6 +5,7 @@ import QUERY_KEYS from '../../../../../services/queryKeys';
 import APIS from '../../../../../services/api';
 
 import Styles from './MbtiText.module.scss';
+import { ClipLoader } from 'react-spinners';
 
 interface MBTIFortunes {
   [key: string]: {
@@ -93,8 +94,8 @@ const TextImage: React.FC = () => {
     </div>
   ));
 
-  const { data: mbtiData } = useQuery({
-    queryKey: QUERY_KEYS.USER_DATA,
+  const { data: mbtiData, isLoading } = useQuery({
+    queryKey: QUERY_KEYS.MBTI,
     queryFn: () => APIS.getMbtiDataAPI(),
   });
 
@@ -102,7 +103,15 @@ const TextImage: React.FC = () => {
 
   return (
     <div className={Styles.cnt}>
-      <ul>{mbtiFortuneMessages}</ul>
+      <ul>
+        {isLoading ? (
+          <div className={Styles.loading}>
+            <ClipLoader color="#36d7b7" size={60} />
+          </div>
+        ) : (
+          mbtiFortuneMessages
+        )}
+      </ul>
     </div>
   );
 };

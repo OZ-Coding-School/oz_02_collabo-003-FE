@@ -72,6 +72,10 @@ const Fortune: React.FC = () => {
     navigate(-1);
   }
 
+  function handleClickimage(zodiac: string) {
+    navigate(`/detail-zodiac/textimage/${zodiac}`);
+  }
+
   useEffect(() => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -106,7 +110,10 @@ const Fortune: React.FC = () => {
       <div className={Styles.body}>
         <div>
           {Object.keys(zodiacFortunes).map((zodiacSign, index) => (
-            <div key={index} className={Styles.zodiacImages}>
+            <div
+              key={index}
+              className={Styles.zodiacImages}
+              onClick={() => handleClickimage(zodiacFortunes[zodiacSign].text)}>
               <img src={zodiacFortunes[zodiacSign].imageSrc} alt={zodiacSign} className={Styles.img} />
               <div className={Styles.zodiacText}>{zodiacFortunes[zodiacSign].text}</div>
             </div>
