@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import BirthModal from './components/BirthModal/BirthModal';
 
 interface InfoFormProps {
+  alertText: string;
   content: string;
 }
 
@@ -15,21 +16,27 @@ export interface UserData {
   mbti: string;
 }
 
-function InfoForm({ content }: InfoFormProps) {
+function InfoForm({ alertText, content }: InfoFormProps) {
+  const [userData, setUserData] = useState<UserData>({
+    name: '',
+    birth: '',
+    mbti: '',
+  });
+  const [birthModal, setBirthModal] = useState<boolean>(false);
+  const [mbtiModal, setMbtiModal] = useState<boolean>(false);
+  const [koreanValue, setKoreanValue] = useState<boolean>(false);
+  const [requiredValue, setRequiredValue] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const [birthModal, setBirthModal] = useState(false);
-  function ClickBirthModal() {
+  function clickBirthModal() {
     setBirthModal(!birthModal);
   }
 
-  const [mbtiModal, setMbtiModal] = useState(false);
-  function ClickMbtiModal() {
+  function clickMbtiModal() {
     setMbtiModal(!mbtiModal);
   }
 
-  const [koreanValue, setKoreanValue] = useState(false);
-  function KoreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
+  function koreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = e.target.value;
     const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
     if (koreanRegex.test(inputValue)) {
@@ -38,12 +45,6 @@ function InfoForm({ content }: InfoFormProps) {
       setKoreanValue(true);
     }
   }
-
-  const [userData, setUserData] = useState<UserData>({
-    name: '',
-    birth: '',
-    mbti: '',
-  });
 
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
@@ -59,8 +60,13 @@ function InfoForm({ content }: InfoFormProps) {
       [name]: value,
     });
   }
+
   function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
+
+    if (koreanValue || !userData.name || !userData.birth || !userData.mbti) {
+      return setRequiredValue(!requiredValue);
+    }
 
     const inputData = {
       name: userData.name,
@@ -69,6 +75,8 @@ function InfoForm({ content }: InfoFormProps) {
     };
 
     localStorage.setItem('userData', JSON.stringify(inputData));
+    localStorage.removeItem('activeBanner');
+    alert(`${alertText}을 완료하였습니다.`);
     navigate('/');
   }
 
@@ -76,11 +84,11 @@ function InfoForm({ content }: InfoFormProps) {
     <div>
       <main className={styles.main}>
         <div className={styles.mainHeader}>
-          <img src={`public/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.mainLogo} />
+          <img src={`/K_img/K-logo-icon/text_logo_b.png`} alt="logo" className={styles.mainLogo} />
           <div className={styles.headerContent}>
-            오늘의 운세를 보기 위해선 기본 정보가 꼭 필요합니다
+            오늘의 운세를 보기 위해 기본 정보가 필요합니다
             <br />
-            운세 결과에 중요한 영향을 미치니 정확하게 입력 해주세요.
+            운세 결과에 영향을 미치니 정확하게 입력 해주세요.
           </div>
         </div>
         <form className={styles.infoForm}>
@@ -89,12 +97,19 @@ function InfoForm({ content }: InfoFormProps) {
               이름
               <input
                 onChange={handleChange}
-                onInput={KoreanValueOnly}
+                onInput={koreanValueOnly}
                 type="text"
                 name="name"
                 value={userData.name}
                 placeholder="이름을 입력해 주세요."
-                className={koreanValue ? `${styles.error} ${styles.inputArea}` : styles.inputArea}
+                required
+                className={
+                  koreanValue
+                    ? `${styles.error} ${styles.inputArea}`
+                    : requiredValue
+                      ? `${styles.inputRequired} ${styles.inputArea}`
+                      : styles.inputArea
+                }
               />
             </label>
 
@@ -104,13 +119,14 @@ function InfoForm({ content }: InfoFormProps) {
             <label>
               생년월일
               <input
-                onFocus={ClickBirthModal}
+                onFocus={clickBirthModal}
                 onChange={handleChange}
                 type="text"
                 name="birth"
                 value={userData.birth}
                 placeholder="생년월일을 설정해 주세요."
-                className={styles.inputArea}
+                required
+                className={requiredValue ? `${styles.inputRequired} ${styles.inputArea}` : styles.inputArea}
               />
             </label>
           </div>
@@ -118,24 +134,22 @@ function InfoForm({ content }: InfoFormProps) {
             <label>
               MBTI
               <input
-                onFocus={ClickMbtiModal}
+                onFocus={clickMbtiModal}
                 onChange={handleChange}
                 type="text"
                 name="mbti"
                 value={userData.mbti}
                 placeholder="MBTI를 설정해 주세요."
-                className={styles.inputArea}
+                required
+                className={requiredValue ? `${styles.inputRequired} ${styles.inputArea}` : styles.inputArea}
               />
             </label>
           </div>
           <SubmitButton handleSubmit={handleSubmit} content={content} />
         </form>
       </main>
-      {mbtiModal ? (
-        <MbtiModal userData={userData} setUserData={setUserData} ClickMbtiModal={ClickMbtiModal} />
-      ) : birthModal ? (
-        <BirthModal userData={userData} setUserData={setUserData} ClickBirthModal={ClickBirthModal} />
-      ) : null}
+      {mbtiModal && <MbtiModal userData={userData} setUserData={setUserData} clickMbtiModal={clickMbtiModal} />}
+      {birthModal && <BirthModal userData={userData} setUserData={setUserData} clickBirthModal={clickBirthModal} />}
     </div>
   );
 }

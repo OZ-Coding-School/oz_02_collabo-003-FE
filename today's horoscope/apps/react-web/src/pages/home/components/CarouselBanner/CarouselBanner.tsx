@@ -4,13 +4,15 @@ import APIS from '../../../../services/api';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '../../../../services/queryKeys';
 import dayjs from 'dayjs';
+import { UserData } from '../../../../components/infoForm/InfoForm';
 
 interface carouselContents {
   title: string;
   imgitem: string;
+  user: string;
 }
 
-const zodiacList = [
+const zodiacList: string[] = [
   'monkey',
   'rooster',
   'dog',
@@ -24,13 +26,15 @@ const zodiacList = [
   'horse',
   'sheep',
 ];
-
-function CarouselBanner({ title, imgitem }: carouselContents) {
-  const [inputData, setInputData] = useState({
+function CarouselBanner({ title, imgitem, user }: carouselContents) {
+  const [inputData, setInputData] = useState<UserData>({
     name: '',
     birth: '',
     mbti: '',
   });
+  const [msg, setMsg] = useState<string>('');
+  const [inputItem, setInputItem] = useState<string>('');
+
   const storedData = localStorage.getItem('userData');
   const objectStoredData = JSON.parse(storedData as string);
   const birth = dayjs(objectStoredData?.birth);
@@ -41,16 +45,27 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
     queryFn: () => APIS.getUserDataAPI(formattedBirth, objectStoredData?.mbti),
   });
 
-  const [msg, setMsg] = useState('');
-  const [inputItem, setInputItem] = useState('');
   useEffect(() => {
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
-    if (localStorage.length === 0) setInputItem('default');
-    else if (imgitem === 'mbti') {
+    const bannerDefaultText = `오늘의 ${title} 보기\n\n나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!
+`;
+    if (localStorage.userData === undefined) {
+      if (imgitem === 'today') {
+        setMsg(userData?.today_msg?.luck_msg);
+      } else {
+        setMsg(bannerDefaultText);
+      }
+      setInputItem('default');
+    }
+
+    if (localStorage.userData === undefined && imgitem !== 'today') {
+      setMsg(bannerDefaultText);
+    } else if (imgitem === 'mbti') {
       if (inputData.mbti === 'MBTI모름') {
         setInputItem('default');
+        setMsg(bannerDefaultText);
       } else {
         const mbti = inputData.mbti;
         setInputItem(mbti.toLowerCase());
@@ -99,7 +114,7 @@ function CarouselBanner({ title, imgitem }: carouselContents) {
       setInputItem('default');
       setMsg(userData?.today_msg?.luck_msg);
     }
-  }, [imgitem, inputData.birth, inputData.mbti, storedData, userData]);
+  }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
 
   return (
     <div className={styles.carouselBanner}>
