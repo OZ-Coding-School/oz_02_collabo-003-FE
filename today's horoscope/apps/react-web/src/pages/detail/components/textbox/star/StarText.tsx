@@ -74,7 +74,7 @@ const TextImage: React.FC = () => {
   ));
 
   const { data: starData } = useQuery({
-    queryKey: QUERY_KEYS.USER_DATA,
+    queryKey: QUERY_KEYS.STAR,
     queryFn: () => APIS.getStarDataAPI(),
   });
 

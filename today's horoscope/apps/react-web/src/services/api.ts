@@ -16,7 +16,7 @@ const APIS = {
 
     return res.data;
   },
-  getZodiacDataAPI: async (attribute1: string) => {
+  getZodiacDataAPI: async (attribute1: string | undefined) => {
     const res = await apiInstance.get(`/msg/zodiac_all/${attribute1}/`);
 
     return res.data;

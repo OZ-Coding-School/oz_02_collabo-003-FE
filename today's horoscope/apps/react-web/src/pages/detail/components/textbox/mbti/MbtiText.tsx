@@ -94,7 +94,7 @@ const TextImage: React.FC = () => {
   ));
 
   const { data: mbtiData } = useQuery({
-    queryKey: QUERY_KEYS.USER_DATA,
+    queryKey: QUERY_KEYS.MBTI,
     queryFn: () => APIS.getMbtiDataAPI(),
   });
 
