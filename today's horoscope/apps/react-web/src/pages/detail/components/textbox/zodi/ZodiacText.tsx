@@ -7,6 +7,7 @@ import { IoChevronBack } from 'react-icons/io5';
 import { useQuery } from '@tanstack/react-query';
 import APIS from '../../../../../services/api';
 import QUERY_KEYS from '../../../../../services/queryKeys';
+import { ClipLoader } from 'react-spinners';
 
 interface ZodiacFortunes {
   msg_id: number;
@@ -27,7 +28,7 @@ const TextImage: React.FC = () => {
   const { zodiac } = useParams();
   const zodiacId = zodiac?.replace('띠', '');
 
-  const { data: zodiacDetailData } = useQuery({
+  const { data: zodiacDetailData, isLoading } = useQuery({
     queryKey: QUERY_KEYS.ZODIAC,
     queryFn: () => APIS.getZodiacDataAPI(zodiacId),
   });
@@ -67,12 +68,20 @@ const TextImage: React.FC = () => {
       <div className={Styles.body}>
         <img src="/K_img/img_circle_zodiac_rabbit.png" alt="rabbit" className={Styles.zodiacImages} />
         <div>
-          {zodiacDetailData?.map((individualZodiac: ZodiacFortunes) => (
-            <div className={Styles.point} key={individualZodiac.msg_id}>
-              <div className={Styles.text}>{individualZodiac.attribute2}년생</div>
-              <div className={Styles.fortune}>{individualZodiac.luck_msg}</div>
+          {isLoading ? (
+            <div className={Styles.loading}>
+              <ClipLoader color="#36d7b7" size={60} />
             </div>
-          ))}
+          ) : (
+            <>
+              {zodiacDetailData?.map((individualZodiac: ZodiacFortunes) => (
+                <div className={Styles.point} key={individualZodiac.msg_id}>
+                  <div className={Styles.text}>{individualZodiac.attribute2}년생</div>
+                  <div className={Styles.fortune}>{individualZodiac.luck_msg}</div>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>

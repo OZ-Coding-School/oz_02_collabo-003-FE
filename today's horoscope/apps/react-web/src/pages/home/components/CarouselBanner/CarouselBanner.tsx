@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '../../../../services/queryKeys';
 import dayjs from 'dayjs';
 import { UserData } from '../../../../components/infoForm/InfoForm';
+import { ClipLoader } from 'react-spinners';
 
 interface carouselContents {
   title: string;
@@ -40,7 +41,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
   const birth = dayjs(objectStoredData?.birth);
   const formattedBirth = birth.format('YYYYMMDD');
 
-  const { data: userData } = useQuery({
+  const { data: userData, isLoading } = useQuery({
     queryKey: QUERY_KEYS.USER_DATA,
     queryFn: () => APIS.getUserDataAPI(formattedBirth, objectStoredData?.mbti),
   });
@@ -124,8 +125,16 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
         className={styles.carouselImage}
       />
       <div className={styles.carouselContents}>
-        <h1 className={styles.title}>{title}</h1>
-        <div className={styles.content}>{msg}</div>
+        {isLoading ? (
+          <div className={styles.loading}>
+            <ClipLoader color="#36d7b7" size={60} />
+          </div>
+        ) : (
+          <>
+            <h1 className={styles.title}>{title}</h1>
+            <div className={styles.content}>{msg}</div>
+          </>
+        )}
       </div>
     </div>
   );
