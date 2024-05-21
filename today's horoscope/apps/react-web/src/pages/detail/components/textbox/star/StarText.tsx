@@ -16,6 +16,12 @@ interface StarFortunes {
   gpt_id: number;
 }
 
+interface MbtiFortuneConfig {
+  [key: string]: {
+    luck_date: string;
+    imageSrc: string;
+  };
+
 const StarFortunes = {
   물병자리: {
     luck_date: '신나는 모험이 당신을 기다리고 있어요!',
