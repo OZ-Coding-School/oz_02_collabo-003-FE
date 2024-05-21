@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     element: <ZodiacMain />,
   },
   {
-    path: '/detail-zodiac/textimage/:zodiac',
+    path: '/detail-zodiac/textimage/:zodiac/:imageSrc',
     element: <TextImage />,
   },
   {

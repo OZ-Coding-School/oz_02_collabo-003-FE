@@ -59,27 +59,32 @@
   color: #515355;
 }
 
-.zodiacImages {
-  flex-direction: column;
-  display: inline-flex;
-  position: relative;
-  justify-content: space-around;
+.body {
+  margin: auto;
+  padding: 0;
+  width: 100%;
+  padding-top: 226px;
+  padding-left: 32px;
+  padding-right: 32px;
+  display: block;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  margin: 0;
-  top: 216px;
-  margin-left: 32px;
-  cursor: pointer;
+  column-count: 3;
+  column-gap: 28px;
+}
+
+.zodiacImages {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 16px;
+  break-inside: avoid;
 }
 
 .img {
   width: 80px;
   height: 80px;
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  margin-top: 16px;
-  margin-right: -4px;
+  display: block;
+  margin: auto;
 }
 
 .zodiacText {
