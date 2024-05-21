@@ -25,7 +25,7 @@ const TextImage: React.FC = () => {
   const location = useLocation();
   const { zodiacData } = location.state || {};
 
-  const { zodiac } = useParams();
+  const { zodiac, imageSrc } = useParams();
   const zodiacId = zodiac?.replace('띠', '');
 
   const { data: zodiacDetailData, isLoading } = useQuery({
@@ -66,7 +66,7 @@ const TextImage: React.FC = () => {
         </div>
       </div>
       <div className={Styles.body}>
-        <img src="/K_img/img_circle_zodiac_rabbit.png" alt="rabbit" className={Styles.zodiacImages} />
+        <img src={`/K_img/${imageSrc}`} alt="mainImage" className={Styles.zodiacImages} />
         <div>
           {isLoading ? (
             <div className={Styles.loading}>

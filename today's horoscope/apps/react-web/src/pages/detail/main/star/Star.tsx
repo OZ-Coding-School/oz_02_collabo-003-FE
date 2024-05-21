@@ -24,7 +24,7 @@ const Fortune: React.FC = () => {
           <Share />
         </div>
         <div>
-          <img src="/public/K_img/island/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />
+          <img src="/K_img/island/img_island_star_default_.png" alt="main" className={Styles.StarMainImg} />
           <h1 className={Styles.title}>
             별자리
             <br />

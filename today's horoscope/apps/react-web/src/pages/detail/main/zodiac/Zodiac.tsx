@@ -72,8 +72,8 @@ const Fortune: React.FC = () => {
     navigate(-1);
   }
 
-  function handleClickimage(zodiac: string) {
-    navigate(`/detail-zodiac/textimage/${zodiac}`);
+  function handleClickimage(zodiac: string, imageSrc: string) {
+    navigate(`/detail-zodiac/textimage/${zodiac}${imageSrc}`);
   }
 
   useEffect(() => {
@@ -113,7 +113,9 @@ const Fortune: React.FC = () => {
             <div
               key={index}
               className={Styles.zodiacImages}
-              onClick={() => handleClickimage(zodiacFortunes[zodiacSign].text)}>
+              onClick={() =>
+                handleClickimage(zodiacFortunes[zodiacSign].text, zodiacFortunes[zodiacSign].imageSrc.substring(6))
+              }>
               <img src={zodiacFortunes[zodiacSign].imageSrc} alt={zodiacSign} className={Styles.img} />
               <div className={Styles.zodiacText}>{zodiacFortunes[zodiacSign].text}</div>
             </div>
