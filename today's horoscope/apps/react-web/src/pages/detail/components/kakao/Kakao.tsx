@@ -9,8 +9,7 @@ declare global {
 }
 
 const kakaoShare: React.FC = () => {
-  const KAKAO_APP_KEY = 'c089c8172def97eb00c07217cae17495';
-
+  const KAKAO_APP_KEY = '';
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(KAKAO_APP_KEY);

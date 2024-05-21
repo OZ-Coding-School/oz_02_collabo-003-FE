@@ -13,7 +13,6 @@ interface MbtiFortunes {
   categoriy: string;
   luck_msg: string;
   attribute1: string;
-  attribute2: string;
   gpt_id: number;
 }
 
@@ -91,13 +90,14 @@ const TextImage: React.FC = () => {
     queryKey: QUERY_KEYS.MBTI,
     queryFn: () => APIS.getMbtiDataAPI(),
   });
+
   const mbtiFortuneMessages = mbtiData?.map((individualMbti: MbtiFortunes, index: string) => (
     <div key={index}>
-      <img src={individualMbti.imageSrc} alt="mbtiImage" className={Styles.mbtiImage} />
-      <div className={Styles.message}>
+      <img src={MbtiFortunes[individualMbti.attribute1].imageSrc} alt="mbtiImages" className={Styles.mbtiImage} />
+      <div>
         <h2 className={Styles.mbtiName}>{individualMbti.attribute1}</h2>
-        <p className={Styles.mbtiTMI}>{individualMbti.luck_msg}</p>
       </div>
+      <p className={Styles.mbtiTMI}>{individualMbti.luck_msg}</p>
     </div>
   ));
 

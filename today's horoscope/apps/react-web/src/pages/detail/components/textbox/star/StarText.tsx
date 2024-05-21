@@ -75,8 +75,11 @@ const TextImage: React.FC = () => {
 
   const starFortuneMessages = starData?.map((individualStar: StarFortunes, index: string) => (
     <div key={index}>
-      <img src={individualStar.imageSrc} alt="starImages" className={Styles.starImage} />
-      <h2 className={Styles.starName}>{individualStar.attribute1}</h2>
+      <img src={StarFortunes[individualStar.attribute1].imageSrc} alt="starImages" className={Styles.starImage} />
+      <div className={Styles.starContainer}>
+        <h2 className={Styles.starName}>{individualStar.attribute1}</h2>
+        <h2 className={Styles.starday}>({individualStar.attribute2})</h2>
+      </div>
       <p className={Styles.starTMI}>{individualStar.luck_msg}</p>
     </div>
   ));
