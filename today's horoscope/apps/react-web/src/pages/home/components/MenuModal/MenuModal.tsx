@@ -39,14 +39,13 @@ function MenuModal({ menuModal, onclickMenuModal }: MenuModalProps) {
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {
-      const objectStoredData = JSON.parse(storedData);
-      setInputData(objectStoredData);
+      setInputData(JSON.parse(storedData));
       const birthData = inputData.birth;
       const birthYear = birthData.split('-')[0];
       const zodiacIndex = parseInt(birthYear) % 12;
       setZodiac(zodiacList[zodiacIndex]);
     }
-  }, [inputData]);
+  }, [inputData.birth]);
 
   return (
     <div
