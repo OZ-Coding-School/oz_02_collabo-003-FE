@@ -16,7 +16,14 @@ interface StarFortunes {
   gpt_id: number;
 }
 
-const StarFortunes = {
+interface StarFortuneConfig {
+  [key: string]: {
+    luck_date: string;
+    imageSrc: string;
+  };
+}
+
+const StarFortunes: StarFortuneConfig = {
   물병자리: {
     luck_date: '신나는 모험이 당신을 기다리고 있어요!',
     imageSrc: '/K_img/img_circle_star_aquarius.png',
@@ -75,7 +82,11 @@ const TextImage: React.FC = () => {
 
   const starFortuneMessages = starData?.map((individualStar: StarFortunes, index: string) => (
     <div key={index}>
-      <img src={StarFortunes[individualStar.attribute1].imageSrc} alt="starImages" className={Styles.starImage} />
+      <img
+        src={StarFortunes[individualStar.attribute1]?.imageSrc as string}
+        alt="starImages"
+        className={Styles.starImage}
+      />
       <h2 className={Styles.starName}>{individualStar.attribute1}</h2>
       <p className={Styles.starTMI}>{individualStar.luck_msg}</p>
     </div>
