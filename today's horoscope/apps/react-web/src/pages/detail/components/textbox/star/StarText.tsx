@@ -16,13 +16,14 @@ interface StarFortunes {
   gpt_id: number;
 }
 
-interface MbtiFortuneConfig {
+interface StarFortuneConfig {
   [key: string]: {
     luck_date: string;
     imageSrc: string;
   };
+}
 
-const StarFortunes = {
+const StarFortunes: StarFortuneConfig = {
   물병자리: {
     luck_date: '신나는 모험이 당신을 기다리고 있어요!',
     imageSrc: '/K_img/img_circle_star_aquarius.png',
@@ -63,7 +64,7 @@ const StarFortunes = {
     luck_date: '목표를 설정하고 계획을 세우는 데에 집중하세요. 당신의 미래가 밝을 거예요.',
     imageSrc: '/K_img/img_circle_star_scorpio.png',
   },
-  사수자리: {
+  궁수자리: {
     luck_date: '대담한 시도를 해보세요. 새로운 경험이 당신을 기다리고 있어요!',
     imageSrc: '/K_img/img_circle_star_sagittarius.png',
   },
@@ -81,7 +82,11 @@ const TextImage: React.FC = () => {
 
   const starFortuneMessages = starData?.map((individualStar: StarFortunes, index: string) => (
     <div key={index}>
-      <img src={StarFortunes[individualStar.attribute1].imageSrc} alt="starImages" className={Styles.starImage} />
+      <img
+        src={StarFortunes[individualStar.attribute1]?.imageSrc as string}
+        alt="starImages"
+        className={Styles.starImage}
+      />
       <h2 className={Styles.starName}>{individualStar.attribute1}</h2>
       <p className={Styles.starTMI}>{individualStar.luck_msg}</p>
     </div>
