@@ -55,7 +55,8 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
   }, [activeYear, activeMonth, activeDay]);
 
   return (
-    <div className={styles.modal}>
+    <div>
+      <div className={styles.modal} onClick={clickBirthModal}></div>
       <div className={styles.modalMain}>
         <div className={styles.modalHeader}>생년월일</div>
         <div className="swiper-container birthModal">
