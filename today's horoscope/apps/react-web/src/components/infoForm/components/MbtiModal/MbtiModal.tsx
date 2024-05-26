@@ -69,7 +69,8 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
   }, []);
 
   return (
-    <div className={styles.modal}>
+    <div>
+      <div className={styles.modal} onClick={clickMbtiModal}></div>
       <div className={styles.modalMain}>
         <div className={styles.modalHeader}>MBTI</div>
         <div className="swiper-container mbtiModal">
