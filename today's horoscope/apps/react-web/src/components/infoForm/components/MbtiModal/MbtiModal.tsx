@@ -72,6 +72,7 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
     <div>
       <div className={styles.modal} onClick={clickMbtiModal}></div>
       <div className={styles.modalMain}>
+        <div className={styles.activeBack}></div>
         <div className={styles.modalHeader}>MBTI</div>
         <div className="swiper-container mbtiModal">
           <Swiper
@@ -79,6 +80,7 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
             loop={true}
             direction="vertical"
             centeredSlides={true}
+            speed={500}
             className="swiper-wrapper"
             onSlideChange={handleSwiper}>
             {sliceMBTIList.map((content, index) => (

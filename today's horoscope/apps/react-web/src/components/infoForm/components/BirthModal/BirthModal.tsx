@@ -58,12 +58,14 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
     <div>
       <div className={styles.modal} onClick={clickBirthModal}></div>
       <div className={styles.modalMain}>
+        <div className={styles.activeBack}></div>
         <div className={styles.modalHeader}>생년월일</div>
         <div className="swiper-container birthModal">
           <Swiper
             slidesPerView={5}
             direction="vertical"
             centeredSlides={true}
+            speed={500}
             className="swiper-wrapper"
             id="yearSwiper"
             onSlideChange={handleSwiper}>
@@ -77,6 +79,7 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
             slidesPerView={5}
             direction="vertical"
             centeredSlides={true}
+            speed={500}
             className="swiper-wrapper"
             id="monthSwiper"
             onSlideChange={handleSwiper}>
@@ -90,6 +93,7 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
             slidesPerView={5}
             direction="vertical"
             centeredSlides={true}
+            speed={500}
             className="swiper-wrapper"
             id="daySwiper"
             onSlideChange={handleSwiper}>
