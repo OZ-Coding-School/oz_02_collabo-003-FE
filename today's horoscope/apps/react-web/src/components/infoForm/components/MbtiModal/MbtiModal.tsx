@@ -34,7 +34,7 @@ const MBTIList = [
 
 function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
   const [mbtiText, setMbtiText] = useState<string>('');
-  const [sliceMBTIList, setSliceMBTIList] = useState<string[]>(MBTIList);
+  const [userMBTI, setUserMBTI] = useState<number>(0);
 
   function handleSwiper(swiper: swiper) {
     const activesilde = swiper.slides[swiper.activeIndex];
@@ -55,16 +55,14 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
   }
 
   useEffect(() => {
+    //유저 mbti정보 초기값으로 설정
     const storedData = localStorage.getItem('userData');
     if (storedData) {
       const objectStoredData = JSON.parse(storedData);
-      const startIndex = MBTIList.indexOf(objectStoredData.mbti);
-      const preSlicedList = MBTIList.slice(0, startIndex);
-      const nextSlicedList = MBTIList.slice(startIndex);
-      const slicedList = nextSlicedList.concat(preSlicedList);
-      setSliceMBTIList(slicedList);
+      const mbtiIndex = MBTIList.indexOf(objectStoredData.mbti);
+      setUserMBTI(mbtiIndex);
     } else {
-      setSliceMBTIList(MBTIList);
+      setUserMBTI(0);
     }
   }, []);
 
@@ -82,8 +80,10 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
             centeredSlides={true}
             speed={500}
             className="swiper-wrapper"
+            key={userMBTI}
+            initialSlide={userMBTI}
             onSlideChange={handleSwiper}>
-            {sliceMBTIList.map((content, index) => (
+            {MBTIList.map((content, index) => (
               <SwiperSlide key={index} className="swiper-slide">
                 {content}
               </SwiperSlide>

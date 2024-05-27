@@ -76,10 +76,6 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
     setBirthText(newBirthText);
   }, [userBirth, activeYear, activeMonth, activeDay]);
 
-  console.log(userYear);
-  console.log(userMonth);
-  console.log(userDay);
-
   return (
     <div>
       <div className={styles.modal} onClick={clickBirthModal}></div>
