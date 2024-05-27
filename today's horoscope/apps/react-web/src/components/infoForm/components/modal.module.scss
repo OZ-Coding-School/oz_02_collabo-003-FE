@@ -39,6 +39,16 @@
   top: 128px;
   background-color: #f7f7f7;
 }
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  margin: 13px;
+  padding: 0;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 100;
+}
 .modalHeader {
   height: 56px;
   font-weight: 700;
