@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import './MbtiModal.scss';
 import { useState } from 'react';
 import { UserData } from '../../InfoForm';
+import { IoClose } from 'react-icons/io5';
 
 interface MbtiProps {
   clickMbtiModal: () => void;
@@ -71,6 +72,7 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
       <div className={styles.modal} onClick={clickMbtiModal}></div>
       <div className={styles.modalMain}>
         <div className={styles.activeBack}></div>
+        <IoClose className={styles.closeIcon} onClick={clickMbtiModal} />
         <div className={styles.modalHeader}>MBTI</div>
         <div className="swiper-container mbtiModal">
           <Swiper

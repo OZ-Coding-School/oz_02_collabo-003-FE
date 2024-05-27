@@ -4,6 +4,7 @@ import swiper from 'swiper';
 import { useEffect, useState } from 'react';
 import { UserData } from '../../InfoForm';
 import './BirthModal.scss';
+import { IoClose } from 'react-icons/io5';
 
 interface BirthProps {
   clickBirthModal: () => void;
@@ -81,6 +82,7 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
       <div className={styles.modal} onClick={clickBirthModal}></div>
       <div className={styles.modalMain}>
         <div className={styles.activeBack}></div>
+        <IoClose className={styles.closeIcon} onClick={clickBirthModal} />
         <div className={styles.modalHeader}>생년월일</div>
         <div className="swiper-container birthModal">
           <Swiper
