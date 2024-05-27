@@ -4,6 +4,7 @@ import swiper from 'swiper';
 import { useEffect, useState } from 'react';
 import { UserData } from '../../InfoForm';
 import './BirthModal.scss';
+import { IoClose } from 'react-icons/io5';
 
 interface BirthProps {
   clickBirthModal: () => void;
@@ -20,6 +21,10 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
   const [activeYear, setActiveYear] = useState<string>('2007');
   const [activeMonth, setActiveMonth] = useState<string>('1');
   const [activeDay, setActiveDay] = useState<string>('1');
+  const [userBirth, setUserBirth] = useState<string>('');
+  const [userYear, setUserYear] = useState<number>(0);
+  const [userMonth, setUserMonth] = useState<number>(0);
+  const [userDay, setUserDay] = useState<number>(0);
 
   function handleSwiper(swiper: swiper) {
     const activeSlide = swiper.slides[swiper.activeIndex];
@@ -50,24 +55,48 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
   }
 
   useEffect(() => {
+    // 유저 정보로 스와이퍼 초기값 변경
+    const storedData = localStorage.getItem('userData');
+    if (storedData) {
+      const objectStoredData = JSON.parse(storedData);
+      setUserBirth(objectStoredData.birth);
+      const userYearString = userBirth.split('-')[0];
+      const userYear = parseInt(userYearString);
+      const yearIndex = yearList.indexOf(userYear);
+      setUserYear(yearIndex >= 0 ? yearIndex : 0);
+      const userMonthString = userBirth.split('-')[1];
+      const userMonth = parseInt(userMonthString);
+      const monthIndex = monthList.indexOf(userMonth);
+      setUserMonth(monthIndex >= 0 ? monthIndex : 0);
+      const userDayString = userBirth.split('-')[2];
+      const userDay = parseInt(userDayString);
+      const dayIndex = dayList.indexOf(userDay);
+      setUserDay(dayIndex >= 0 ? dayIndex : 0);
+    }
     const newBirthText = `${activeYear}-${activeMonth}-${activeDay}`;
     setBirthText(newBirthText);
-  }, [activeYear, activeMonth, activeDay]);
+  }, [userBirth, activeYear, activeMonth, activeDay]);
 
   return (
-    <div className={styles.modal}>
+    <div>
+      <div className={styles.modal} onClick={clickBirthModal}></div>
       <div className={styles.modalMain}>
+        <div className={styles.activeBack}></div>
+        <IoClose className={styles.closeIcon} onClick={clickBirthModal} />
         <div className={styles.modalHeader}>생년월일</div>
         <div className="swiper-container birthModal">
           <Swiper
             slidesPerView={5}
             direction="vertical"
             centeredSlides={true}
+            speed={500}
             className="swiper-wrapper"
             id="yearSwiper"
+            initialSlide={userYear}
+            key={`yearSwiper-${userYear}`}
             onSlideChange={handleSwiper}>
             {yearList.map((content, index) => (
-              <SwiperSlide key={index} className="swiper-slide">
+              <SwiperSlide key={`year-${index}`} className="swiper-slide">
                 {content}년
               </SwiperSlide>
             ))}
@@ -76,11 +105,14 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
             slidesPerView={5}
             direction="vertical"
             centeredSlides={true}
+            speed={500}
             className="swiper-wrapper"
             id="monthSwiper"
+            initialSlide={userMonth}
+            key={`monthSwiper-${userMonth}`}
             onSlideChange={handleSwiper}>
             {monthList.map((content, index) => (
-              <SwiperSlide key={index} className="swiper-slide">
+              <SwiperSlide key={`month-${index}`} className="swiper-slide">
                 {content}월
               </SwiperSlide>
             ))}
@@ -89,11 +121,14 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
             slidesPerView={5}
             direction="vertical"
             centeredSlides={true}
+            speed={500}
             className="swiper-wrapper"
             id="daySwiper"
+            initialSlide={userDay}
+            key={`daySwiper-${userDay}`}
             onSlideChange={handleSwiper}>
             {dayList.map((content, index) => (
-              <SwiperSlide key={index} className="swiper-slide">
+              <SwiperSlide key={`day-${index}`} className="swiper-slide">
                 {content}일
               </SwiperSlide>
             ))}
