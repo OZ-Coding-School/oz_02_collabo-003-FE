@@ -11,7 +11,7 @@ import Styles from './Mbti.module.scss';
 const Fortune: React.FC = () => {
   const navigate = useNavigate();
   function MoveHome() {
-    navigate(-1);
+    navigate('/');
   }
 
   return (
