@@ -1,10 +1,13 @@
-import React from 'react';
-import { useEffect, useRef } from 'react';
-import { BackHandler, Platform, Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { BackHandler, Platform, View } from 'react-native';
 import WebView from 'react-native-webview';
+import * as SplashScreen from 'expo-splash-screen';
 
 export default function Native() {
-  const webViewRef = useRef(null);
+  const webViewRef = useRef<WebView>(null);
+
+  SplashScreen.preventAutoHideAsync();
+
   const onAndroidBackPress = () => {
     if (webViewRef.current) {
       webViewRef.current.goBack();
@@ -22,17 +25,23 @@ export default function Native() {
     }
   }, []);
 
+  const handleLoad = () => {
+    setTimeout(() => {
+      SplashScreen.hideAsync();
+    }, 850);
+  };
+
   return Platform.OS === 'web' ? (
     <iframe src="https://today-s-horoscope.vercel.app/" height={'100%'} width={'100%'} />
   ) : (
     <View style={{ flex: 1 }}>
       <WebView
         style={{ margin: 0, padding: 0 }}
-        androidCleartextTraffic={true}
         ref={webViewRef}
         javaScriptEnabled={true}
-        allowsbackforwardnavigationgestures={true}
+        allowsBackForwardNavigationGestures={true}
         source={{ uri: 'https://today-s-horoscope.vercel.app/' }}
+        onLoadEnd={handleLoad}
       />
     </View>
   );

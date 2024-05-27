@@ -13,7 +13,7 @@
   "dependencies": {
     "@repo/ui": "*",
     "expo": "^50.0.0",
-    "expo-splash-screen": "^0.26.5",
+    "expo-splash-screen": "~0.26.5",
     "expo-status-bar": "^1.11.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
