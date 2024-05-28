@@ -1,31 +1,31 @@
 {
   "expo": {
     "name": "오늘의 운세",
-    "slug": "todays-horoscope",
+    "slug": "native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.jpg",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#191A1B"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.fullswing.fortune"
     },
     "android": {
+      "name": "오늘의 운세",
+      "slug": "native",
+      "usesCleartextTraffic": true,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF",
-        "usesCleartextTraffic": true
+        "foregroundImage": "./assets/logo.png",
+        "resizeMode": "contain"
       },
       "package": "com.fullswing.fortune"
     },
@@ -34,10 +34,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "ca6379d7-6cec-4910-8540-dd9e0d1b4ea1"
+        "projectId": "46437078-2b23-4e4d-9c11-68544d3d070f"
       }
-    },
-    "owner": "hayeon7"
+    }
   },
   "build": {
     "preview": {
