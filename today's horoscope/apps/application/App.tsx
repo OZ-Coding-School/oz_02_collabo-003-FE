@@ -36,6 +36,7 @@ export default function Native() {
   ) : (
     <View style={{ flex: 1 }}>
       <WebView
+        textZoom={100}
         style={{ margin: 0, padding: 0 }}
         ref={webViewRef}
         javaScriptEnabled={true}
