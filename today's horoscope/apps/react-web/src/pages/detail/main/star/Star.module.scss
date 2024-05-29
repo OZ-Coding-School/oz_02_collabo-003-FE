@@ -5,11 +5,31 @@
 .head {
   width: 100%;
   height: 378px;
+  transition: height 0.3s ease;
   background: linear-gradient(180deg, #aad1fd 0%, #dbecff 100%);
   text-align: center;
   color: #191a1b;
   position: fixed;
   z-index: 9999;
+  overflow: hidden; //이미지가 헤더 밖으로 나가지 않도록 설정
+}
+
+.headScrolled {
+  height: 194px; // 스크롤 시 줄어든 높이
+}
+
+.StarMainImg {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  top: 180px;
+  transform: translateY(-50%); // 이미지 중앙정렬
+}
+.hidden {
+  opacity: 0;
+  display: none;
 }
 
 .headicon {
@@ -42,14 +62,8 @@
   margin-left: 60px;
 }
 
-.StarMainImg {
-  height: 200px;
-  width: 200px;
-  margin-top: 80px;
-}
-
 .title {
-  top: 280px;
+  margin-top: 85px;
   font-size: 22px;
   font-weight: bold;
   line-height: 28px;
