@@ -18,7 +18,7 @@ const Fortune: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 170) {
       setIsScrolled(true);
     } else {
       setIsScrolled(false);
