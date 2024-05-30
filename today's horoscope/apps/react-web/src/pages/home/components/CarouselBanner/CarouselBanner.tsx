@@ -54,7 +54,13 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
 `;
     if (localStorage.userData === undefined) {
       if (imgitem === 'today') {
-        setMsg(userData?.today_msg?.luck_msg);
+        if (localStorage.todays !== undefined) {
+          const storedData = localStorage.getItem('todays');
+          const objectStoredData = JSON.parse(storedData as string);
+          setMsg(objectStoredData);
+        } else {
+          setMsg(userData?.today_msg?.luck_msg);
+        }
       } else {
         setMsg(bannerDefaultText);
       }
@@ -113,7 +119,13 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
       setMsg(userData?.star_msg?.luck_msg);
     } else {
       setInputItem('default');
-      setMsg(userData?.today_msg?.luck_msg);
+      if (localStorage.todays !== undefined) {
+        const storedData = localStorage.getItem('todays');
+        const objectStoredData = JSON.parse(storedData as string);
+        setMsg(objectStoredData);
+      } else {
+        setMsg(userData?.today_msg?.luck_msg);
+      }
     }
   }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
 

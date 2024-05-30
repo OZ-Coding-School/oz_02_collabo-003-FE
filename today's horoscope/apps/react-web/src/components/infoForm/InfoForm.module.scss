@@ -63,6 +63,17 @@
   line-height: 20px;
   margin: 3px 0 3px 0;
 }
+.divArea {
+  width: 312px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #d3d3d3;
+  background-color: #f7f7f7;
+  color: #191a1b;
+  font-size: 16px;
+  line-height: 48px;
+  padding-left: 16px;
+}
 .inputArea::placeholder {
   color: #d3d3d3;
 }
@@ -82,7 +93,7 @@
 .errorNone {
   display: none;
 }
-.infoForm .inputRequired:invalid {
+.infoForm .inputRequired {
   border: 1px solid #e10000;
 }
 @media (max-height: 656px) {
