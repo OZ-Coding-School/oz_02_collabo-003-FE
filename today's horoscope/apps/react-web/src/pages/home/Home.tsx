@@ -6,6 +6,8 @@ import MenuModal from './components/MenuModal/MenuModal';
 
 function Home() {
   const [menuModal, setMenuModal] = useState<boolean | null>(null);
+  const [activeSlide, setActiveSlide] = useState<string>('');
+
   function onclickMenuModal() {
     if (menuModal === null) {
       setMenuModal(true);
@@ -14,22 +16,24 @@ function Home() {
     }
   }
 
-  const [activeSlide, setActiveSlide] = useState('');
-
   function handleBackground() {
-    if (activeSlide === 'today') {
-      return 'linear-gradient(45deg, #F4CFD8, #94E4FD)';
-    } else if (activeSlide === 'zodiac') {
-      return 'linear-gradient(45deg, #D2FCF9, #8CBAFF)';
-    } else if (activeSlide === 'star') {
-      return 'linear-gradient(45deg, #FCF3D2, #B6EE94)';
-    } else if (activeSlide === 'mbti') {
-      return 'linear-gradient(45deg, #D2F9FC, #C6B2FE)';
+    switch (activeSlide) {
+      case 'today':
+        return 'linear-gradient(45deg, #F4CFD8, #94E4FD)';
+      case 'zodiac':
+        return 'linear-gradient(45deg, #D2FCF9, #8CBAFF)';
+      case 'star':
+        return 'linear-gradient(45deg, #FCF3D2, #B6EE94)';
+      case 'mbti':
+        return 'linear-gradient(45deg, #D2F9FC, #C6B2FE)';
+      default:
+        return 'none';
     }
   }
 
   return (
     <div className={styles.main} style={{ background: handleBackground() }}>
+      <div className={styles.statusBar}></div>
       <header className={styles.mainHeader}>
         {localStorage.userData === undefined ? (
           <div className={styles.menuIcon}></div>

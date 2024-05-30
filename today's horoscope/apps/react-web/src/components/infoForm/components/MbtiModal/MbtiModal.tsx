@@ -5,9 +5,10 @@ import React, { useEffect } from 'react';
 import './MbtiModal.scss';
 import { useState } from 'react';
 import { UserData } from '../../InfoForm';
+import { IoClose } from 'react-icons/io5';
 
 interface MbtiProps {
-  ClickMbtiModal: () => void;
+  clickMbtiModal: () => void;
   userData: UserData;
   setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
@@ -32,8 +33,9 @@ const MBTIList = [
   'ENFP',
 ];
 
-function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
-  const [mbtiText, setMbtiText] = useState('');
+function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
+  const [mbtiText, setMbtiText] = useState<string>('');
+  const [userMBTI, setUserMBTI] = useState<number>(0);
 
   function handleSwiper(swiper: swiper) {
     const activesilde = swiper.slides[swiper.activeIndex];
@@ -50,27 +52,27 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
       ...userData,
       mbti: mbtiText,
     });
-    ClickMbtiModal();
+    clickMbtiModal();
   }
 
-  const [sliceMBTIList, setSliceMBTIList] = useState<string[]>(MBTIList);
   useEffect(() => {
+    //유저 mbti정보 초기값으로 설정
     const storedData = localStorage.getItem('userData');
     if (storedData) {
       const objectStoredData = JSON.parse(storedData);
-      const startIndex = MBTIList.indexOf(objectStoredData.mbti);
-      const preSlicedList = MBTIList.slice(0, startIndex);
-      const nextSlicedList = MBTIList.slice(startIndex);
-      const slicedList = nextSlicedList.concat(preSlicedList);
-      setSliceMBTIList(slicedList);
+      const mbtiIndex = MBTIList.indexOf(objectStoredData.mbti);
+      setUserMBTI(mbtiIndex);
     } else {
-      setSliceMBTIList(MBTIList);
+      setUserMBTI(0);
     }
   }, []);
 
   return (
-    <div className={styles.modal}>
+    <div>
+      <div className={styles.modal} onClick={clickMbtiModal}></div>
       <div className={styles.modalMain}>
+        <div className={styles.activeBack}></div>
+        <IoClose className={styles.closeIcon} onClick={clickMbtiModal} />
         <div className={styles.modalHeader}>MBTI</div>
         <div className="swiper-container mbtiModal">
           <Swiper
@@ -78,9 +80,12 @@ function MbtiModal({ ClickMbtiModal, userData, setUserData }: MbtiProps) {
             loop={true}
             direction="vertical"
             centeredSlides={true}
+            speed={500}
             className="swiper-wrapper"
+            key={userMBTI}
+            initialSlide={userMBTI}
             onSlideChange={handleSwiper}>
-            {sliceMBTIList.map((content, index) => (
+            {MBTIList.map((content, index) => (
               <SwiperSlide key={index} className="swiper-slide">
                 {content}
               </SwiperSlide>

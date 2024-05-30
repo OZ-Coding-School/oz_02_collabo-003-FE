@@ -5,13 +5,14 @@ import { IoChevronBack } from 'react-icons/io5';
 
 function Login() {
   const navigate = useNavigate();
-  function MoveHome() {
+  function moveHome() {
     navigate('/');
   }
   return (
     <div>
+      <div className={styles.statusBar}></div>
       <header className={styles.header}>
-        <IoChevronBack onClick={MoveHome} className={styles.backIcon} />
+        <IoChevronBack onClick={moveHome} className={styles.backIcon} />
         <div className={styles.headerTitle}>정보입력</div>
       </header>
       <InfoForm alertText="정보입력" content="저장하기" />

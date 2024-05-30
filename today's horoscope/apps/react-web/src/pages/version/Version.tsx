@@ -39,46 +39,56 @@ const Version: React.FC = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className={Styles.versionContainer}>
+      <div className={Styles.statusBar}></div>
+      <div className={Styles.versionHeader}>
         <IoChevronBack onClick={moveHome} className={Styles.back} />
         <h1 className={Styles.title}>설정</h1>
       </div>
-
-      <div className={Styles.versionContainer}>
+      <div className={Styles.versionContents}>
         <div className={Styles.versionTitle}>
-          <h1 className={Styles.now}>버전 관리</h1>
-          <span className={Styles.nowversion}>현재 버전 {appVersion}</span>
+          <h1 className={Styles.textTitle}>버전 관리</h1>
+          <span className={Styles.textSub}>현재 버전 {appVersion}</span>
         </div>
-        <button className={Styles.update} onClick={handleVersionClick}>
+        <button className={Styles.updateButton} onClick={handleVersionClick}>
           업데이트
         </button>
       </div>
-      <div className={Styles.underline}></div>
-
-      <div className={Styles.notificationContainer}>
+      <div className={Styles.pushContents}>
         <label className={Styles.switch}>
-          <h1 className={Styles.pushnoti}>푸시알람설정</h1>
-          <p className={Styles.noti}> 푸시알람을 ON/OFF 하실 수 있습니다.</p>
+          <h1 className={Styles.textTitle}>푸시알람설정</h1>
+          <span className={Styles.textSub}> 푸시알람을 ON/OFF 하실 수 있습니다.</span>
+        </label>
+        <div className={Styles.wrapper}>
           <input
             type="checkbox"
-            id="push-notification-toggle"
+            id="switch"
             checked={pushNotification}
             onChange={handlePushNotificationChange}
+            className={Styles.toggleSwitch}
           />
-          <span className={Styles.slider}></span>
-        </label>
+          <label htmlFor="switch" className={Styles.onfBtn}></label>
+        </div>
       </div>
 
       {showUpdatePopup && (
-        <div className={Styles.popup}>
-          <h2>새로운 버전이 있습니다</h2>
-          <p> 업데이트를 진행하시겠습니까?</p>
-          <div className={Styles.buttonContainer}>
-            <button onClick={handleUpdateConfirm}>확인</button>
-            <button onClick={handleUpdateCancel}>취소</button>
+        <>
+          <div className={Styles.popupBackground}></div>
+          <div className={Styles.popup}>
+            <div>
+              <h2 className={Styles.popupTitle}>새로운 버전이 있습니다</h2>
+              <p className={Styles.popupText}>최신버전으로 업데이트를 위해 스토어로 이동하시겠습니까?</p>
+            </div>
+            <div className={Styles.buttonContainer}>
+              <button className={Styles.Ok} onClick={handleUpdateConfirm}>
+                확인
+              </button>
+              <button className={Styles.No} onClick={handleUpdateCancel}>
+                취소
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

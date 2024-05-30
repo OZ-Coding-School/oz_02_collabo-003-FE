@@ -1,10 +1,9 @@
-import React from 'react';
-
-import Date from '../../components/date/Date';
-
-import { IoChevronBack, IoShareSocialOutline } from 'react-icons/io5';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Share from '../../components/kakao/Kakao';
+
+import { IoChevronBack } from 'react-icons/io5';
 import Styles from './Zodiac.module.scss';
 
 interface ZodiacFortunes {
@@ -48,7 +47,7 @@ const zodiacFortunes: ZodiacFortunes = {
     text: '양띠',
   },
   원숭이띠: {
-    imageSrc: '/public/K_img/img_circle_zodiac_monkey.png',
+    imageSrc: '/K_img/img_circle_zodiac_monkey.png',
     text: '원숭이띠',
   },
   닭띠: {
@@ -66,18 +65,38 @@ const zodiacFortunes: ZodiacFortunes = {
 };
 
 const Fortune: React.FC = () => {
+  const [today, setToday] = useState('');
   const navigate = useNavigate();
-  function MoveHome() {
-    navigate(-1);
+
+  function movehome() {
+    navigate('/');
   }
+
+  function handleClickimage(zodiac: string, imageSrc: string) {
+    navigate(`/detail-zodiac/textimage/${zodiac}${imageSrc}`);
+  }
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+    const dayOfWeek = currentDate.getDay();
+    const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+    const dayName = daysOfWeek[dayOfWeek];
+
+    const formattedDate = `${year}년 ${month}월 ${day}일 ${dayName}요일`;
+
+    setToday(formattedDate);
+  }, []);
 
   return (
     <div className={Styles.container}>
       <div className={Styles.head}>
         <div className={Styles.headicon}>
-          <IoChevronBack onClick={MoveHome} className={Styles.Back} />
+          <IoChevronBack onClick={movehome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-          <IoShareSocialOutline className={Styles.Share} />
+          <Share />
         </div>
         <div>
           <h1 className={Styles.title}>
@@ -85,13 +104,18 @@ const Fortune: React.FC = () => {
             <br />
             오늘의 운세
           </h1>
+          <p className={Styles.date}>{today}</p>
         </div>
-        <Date />
       </div>
       <div className={Styles.body}>
         <div>
           {Object.keys(zodiacFortunes).map((zodiacSign, index) => (
-            <div key={index} className={Styles.zodiacImages}>
+            <div
+              key={index}
+              className={Styles.zodiacImages}
+              onClick={() =>
+                handleClickimage(zodiacFortunes[zodiacSign].text, zodiacFortunes[zodiacSign].imageSrc.substring(6))
+              }>
               <img src={zodiacFortunes[zodiacSign].imageSrc} alt={zodiacSign} className={Styles.img} />
               <div className={Styles.zodiacText}>{zodiacFortunes[zodiacSign].text}</div>
             </div>

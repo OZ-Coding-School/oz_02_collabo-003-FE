@@ -5,7 +5,8 @@
 .head {
   width: 100%;
   height: 194px;
-  background: linear-gradient(180deg, #dbe1ff 0%, #eff2ff 100%);
+  position: fixed;
+  background: linear-gradient(180deg, #ffe5f1 0%, #ffe0f4 100%);
 }
 
 .headicon {
@@ -14,7 +15,7 @@
   position: fixed;
   top: 30px;
   left: 0;
-  right: 0; /* 화면 전체 너비를 사용 */
+  right: 0;
   padding: 0;
   justify-content: space-between;
 }
@@ -29,17 +30,6 @@
   top: 20px;
 }
 
-.Share {
-  width: 24px;
-  height: 24px;
-  content: '';
-  padding: 0;
-  position: relative;
-  position: fixed;
-  top: 20px;
-  right: 0;
-}
-
 .LogoImg {
   display: flex;
   position: relative;
@@ -50,39 +40,56 @@
 }
 
 .title {
-  padding: 12px;
-  padding-top: 90px;
+  padding: 0;
+  margin-top: 96px;
   text-align: center;
   font-size: 25px;
   font-weight: bold;
   line-height: 1.2;
 }
 
-.zodiacImages {
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: calc(100% - 64px); /* 양쪽 끝 넓이를 32px로 유지 */
-  display: inline-flex;
-  justify-content: space-around; /* 혹은 space-between */
+.date {
+  top: 158px;
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.002em;
+  text-align: center;
+  color: #515355;
+}
+
+.body {
+  margin: auto;
+  padding: 0;
+  width: 100%;
+  padding-top: 226px;
+  padding-left: 32px;
+  padding-right: 32px;
+  display: block;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  column-count: 3;
+  column-gap: 28px;
+}
+
+.zodiacImages {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 16px;
+  break-inside: avoid;
 }
 
 .img {
   width: 80px;
   height: 80px;
-  display: inline-flex;
-  align-items: center;
-  margin-top: 35.5px; /* 상단 간격을 20px로 조정 */
-  margin-left: 20px; /* 좌측 간격 유지 */
-  margin-right: 20px; /* 우측 간격 유지 */
-  /* 하단 간격을 20px로 조정 */
+  display: block;
+  margin: auto;
 }
 
 .zodiacText {
   font-weight: bold;
   text-align: center;
   margin-top: 8px;
-  margin-bottom: -10px;
+  margin-bottom: 0;
 }

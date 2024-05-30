@@ -1,4 +1,4 @@
-.starImage {
+.mbtiImage {
   display: flex;
   flex-direction: column;
   margin-top: 402px;
@@ -8,21 +8,30 @@
   height: 80px;
 }
 
-.starName {
+.mbtiName {
   display: flex;
   font-weight: bold;
   font-size: 16px;
   margin-top: -95px;
   margin-left: 121px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
 }
 
-.starTMI {
+.mbtiTMI {
   display: flex;
   font-size: 12px;
   line-height: 16px;
-  margin-top: -20px;
+  margin-top: 4px;
   margin-left: 121px;
   margin-right: 25px;
   margin-bottom: -330px;
+  padding-bottom: 30px;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
 }

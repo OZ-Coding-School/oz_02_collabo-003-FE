@@ -4,6 +4,8 @@ import APIS from '../../../../services/api';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '../../../../services/queryKeys';
 import dayjs from 'dayjs';
+import { UserData } from '../../../../components/infoForm/InfoForm';
+import { ClipLoader } from 'react-spinners';
 
 interface carouselContents {
   title: string;
@@ -11,7 +13,7 @@ interface carouselContents {
   user: string;
 }
 
-const zodiacList = [
+const zodiacList: string[] = [
   'monkey',
   'rooster',
   'dog',
@@ -26,32 +28,39 @@ const zodiacList = [
   'sheep',
 ];
 function CarouselBanner({ title, imgitem, user }: carouselContents) {
-  const [inputData, setInputData] = useState({
+  const [inputData, setInputData] = useState<UserData>({
     name: '',
     birth: '',
     mbti: '',
   });
+  const [msg, setMsg] = useState<string>('');
+  const [inputItem, setInputItem] = useState<string>('');
+
   const storedData = localStorage.getItem('userData');
   const objectStoredData = JSON.parse(storedData as string);
   const birth = dayjs(objectStoredData?.birth);
   const formattedBirth = birth.format('YYYYMMDD');
 
-  const { data: userData } = useQuery({
+  const { data: userData, isLoading } = useQuery({
     queryKey: QUERY_KEYS.USER_DATA,
     queryFn: () => APIS.getUserDataAPI(formattedBirth, objectStoredData?.mbti),
   });
 
-  const [msg, setMsg] = useState('');
-  const [inputItem, setInputItem] = useState('');
   useEffect(() => {
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
-    const bannerDefaultText = `오늘의 ${title} 보기\n\n나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!
+    const bannerDefaultText = `나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!
 `;
     if (localStorage.userData === undefined) {
       if (imgitem === 'today') {
-        setMsg(userData?.today_msg?.luck_msg);
+        if (localStorage.todays !== undefined) {
+          const storedData = localStorage.getItem('todays');
+          const objectStoredData = JSON.parse(storedData as string);
+          setMsg(objectStoredData);
+        } else {
+          setMsg(userData?.today_msg?.luck_msg);
+        }
       } else {
         setMsg(bannerDefaultText);
       }
@@ -110,7 +119,13 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
       setMsg(userData?.star_msg?.luck_msg);
     } else {
       setInputItem('default');
-      setMsg(userData?.today_msg?.luck_msg);
+      if (localStorage.todays !== undefined) {
+        const storedData = localStorage.getItem('todays');
+        const objectStoredData = JSON.parse(storedData as string);
+        setMsg(objectStoredData);
+      } else {
+        setMsg(userData?.today_msg?.luck_msg);
+      }
     }
   }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
 
@@ -122,8 +137,16 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
         className={styles.carouselImage}
       />
       <div className={styles.carouselContents}>
-        <h1 className={styles.title}>{title}</h1>
-        <div className={styles.content}>{msg}</div>
+        {isLoading ? (
+          <div className={styles.loading}>
+            <ClipLoader color="#36d7b7" size={60} />
+          </div>
+        ) : (
+          <>
+            <h1 className={styles.title}>{title}</h1>
+            <div className={styles.content}>{msg}</div>
+          </>
+        )}
       </div>
     </div>
   );

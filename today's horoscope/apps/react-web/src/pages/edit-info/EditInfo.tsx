@@ -5,14 +5,15 @@ import { IoChevronBack } from 'react-icons/io5';
 
 function EditInfo() {
   const navigate = useNavigate();
-  function MoveHome() {
+  function moveHome() {
     navigate('/');
     localStorage.removeItem('activeBanner');
   }
   return (
     <div>
+      <div className={styles.statusBar}></div>
       <header className={styles.header}>
-        <IoChevronBack onClick={MoveHome} className={styles.backIcon} />
+        <IoChevronBack onClick={moveHome} className={styles.backIcon} />
         <div className={styles.headerTitle}>정보수정</div>
       </header>
       <InfoForm alertText="정보수정" content="수정완료" />
