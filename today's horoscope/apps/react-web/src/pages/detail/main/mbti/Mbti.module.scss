@@ -5,11 +5,31 @@
 .head {
   width: 100%;
   height: 378px;
+  transition: height 0.3s ease;
   background: linear-gradient(180deg, #fdd0bf 0%, #fff1eb 100%);
   text-align: center;
   color: #191a1b;
   position: fixed;
   z-index: 9999;
+  overflow: hidden; // 이미지가 헤더 밖으로 나가지 않는 설정
+}
+
+.headScrolled {
+  height: 194px; // 스크롤 시 줄어든 높이
+}
+
+.MbtiMainImg {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  top: 180px;
+  transform: translateY(-50%); //이미지 중앙정렬
+}
+.hidden {
+  opacity: 0;
+  display: none;
 }
 
 .headicon {
@@ -18,7 +38,7 @@
   position: fixed;
   top: 30px;
   left: 0;
-  right: 0; /* 화면 전체 너비를 사용 */
+  right: 0;
   padding: 0;
   justify-content: space-between;
 }
@@ -33,17 +53,6 @@
   top: 20px;
 }
 
-.Share {
-  width: 24px;
-  height: 24px;
-  content: '';
-  padding: 0;
-  position: relative;
-  position: fixed;
-  top: 20px;
-  right: 0;
-}
-
 .LogoImg {
   display: flex;
   position: relative;
@@ -53,14 +62,8 @@
   margin-left: 60px;
 }
 
-.MbtiMainImg {
-  height: 200px;
-  width: 200px;
-  margin-top: 80px;
-}
-
 .title {
-  top: 280px;
+  margin-top: 85px;
   font-size: 22px;
   font-weight: bold;
   line-height: 28px;

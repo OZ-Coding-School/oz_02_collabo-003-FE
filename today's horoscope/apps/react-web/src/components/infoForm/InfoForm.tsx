@@ -106,7 +106,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
                 className={
                   koreanValue
                     ? `${styles.error} ${styles.inputArea}`
-                    : requiredValue
+                    : requiredValue && !userData.name
                       ? `${styles.inputRequired} ${styles.inputArea}`
                       : styles.inputArea
                 }
@@ -126,7 +126,10 @@ function InfoForm({ alertText, content }: InfoFormProps) {
                 value={userData.birth}
                 placeholder="생년월일을 설정해 주세요."
                 required
-                className={requiredValue ? `${styles.inputRequired} ${styles.inputArea}` : styles.inputArea}
+                readOnly
+                className={
+                  requiredValue && !userData.birth ? `${styles.inputRequired} ${styles.inputArea}` : styles.inputArea
+                }
               />
             </label>
           </div>
@@ -141,7 +144,10 @@ function InfoForm({ alertText, content }: InfoFormProps) {
                 value={userData.mbti}
                 placeholder="MBTI를 설정해 주세요."
                 required
-                className={requiredValue ? `${styles.inputRequired} ${styles.inputArea}` : styles.inputArea}
+                readOnly
+                className={
+                  requiredValue && !userData.mbti ? `${styles.inputRequired} ${styles.inputArea}` : styles.inputArea
+                }
               />
             </label>
           </div>

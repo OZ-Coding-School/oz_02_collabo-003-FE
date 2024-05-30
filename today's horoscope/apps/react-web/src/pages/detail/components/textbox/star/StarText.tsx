@@ -81,7 +81,7 @@ const TextImage: React.FC = () => {
   });
 
   const starFortuneMessages = starData?.map((individualStar: StarFortunes, index: string) => (
-    <div key={index}>
+    <div key={index} className={Styles.body}>
       <img
         src={StarFortunes[individualStar.attribute1]?.imageSrc as string}
         alt="starImages"
