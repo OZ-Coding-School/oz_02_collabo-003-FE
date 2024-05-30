@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "native",
+    "name": "오늘의 운세",
     "slug": "native",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#191A1B"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -20,9 +20,12 @@
       "bundleIdentifier": "com.fullswing.fortune"
     },
     "android": {
+      "name": "오늘의 운세",
+      "slug": "native",
+      "usesCleartextTraffic": true,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/logo.png",
+        "resizeMode": "contain"
       },
       "package": "com.fullswing.fortune"
     },
