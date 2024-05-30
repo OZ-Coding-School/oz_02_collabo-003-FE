@@ -99,7 +99,7 @@ const TextImage: React.FC = () => {
   });
 
   const mbtiFortuneMessages = mbtiData?.map((individualMbti: MbtiFortunes, index: string) => (
-    <div key={index}>
+    <div key={index} className={Styles.body}>
       <img
         src={MbtiFortunes[individualMbti.attribute1]?.imageSrc as string}
         alt="mbtiImages"
