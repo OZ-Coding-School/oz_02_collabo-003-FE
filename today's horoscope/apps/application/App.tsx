@@ -31,6 +31,14 @@ export default function Native() {
     }
   };
 
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+  });
+
   const registerForPushNotificationsAsync = async (setExpoPushToken: (token: string) => void) => {
     if (Constants.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -62,19 +70,23 @@ export default function Native() {
   };
 
   useEffect(() => {
-    registerForPushNotificationsAsync(setExpoPushToken);
+    const setExpoPushTokenHandler = (token: string) => {
+      setExpoPushToken(token);
+    };
+    registerForPushNotificationsAsync(setExpoPushTokenHandler);
 
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+    const notificationListener = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
 
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+    const responseListener = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
 
+    alert(expoPushToken);
     return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
+      Notifications.removeNotificationSubscription(notificationListener);
+      Notifications.removeNotificationSubscription(responseListener);
     };
   }, []);
 
