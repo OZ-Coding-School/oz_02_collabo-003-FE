@@ -37,7 +37,17 @@
         "resizeMode": "contain"
       },
       "package": "com.fullswing.fortune",
-      "googleServicesFile": "./google-services.json"
+      "useNextNotificationsApi": true,
+      "googleServicesFile": "./google-services.json",
+      "plugins": [
+        [
+          "expo-notifications",
+          {
+            "icon": "./assets/splash.png",
+            "color": "#191A1B"
+          }
+        ]
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

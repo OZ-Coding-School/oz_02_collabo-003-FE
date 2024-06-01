@@ -3,11 +3,16 @@ import { BackHandler, Platform, View, ToastAndroid } from 'react-native';
 import WebView from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
   const [isCanGoBack, setIsCanGoBack] = useState(false);
   const [lastBackPressed, setLastBackPressed] = useState(0);
+  const [expoPushToken, setExpoPushToken] = useState<string>('');
+  const [notification, setNotification] = useState<Notifications.Notification | null>(null);
+  const notificationListener = useRef<any>();
+  const responseListener = useRef<any>();
 
   SplashScreen.preventAutoHideAsync();
 
@@ -26,21 +31,52 @@ export default function Native() {
     }
   };
 
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: true,
-    }),
-  });
+  const registerForPushNotificationsAsync = async (setExpoPushToken: (token: string) => void) => {
+    if (Constants.isDevice) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
 
-  Notifications.scheduleNotificationAsync({
-    content: {
-      title: '오늘의 한마디',
-      body: '오늘의 한마디 content',
-    },
-    trigger: { minute: 2 },
-  });
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+
+      if (finalStatus !== 'granted') {
+        alert('푸시 알림 설정을 확인해 주세요.');
+        return;
+      }
+
+      const token = (await Notifications.getExpoPushTokenAsync()).data;
+      console.log(token);
+      setExpoPushToken(token);
+    } else {
+      alert('기기를 확인할 수 없습니다.');
+    }
+
+    if (Platform.OS === 'android') {
+      Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+      });
+    }
+  };
+
+  useEffect(() => {
+    registerForPushNotificationsAsync(setExpoPushToken);
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton);
