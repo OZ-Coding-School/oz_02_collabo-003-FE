@@ -11,6 +11,15 @@
       "resizeMode": "contain",
       "backgroundColor": "#191A1B"
     },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/splash.png",
+          "color": "#191A1B"
+        }
+      ]
+    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },

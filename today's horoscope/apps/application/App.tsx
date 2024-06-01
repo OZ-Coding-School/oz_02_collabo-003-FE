@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { BackHandler, Platform, View, ToastAndroid } from 'react-native';
 import WebView from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Notifications from 'expo-notifications';
 
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
@@ -24,6 +25,22 @@ export default function Native() {
       return true;
     }
   };
+
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+    }),
+  });
+
+  Notifications.scheduleNotificationAsync({
+    content: {
+      title: '오늘의 한마디',
+      body: '오늘의 한마디 content',
+    },
+    trigger: { minute: 2 },
+  });
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton);
