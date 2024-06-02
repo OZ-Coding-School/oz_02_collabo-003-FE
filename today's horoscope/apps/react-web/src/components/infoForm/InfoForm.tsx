@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
 import MbtiModal from './components/MbtiModal/MbtiModal';
-import { useNavigate } from 'react-router-dom';
 import BirthModal from './components/BirthModal/BirthModal';
+import SubmitModal from './components/submitModal/SubmitModal';
 
 interface InfoFormProps {
   alertText: string;
@@ -24,9 +24,9 @@ function InfoForm({ alertText, content }: InfoFormProps) {
   });
   const [birthModal, setBirthModal] = useState<boolean>(false);
   const [mbtiModal, setMbtiModal] = useState<boolean>(false);
+  const [submitModal, setSubmitModal] = useState<boolean>(false);
   const [koreanValue, setKoreanValue] = useState<boolean>(false);
   const [requiredValue, setRequiredValue] = useState<boolean>(false);
-  const navigate = useNavigate();
 
   function clickBirthModal() {
     setBirthModal(!birthModal);
@@ -76,8 +76,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
 
     localStorage.setItem('userData', JSON.stringify(inputData));
     localStorage.removeItem('activeBanner');
-    alert(`${alertText}을 완료하였습니다.`);
-    navigate('/');
+    setSubmitModal(!submitModal);
   }
 
   return (
@@ -156,6 +155,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
       </main>
       {mbtiModal && <MbtiModal userData={userData} setUserData={setUserData} clickMbtiModal={clickMbtiModal} />}
       {birthModal && <BirthModal userData={userData} setUserData={setUserData} clickBirthModal={clickBirthModal} />}
+      {submitModal && <SubmitModal submitModal={submitModal} setSubmitModal={setSubmitModal} alertText={alertText} />}
     </div>
   );
 }
