@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import swiper from 'swiper';
+import SwiperCore from 'swiper';
 import styles from '../modal.module.scss';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './MbtiModal.scss';
 import { useState } from 'react';
 import { UserData } from '../../InfoForm';
@@ -36,8 +36,9 @@ const MBTIList = [
 function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
   const [mbtiText, setMbtiText] = useState<string>('');
   const [userMBTI, setUserMBTI] = useState<number>(0);
+  const swiperRef = useRef<SwiperCore | null>(null);
 
-  function handleSwiper(swiper: swiper) {
+  function handleSwiper(swiper: SwiperCore) {
     const activesilde = swiper.slides[swiper.activeIndex];
     if (activesilde) {
       const activeSlideContent: string | null = activesilde.textContent;
@@ -54,6 +55,13 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
     });
     clickMbtiModal();
   }
+
+  //클릭 시 swiper 값 변경
+  const clickSwiper = (index: number) => {
+    if (swiperRef.current) {
+      swiperRef.current.slideToLoop(index);
+    }
+  };
 
   useEffect(() => {
     //유저 mbti정보 초기값으로 설정
@@ -84,9 +92,10 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
             className="swiper-wrapper"
             key={userMBTI}
             initialSlide={userMBTI}
-            onSlideChange={handleSwiper}>
+            onSlideChange={handleSwiper}
+            onSwiper={swiper => (swiperRef.current = swiper)}>
             {MBTIList.map((content, index) => (
-              <SwiperSlide key={index} className="swiper-slide">
+              <SwiperSlide key={index} onClick={() => clickSwiper(index)} className="swiper-slide">
                 {content}
               </SwiperSlide>
             ))}
