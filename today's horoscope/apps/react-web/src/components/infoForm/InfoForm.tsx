@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import SubmitButton from '../submitButton/SubmitButton';
 import styles from './InfoForm.module.scss';
 import MbtiModal from './components/MbtiModal/MbtiModal';
-import { useNavigate } from 'react-router-dom';
 import BirthModal from './components/BirthModal/BirthModal';
+import SubmitModal from './components/submitModal/SubmitModal';
 
 interface InfoFormProps {
   alertText: string;
@@ -24,9 +24,9 @@ function InfoForm({ alertText, content }: InfoFormProps) {
   });
   const [birthModal, setBirthModal] = useState<boolean>(false);
   const [mbtiModal, setMbtiModal] = useState<boolean>(false);
+  const [submitModal, setSubmitModal] = useState<boolean>(false);
   const [koreanValue, setKoreanValue] = useState<boolean>(false);
   const [requiredValue, setRequiredValue] = useState<boolean>(false);
-  const navigate = useNavigate();
 
   function clickBirthModal() {
     setBirthModal(!birthModal);
@@ -36,6 +36,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
     setMbtiModal(!mbtiModal);
   }
 
+  //이름 값의 한글 유효성 검사
   function koreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = e.target.value;
     const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
@@ -46,6 +47,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
     }
   }
 
+  //정보수정시 기존 유저 정보 가져오기
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {
@@ -61,9 +63,11 @@ function InfoForm({ alertText, content }: InfoFormProps) {
     });
   }
 
+  //상태로 저장한 유저정보 로컬스토리지에 저장
   function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
+    //폼 제출 시 빈값 검사
     if (koreanValue || !userData.name || !userData.birth || !userData.mbti) {
       return setRequiredValue(!requiredValue);
     }
@@ -76,8 +80,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
 
     localStorage.setItem('userData', JSON.stringify(inputData));
     localStorage.removeItem('activeBanner');
-    alert(`${alertText}을 완료하였습니다.`);
-    navigate('/');
+    setSubmitModal(!submitModal);
   }
 
   return (
@@ -156,6 +159,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
       </main>
       {mbtiModal && <MbtiModal userData={userData} setUserData={setUserData} clickMbtiModal={clickMbtiModal} />}
       {birthModal && <BirthModal userData={userData} setUserData={setUserData} clickBirthModal={clickBirthModal} />}
+      {submitModal && <SubmitModal submitModal={submitModal} setSubmitModal={setSubmitModal} alertText={alertText} />}
     </div>
   );
 }
