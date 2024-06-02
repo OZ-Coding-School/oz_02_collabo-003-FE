@@ -36,6 +36,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
     setMbtiModal(!mbtiModal);
   }
 
+  //이름 값의 한글 유효성 검사
   function koreanValueOnly(e: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = e.target.value;
     const koreanRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/;
@@ -46,6 +47,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
     }
   }
 
+  //정보수정시 기존 유저 정보 가져오기
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {
@@ -61,9 +63,11 @@ function InfoForm({ alertText, content }: InfoFormProps) {
     });
   }
 
+  //상태로 저장한 유저정보 로컬스토리지에 저장
   function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
+    //폼 제출 시 빈값 검사
     if (koreanValue || !userData.name || !userData.birth || !userData.mbti) {
       return setRequiredValue(!requiredValue);
     }

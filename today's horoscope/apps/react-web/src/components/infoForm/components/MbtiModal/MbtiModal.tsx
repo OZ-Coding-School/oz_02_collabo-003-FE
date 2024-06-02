@@ -38,6 +38,7 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
   const [userMBTI, setUserMBTI] = useState<number>(0);
   const swiperRef = useRef<SwiperCore | null>(null);
 
+  //현제 슬라이드값 mbti 상태에 저장
   function handleSwiper(swiper: SwiperCore) {
     const activesilde = swiper.slides[swiper.activeIndex];
     if (activesilde) {
@@ -48,6 +49,7 @@ function MbtiModal({ clickMbtiModal, userData, setUserData }: MbtiProps) {
     }
   }
 
+  //클릭 시 유저 mbti정보 유저 정보 상태에 저장
   function handleClick() {
     setUserData({
       ...userData,

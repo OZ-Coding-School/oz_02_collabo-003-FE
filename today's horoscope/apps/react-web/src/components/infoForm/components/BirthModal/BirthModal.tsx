@@ -29,6 +29,7 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
   const swiperRefMonth = useRef<SwiperCore | null>(null);
   const swiperRefDay = useRef<SwiperCore | null>(null);
 
+  //현제 슬라이드값 생년월일 상태에 저장
   function handleSwiper(swiper: SwiperCore) {
     const activeSlide = swiper.slides[swiper.activeIndex];
     const activeContent: string | null = activeSlide.textContent;
@@ -55,6 +56,7 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
     }
   };
 
+  //swiper로 선택한 생년월일값 유저정보 상태에 저장
   function handleClick() {
     setUserData({
       ...userData,
