@@ -22,7 +22,7 @@ function BirthModal({ clickBirthModal, userData, setUserData }: BirthProps) {
   const [activeMonth, setActiveMonth] = useState<string>('1');
   const [activeDay, setActiveDay] = useState<string>('1');
   const [userBirth, setUserBirth] = useState<string>('');
-  const [userYear, setUserYear] = useState<number>(0);
+  const [userYear, setUserYear] = useState<number>(17);
   const [userMonth, setUserMonth] = useState<number>(0);
   const [userDay, setUserDay] = useState<number>(0);
 
