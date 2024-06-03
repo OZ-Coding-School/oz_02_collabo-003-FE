@@ -1,28 +1,38 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, View, ToastAndroid } from 'react-native';
+import { BackHandler, View, ToastAndroid } from 'react-native';
 import WebView from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
 
+type WebViewNavigation = {
+  url: string;
+  title: string;
+  loading: boolean;
+  canGoBack: boolean;
+  canGoForward: boolean;
+};
+
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
-  const [isCanGoBack, setIsCanGoBack] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState('');
   const [lastBackPressed, setLastBackPressed] = useState(0);
 
   SplashScreen.preventAutoHideAsync();
 
   const onPressHardwareBackButton = () => {
     const now = Date.now();
-    if (webViewRef.current && isCanGoBack) {
+    if (currentUrl === 'https://today-s-horoscope.vercel.app/') {
+      if (now - lastBackPressed <= 2000) {
+        BackHandler.exitApp();
+      } else {
+        ToastAndroid.show('뒤로가기 버튼을 한번 더 누르면 종료됩니다.', ToastAndroid.SHORT);
+        setLastBackPressed(now);
+      }
+      return true;
+    } else if (webViewRef.current) {
       webViewRef.current.goBack();
       return true;
-    } else if (now - lastBackPressed <= 2000) {
-      BackHandler.exitApp();
-      return true;
-    } else {
-      ToastAndroid.show('뒤로가기 버튼을 한번 더 누르면 종료됩니다.', ToastAndroid.SHORT);
-      setLastBackPressed(now);
-      return true;
     }
+    return false;
   };
 
   useEffect(() => {
@@ -30,7 +40,11 @@ export default function Native() {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', onPressHardwareBackButton);
     };
-  }, [isCanGoBack, lastBackPressed]);
+  }, [currentUrl, lastBackPressed]);
+
+  const handleNavigationStateChange = (navState: WebViewNavigation) => {
+    setCurrentUrl(navState.url);
+  };
 
   const handleLoad = () => {
     setTimeout(() => {
@@ -38,42 +52,14 @@ export default function Native() {
     }, 1000);
   };
 
-  return Platform.OS === 'web' ? (
-    <iframe src="https://today-s-horoscope.vercel.app/" height={'100%'} width={'100%'} />
-  ) : (
+  return (
     <View style={{ flex: 1 }}>
       <WebView
-        textZoom={100}
-        style={{ margin: 0, padding: 0 }}
-        ref={webViewRef}
-        javaScriptEnabled={true}
-        allowsBackForwardNavigationGestures={true}
+        style={{ flex: 1 }}
         source={{ uri: 'https://today-s-horoscope.vercel.app/' }}
+        onNavigationStateChange={handleNavigationStateChange}
+        ref={webViewRef}
         onLoadEnd={handleLoad}
-        injectedJavaScript={`
-          (function() {
-            function wrap(fn) {
-              return function wrapper() {
-                var res = fn.apply(this, arguments);
-                window.ReactNativeWebView.postMessage('navigationStateChange');
-                return res;
-              }
-            }
-      
-            history.pushState = wrap(history.pushState);
-            history.replaceInstance = wrap(history.replaceState);
-            window.addEventListener('popstate', function() {
-              window.ReactNativeWebView.postMessage('navigationStateChange');
-            });
-          })();
-      
-          true;
-        `}
-        onMessage={({ nativeEvent: state }) => {
-          if (state.data === 'navigationStateChange') {
-            setIsCanGoBack(state.canGoBack);
-          }
-        }}
       />
     </View>
   );
