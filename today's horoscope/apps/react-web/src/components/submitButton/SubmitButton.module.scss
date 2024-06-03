@@ -1,6 +1,7 @@
 .button {
   width: 312px;
   height: 48px;
+  margin: 1vh;
   background-color: #191a1b;
   color: white;
   font-size: 16px;
@@ -8,14 +9,12 @@
   border: 0;
   font-weight: 700;
   line-height: 20px;
-  position: fixed;
-  bottom: 2vh;
 }
 .button:hover {
   background-color: #d3d3d3;
 }
 @media (min-height: 905px) {
   .button {
-    bottom: 20vh;
+    margin: 10vh;
   }
 }
