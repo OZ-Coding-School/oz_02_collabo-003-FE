@@ -12,6 +12,8 @@
     "start": "expo start --dev-client"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^20.0.0",
+    "@react-native-firebase/messaging": "^20.0.0",
     "@repo/ui": "*",
     "expo": "^50.0.0",
     "expo-notifications": "^0.27.7",
