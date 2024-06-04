@@ -12,7 +12,7 @@ import Styles from './Mbti.module.scss';
 const Fortune: React.FC = () => {
   const navigate = useNavigate();
   function MoveHome() {
-    navigate('/');
+    navigate(-1);
   }
 
   const [isScrolled, setIsScrolled] = useState(false);

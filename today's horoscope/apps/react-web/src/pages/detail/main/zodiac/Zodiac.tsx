@@ -69,7 +69,7 @@ const Fortune: React.FC = () => {
   const navigate = useNavigate();
 
   function movehome() {
-    navigate('/');
+    navigate(-1);
   }
 
   function handleClickimage(zodiac: string, imageSrc: string) {

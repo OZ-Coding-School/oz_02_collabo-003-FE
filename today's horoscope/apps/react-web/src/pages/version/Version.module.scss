@@ -57,23 +57,7 @@
   font-size: 12px;
   padding: 5px 0;
 }
-.updateButton {
-  width: 81px;
-  height: 32px;
-  background-color: #ffffff;
-  color: #515355;
-  padding: 6px 10px 6px 10px;
-  border: 1px solid #515355;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-}
 
-.updateButton:hover {
-  color: #d3d3d3;
-  border: 1px solid #d3d3d3;
-}
 .wrapper {
   display: inline-block;
   width: 60px;
@@ -120,70 +104,4 @@
 }
 .wrapper input[type='checkbox']:checked + label::before {
   background: #191a1b;
-}
-
-.popupBackground {
-  width: 100%;
-  height: 998px;
-  background-color: #191a1b;
-  background-color: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  top: 0;
-}
-.popup {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  width: 270px;
-  height: 138px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 12px;
-  text-align: center;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-.button-container {
-  height: 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-}
-.popupTitle {
-  font-size: 20px;
-  font-weight: 500;
-  margin: 5px;
-}
-
-.popupText {
-  margin: 5px;
-  color: #515355;
-  opacity: 0.6;
-  font-size: 13px;
-  line-height: 1.3;
-}
-
-.buttonContainer > button {
-  width: 134.83px;
-  height: 44px;
-  padding: 5px 10px;
-  margin: 0 16px;
-  border-radius: 0px, 0px, 8px, 8px;
-  border: 1px solid #d3d3d3;
-  cursor: pointer;
-  background-color: #ffffff;
-  color: rgb(51, 123, 246);
-}
-.buttonContainer > button:hover {
-  color: rgb(51, 123, 246);
-  font-weight: bold;
-  border: 1px solid #d3d3d3;
 }
