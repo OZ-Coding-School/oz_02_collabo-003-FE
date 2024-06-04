@@ -2,13 +2,22 @@ import React, { useEffect, useRef, useState } from 'react';
 import { BackHandler, Platform, View, ToastAndroid } from 'react-native';
 import WebView from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
-import { Alert } from 'react-native';
-import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 
+export interface PushNotificationState {
+  notification?: Notifications.Notification;
+  expoPushToken?: Notifications.ExpoPushToken;
+}
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
   const [isCanGoBack, setIsCanGoBack] = useState(false);
   const [lastBackPressed, setLastBackPressed] = useState(0);
+  const [expoPushToken, setExpoPushToken] = useState<string | null>();
+  const [notification, setNotification] = useState<Notifications.Notification>();
+
+  const notificationListener = useRef<Notifications.Subscription>();
+  const responseListener = useRef<Notifications.Subscription>();
 
   SplashScreen.preventAutoHideAsync();
 
@@ -27,65 +36,65 @@ export default function Native() {
     }
   };
 
-  //푸시 알림 권한 요청
-  const requestUserPermission = async (): Promise<boolean> => {
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+  });
 
-    if (enabled) {
-      console.log('Authorization status:', authStatus);
+  const registerForPushNotificationsAsync = async (setExpoPushToken: (token: string | null) => void) => {
+    if (Constants.isDevice) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+
+      if (finalStatus !== 'granted') {
+        alert('푸시 알림 설정을 확인해 주세요.');
+        return;
+      }
+
+      const token = (await Notifications.getExpoPushTokenAsync()).data;
+      console.log(token);
+      setExpoPushToken(token);
+    } else {
+      alert('기기를 확인할 수 없습니다.');
     }
-    return enabled;
+
+    if (Platform.OS === 'android') {
+      Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+      });
+    }
   };
 
-  //푸시 메세지 설정
   useEffect(() => {
-    //토큰 가져오기
-    const getToken = async () => {
-      const permissionGranted = await requestUserPermission();
-
-      if (permissionGranted) {
-        const token = await messaging().getToken();
-        console.log(token);
-      } else {
-        console.log('Permission not granted');
-      }
+    const setExpoPushTokenHandler = (token: string | null) => {
+      setExpoPushToken(token);
     };
+    registerForPushNotificationsAsync(setExpoPushTokenHandler);
 
-    getToken();
-
-    //초기 알림 처리 함수
-    const handleInitialNotification = async () => {
-      const remoteMessage = await messaging().getInitialNotification();
-      if (remoteMessage) {
-        console.log('Notification caused app to open from quit state:', remoteMessage.notification);
-      }
-    };
-
-    handleInitialNotification();
-
-    // 백그라운드 상태에서 알림
-    const unsubscribeOnNotificationOpenedApp = messaging().onNotificationOpenedApp(remoteMessage => {
-      console.log('Notification caused app to open from background state:', remoteMessage.notification);
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
     });
 
-    // 백그라운드 메시지 처리 함수
-    const backgroundMessageHandler = async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
-      console.log('Message handled in the background!', remoteMessage);
-    };
-
-    messaging().setBackgroundMessageHandler(backgroundMessageHandler);
-
-    // 포그라운드 메시지 처리
-    const unsubscribeOnMessage = messaging().onMessage(async remoteMessage => {
-      Alert.alert('A new FCM message arrived', JSON.stringify(remoteMessage));
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
     });
 
     return () => {
-      unsubscribeOnNotificationOpenedApp();
-      unsubscribeOnMessage();
+      if (notificationListener.current) {
+        Notifications.removeNotificationSubscription(notificationListener.current);
+      }
+      if (responseListener.current) {
+        Notifications.removeNotificationSubscription(responseListener.current);
+      }
     };
   }, []);
 
