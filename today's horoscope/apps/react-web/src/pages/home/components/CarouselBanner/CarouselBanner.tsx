@@ -12,6 +12,9 @@ interface carouselContents {
   imgitem: string;
   user: string;
 }
+interface objectTypes {
+  luck_msg: string;
+}
 
 const zodiacList: string[] = [
   'monkey',
@@ -35,6 +38,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
   });
   const [msg, setMsg] = useState<string>('');
   const [inputItem, setInputItem] = useState<string>('');
+  // const [todayData, setTodayData] = useState<objectTypes>();
 
   const storedData = localStorage.getItem('userData');
   const objectStoredData = JSON.parse(storedData as string);
@@ -47,20 +51,33 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
   });
 
   useEffect(() => {
+    if (userData) {
+      if (
+        !localStorage.getItem('today_msg_data') ||
+        JSON.parse(localStorage.getItem('today_msg_data') as string).luck_date !== userData.today_msg?.luck_date
+      ) {
+        localStorage.setItem('today_msg_data', JSON.stringify(userData.today_msg || {}));
+      }
+    }
+  }, [userData]);
+
+  useEffect(() => {
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
-    const bannerDefaultText = `나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!
-`;
+    const today = localStorage.getItem('today_msg_data');
+    const todayData: objectTypes = today ? JSON.parse(today) : { luck_msg: '' };
+    let today_msg;
+    if (todayData) {
+      today_msg = todayData.luck_msg;
+    } else {
+      today_msg = '';
+    }
+
+    const bannerDefaultText = `나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!`;
     if (localStorage.userData === undefined) {
       if (imgitem === 'today') {
-        if (localStorage.todays !== undefined) {
-          const storedData = localStorage.getItem('todays');
-          const objectStoredData = JSON.parse(storedData as string);
-          setMsg(objectStoredData);
-        } else {
-          setMsg(userData?.today_msg?.luck_msg);
-        }
+        setMsg(today_msg);
       } else {
         setMsg(bannerDefaultText);
       }
@@ -119,13 +136,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
       setMsg(userData?.star_msg?.luck_msg);
     } else {
       setInputItem('default');
-      if (localStorage.todays !== undefined) {
-        const storedData = localStorage.getItem('todays');
-        const objectStoredData = JSON.parse(storedData as string);
-        setMsg(objectStoredData);
-      } else {
-        setMsg(userData?.today_msg?.luck_msg);
-      }
+      setMsg(today_msg);
     }
   }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
 
