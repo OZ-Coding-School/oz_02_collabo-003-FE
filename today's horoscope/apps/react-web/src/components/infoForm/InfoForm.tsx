@@ -159,7 +159,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
       </main>
       {mbtiModal && <MbtiModal userData={userData} setUserData={setUserData} clickMbtiModal={clickMbtiModal} />}
       {birthModal && <BirthModal userData={userData} setUserData={setUserData} clickBirthModal={clickBirthModal} />}
-      {submitModal && <SubmitModal submitModal={submitModal} setSubmitModal={setSubmitModal} alertText={alertText} />}
+      {submitModal && <SubmitModal alertText={alertText} />}
     </div>
   );
 }
