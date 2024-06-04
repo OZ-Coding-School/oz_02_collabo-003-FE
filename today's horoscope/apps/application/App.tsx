@@ -4,11 +4,13 @@ import WebView from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
+import messaging from '@react-native-firebase/messaging';
 
 export interface PushNotificationState {
   notification?: Notifications.Notification;
   expoPushToken?: Notifications.ExpoPushToken;
 }
+
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
   const [isCanGoBack, setIsCanGoBack] = useState(false);
@@ -36,6 +38,15 @@ export default function Native() {
     }
   };
 
+  const getFcmToken = async () => {
+    const fcmToken = await messaging().getToken();
+    console.log('[+] FCM Token :: ', fcmToken);
+  };
+
+  const subscribe = messaging().onMessage(async remoteMessage => {
+    console.log('[+] Remote Message ', JSON.stringify(remoteMessage));
+  });
+
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -43,6 +54,7 @@ export default function Native() {
       shouldSetBadge: false,
     }),
   });
+
   async function registerForPushNotificationsAsync() {
     if (Constants.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -77,16 +89,22 @@ export default function Native() {
   }
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    registerForPushNotificationsAsync().then(token => {
+      setExpoPushToken(token);
+    });
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
+
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
+
     return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current!);
-      Notifications.removeNotificationSubscription(responseListener.current!);
+      if (typeof notificationListener.current !== 'undefined' && typeof responseListener.current !== 'undefined') {
+        Notifications.removeNotificationSubscription(notificationListener.current);
+        Notifications.removeNotificationSubscription(responseListener.current);
+      }
     };
   }, []);
 
@@ -110,6 +128,7 @@ export default function Native() {
   ) : (
     <View style={{ flex: 1 }}>
       <Text>Token: {expoPushToken?.data ?? ''}</Text>
+      <Text>{data}</Text>
       <WebView
         textZoom={100}
         style={{ margin: 0, padding: 0 }}
