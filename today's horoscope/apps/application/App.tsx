@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, View, ToastAndroid } from 'react-native';
+import { BackHandler, Platform, View, ToastAndroid, Text } from 'react-native';
 import WebView from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
+import Device from 'expo-device';
 
 export interface PushNotificationState {
   notification?: Notifications.Notification;
@@ -13,7 +14,7 @@ export default function Native() {
   const webViewRef = useRef<WebView>(null);
   const [isCanGoBack, setIsCanGoBack] = useState(false);
   const [lastBackPressed, setLastBackPressed] = useState(0);
-  const [expoPushToken, setExpoPushToken] = useState<string | null>();
+  const [expoPushToken, setExpoPushToken] = useState<Notifications.ExpoPushToken | null>();
   const [notification, setNotification] = useState<Notifications.Notification>();
 
   const notificationListener = useRef<Notifications.Subscription>();
@@ -43,9 +44,9 @@ export default function Native() {
       shouldSetBadge: false,
     }),
   });
-
-  const registerForPushNotificationsAsync = async (setExpoPushToken: (token: string | null) => void) => {
-    if (Constants.isDevice) {
+  async function registerForPushNotificationsAsync() {
+    let token;
+    if (Device.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
 
@@ -53,51 +54,42 @@ export default function Native() {
         const { status } = await Notifications.requestPermissionsAsync();
         finalStatus = status;
       }
-
       if (finalStatus !== 'granted') {
-        alert('푸시 알림 설정을 확인해 주세요.');
-        return;
+        alert('Failed to get push token');
       }
-
-      const token = (await Notifications.getExpoPushTokenAsync()).data;
-      console.log(token);
-      setExpoPushToken(token);
-    } else {
-      alert('기기를 확인할 수 없습니다.');
-    }
-
-    if (Platform.OS === 'android') {
-      Notifications.setNotificationChannelAsync('default', {
-        name: 'default',
-        importance: Notifications.AndroidImportance.MAX,
+      token = await Notifications.getExpoPushTokenAsync({
+        projectId: Constants.expoConfig?.extra?.eas?.projectId,
       });
+
+      if (Platform.OS === 'android') {
+        Notifications.setNotificationChannelAsync('default', {
+          name: 'default',
+          importance: Notifications.AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: '#FF231F7C',
+        });
+      }
+      return token;
+    } else {
+      console.log('Error Please use a physical device');
     }
-  };
+  }
 
   useEffect(() => {
-    const setExpoPushTokenHandler = (token: string | null) => {
-      setExpoPushToken(token);
-    };
-    registerForPushNotificationsAsync(setExpoPushTokenHandler);
-
+    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
-
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
-
     return () => {
-      if (notificationListener.current) {
-        Notifications.removeNotificationSubscription(notificationListener.current);
-      }
-      if (responseListener.current) {
-        Notifications.removeNotificationSubscription(responseListener.current);
-      }
+      Notifications.removeNotificationSubscription(notificationListener.current!);
+      Notifications.removeNotificationSubscription(responseListener.current!);
     };
   }, []);
 
+  const data = JSON.stringify(notification, undefined, 2);
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton);
     return () => {
@@ -115,6 +107,7 @@ export default function Native() {
     <iframe src="https://today-s-horoscope.vercel.app/" height={'100%'} width={'100%'} />
   ) : (
     <View style={{ flex: 1 }}>
+      <Text>Token: {expoPushToken?.data ?? ''}</Text>
       <WebView
         textZoom={100}
         style={{ margin: 0, padding: 0 }}
