@@ -66,6 +66,7 @@ export default function Native() {
       {isConnected ? (
         <WebView
           style={{ flex: 1 }}
+          textZoom={100}
           source={{ uri: 'https://today-s-horoscope.vercel.app/' }}
           onNavigationStateChange={handleNavigationStateChange}
           ref={webViewRef}
