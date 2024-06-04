@@ -4,7 +4,6 @@ import WebView from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
-import Device from 'expo-device';
 
 export interface PushNotificationState {
   notification?: Notifications.Notification;
@@ -45,8 +44,7 @@ export default function Native() {
     }),
   });
   async function registerForPushNotificationsAsync() {
-    let token;
-    if (Device.isDevice) {
+    if (Constants.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
 
@@ -54,10 +52,13 @@ export default function Native() {
         const { status } = await Notifications.requestPermissionsAsync();
         finalStatus = status;
       }
+
       if (finalStatus !== 'granted') {
-        alert('Failed to get push token');
+        alert('푸시 알림 설정을 확인해 주세요.');
+        return;
       }
-      token = await Notifications.getExpoPushTokenAsync({
+
+      const token = await Notifications.getExpoPushTokenAsync({
         projectId: Constants.expoConfig?.extra?.eas?.projectId,
       });
 
@@ -90,6 +91,7 @@ export default function Native() {
   }, []);
 
   const data = JSON.stringify(notification, undefined, 2);
+
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton);
     return () => {

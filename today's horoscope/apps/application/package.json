@@ -16,7 +16,6 @@
     "@react-native-firebase/messaging": "^20.0.0",
     "@repo/ui": "*",
     "expo": "^50.0.0",
-    "expo-device": "^6.0.2",
     "expo-notifications": "^0.27.7",
     "expo-splash-screen": "~0.26.5",
     "expo-status-bar": "^1.11.1",
