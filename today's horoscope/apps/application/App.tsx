@@ -67,7 +67,10 @@ export default function Native() {
         <WebView
           style={{ flex: 1 }}
           textZoom={100}
-          source={{ uri: 'https://today-s-horoscope.vercel.app/' }}
+          source={{
+            uri: 'https://today-s-horoscope.vercel.app/',
+            html: '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">',
+          }}
           onNavigationStateChange={handleNavigationStateChange}
           ref={webViewRef}
           onLoadEnd={handleLoad}
