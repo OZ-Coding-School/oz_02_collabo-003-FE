@@ -11,15 +11,6 @@
       "resizeMode": "contain",
       "backgroundColor": "#191A1B"
     },
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/splash.png",
-          "color": "#191A1B"
-        }
-      ]
-    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -37,17 +28,7 @@
         "resizeMode": "contain"
       },
       "package": "com.fullswing.fortune",
-      "useNextNotificationsApi": true,
-      "googleServicesFile": "./google-services.json",
-      "plugins": [
-        [
-          "expo-notifications",
-          {
-            "icon": "./assets/splash.png",
-            "color": "#191A1B"
-          }
-        ]
-      ]
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
