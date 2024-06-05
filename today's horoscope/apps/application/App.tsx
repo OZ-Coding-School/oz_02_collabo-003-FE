@@ -1,25 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, View, ToastAndroid, Text } from 'react-native';
+import { BackHandler, Platform, View, ToastAndroid, Alert } from 'react-native';
 import WebView from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
-import * as Notifications from 'expo-notifications';
-import Constants from 'expo-constants';
 import messaging from '@react-native-firebase/messaging';
-
-export interface PushNotificationState {
-  notification?: Notifications.Notification;
-  expoPushToken?: Notifications.ExpoPushToken;
-}
 
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
   const [isCanGoBack, setIsCanGoBack] = useState(false);
   const [lastBackPressed, setLastBackPressed] = useState(0);
-  const [expoPushToken, setExpoPushToken] = useState<Notifications.ExpoPushToken | null>();
-  const [notification, setNotification] = useState<Notifications.Notification>();
-
-  const notificationListener = useRef<Notifications.Subscription>();
-  const responseListener = useRef<Notifications.Subscription>();
 
   SplashScreen.preventAutoHideAsync();
 
@@ -38,77 +26,55 @@ export default function Native() {
     }
   };
 
-  const getFcmToken = async () => {
-    const fcmToken = await messaging().getToken();
-    console.log('[+] FCM Token :: ', fcmToken);
+  const requestUserPermission = async (): Promise<boolean> => {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
+    return enabled;
   };
 
-  const subscribe = messaging().onMessage(async remoteMessage => {
-    console.log('[+] Remote Message ', JSON.stringify(remoteMessage));
-  });
+  useEffect(() => {
+    const setupMessaging = async () => {
+      const permissionGranted = await requestUserPermission();
 
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: false,
-    }),
-  });
-
-  async function registerForPushNotificationsAsync() {
-    if (Constants.isDevice) {
-      const { status: existingStatus } = await Notifications.getPermissionsAsync();
-      let finalStatus = existingStatus;
-
-      if (existingStatus !== 'granted') {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
+      if (permissionGranted) {
+        try {
+          const token = await messaging().getToken();
+          console.log(token);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log('failed token status');
       }
 
-      if (finalStatus !== 'granted') {
-        alert('푸시 알림 설정을 확인해 주세요.');
-        return;
+      const initialNotification = await messaging().getInitialNotification();
+      if (initialNotification) {
+        console.log('Notification caused app to open from quit state', initialNotification.notification);
       }
 
-      const token = await Notifications.getExpoPushTokenAsync({
-        projectId: Constants.expoConfig?.extra?.eas?.projectId,
+      messaging().onNotificationOpenedApp(async remoteMessage => {
+        console.log('Notification caused app to open from quit state', remoteMessage.notification);
       });
 
-      if (Platform.OS === 'android') {
-        Notifications.setNotificationChannelAsync('default', {
-          name: 'default',
-          importance: Notifications.AndroidImportance.MAX,
-          vibrationPattern: [0, 250, 250, 250],
-          lightColor: '#FF231F7C',
-        });
-      }
-      return token;
-    } else {
-      console.log('Error Please use a physical device');
-    }
-  }
+      messaging().setBackgroundMessageHandler(async remoteMessage => {
+        console.log('Message handled in the background', remoteMessage);
+      });
 
-  useEffect(() => {
-    registerForPushNotificationsAsync().then(token => {
-      setExpoPushToken(token);
-    });
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
+      const unsubscribe = messaging().onMessage(async remoteMessage => {
+        Alert.alert(JSON.stringify(remoteMessage));
+      });
 
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-
-    return () => {
-      if (typeof notificationListener.current !== 'undefined' && typeof responseListener.current !== 'undefined') {
-        Notifications.removeNotificationSubscription(notificationListener.current);
-        Notifications.removeNotificationSubscription(responseListener.current);
-      }
+      return () => unsubscribe();
     };
-  }, []);
 
-  const data = JSON.stringify(notification, undefined, 2);
+    setupMessaging();
+  }, []);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton);
@@ -127,8 +93,6 @@ export default function Native() {
     <iframe src="https://today-s-horoscope.vercel.app/" height={'100%'} width={'100%'} />
   ) : (
     <View style={{ flex: 1 }}>
-      <Text>Token: {expoPushToken?.data ?? ''}</Text>
-      <Text>{data}</Text>
       <WebView
         textZoom={100}
         style={{ margin: 0, padding: 0 }}
