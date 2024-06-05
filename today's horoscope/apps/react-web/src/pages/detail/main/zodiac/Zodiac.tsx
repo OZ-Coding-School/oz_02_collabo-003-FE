@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Share from '../../components/kakao/Kakao';
+// import Share from '../../components/kakao/Kakao';
 
 import { IoChevronBack } from 'react-icons/io5';
 import Styles from './Zodiac.module.scss';
@@ -96,7 +96,7 @@ const Fortune: React.FC = () => {
         <div className={Styles.headicon}>
           <IoChevronBack onClick={movehome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-          <Share />
+          {/* <Share />*/}
         </div>
         <div>
           <h1 className={Styles.title}>
