@@ -88,7 +88,9 @@ const TextImage: React.FC = () => {
         className={Styles.starImage}
       />
       <h2 className={Styles.starName}>{individualStar.attribute1}</h2>
-      <p className={Styles.starTMI}>{individualStar.luck_msg}</p>
+      <p className={Styles.starTMI}>
+        {individualStar.luck_msg} [{individualStar.attribute2}]
+      </p>
     </div>
   ));
 
