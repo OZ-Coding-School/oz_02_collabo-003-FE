@@ -12,6 +12,8 @@ type WebViewNavigation = {
   canGoForward: boolean;
 };
 
+const INJECTEDJAVASCRIPT = `const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); `;
+
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
   const [currentUrl, setCurrentUrl] = useState('');
@@ -69,8 +71,8 @@ export default function Native() {
           textZoom={100}
           source={{
             uri: 'https://today-s-horoscope.vercel.app/',
-            html: '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">',
           }}
+          injectedJavaScript={INJECTEDJAVASCRIPT}
           onNavigationStateChange={handleNavigationStateChange}
           ref={webViewRef}
           onLoadEnd={handleLoad}
