@@ -23,6 +23,7 @@
       "name": "오늘의 운세",
       "slug": "native",
       "usesCleartextTraffic": true,
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "resizeMode": "contain"
