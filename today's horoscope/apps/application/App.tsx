@@ -1,67 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { BackHandler, View, ToastAndroid, Text } from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text } from 'react-native';
 import WebView from 'react-native-webview';
-import * as SplashScreen from 'expo-splash-screen';
-import NetInfo from '@react-native-community/netinfo';
-
-type WebViewNavigation = {
-  url: string;
-  title: string;
-  loading: boolean;
-  canGoBack: boolean;
-  canGoForward: boolean;
-};
+import useHardwareBack from './hooks/useHardwareBack';
+import useSplash from './hooks/useSplash';
+import useIsConnected from './hooks/useIsConnected';
 
 const INJECTEDJAVASCRIPT = `const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); `;
 
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
-  const [currentUrl, setCurrentUrl] = useState('');
-  const [lastBackPressed, setLastBackPressed] = useState(0);
-  const [isConnected, setIsConnected] = useState<boolean | null>(true);
-
-  useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener(state => {
-      setIsConnected(state.isConnected);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  SplashScreen.preventAutoHideAsync();
-
-  const onPressHardwareBackButton = () => {
-    const now = Date.now();
-    if (currentUrl === 'https://today-s-horoscope.vercel.app/') {
-      if (now - lastBackPressed <= 2000) {
-        BackHandler.exitApp();
-      } else {
-        ToastAndroid.show('뒤로가기 버튼을 한번 더 누르면 종료됩니다.', ToastAndroid.SHORT);
-        setLastBackPressed(now);
-      }
-      return true;
-    } else if (webViewRef.current) {
-      webViewRef.current.goBack();
-      return true;
-    }
-    return false;
-  };
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onPressHardwareBackButton);
-    };
-  }, [currentUrl, lastBackPressed]);
-
-  const handleNavigationStateChange = (navState: WebViewNavigation) => {
-    setCurrentUrl(navState.url);
-  };
-
-  const handleLoad = () => {
-    setTimeout(() => {
-      SplashScreen.hideAsync();
-    }, 1000);
-  };
+  const handleNavigationStateChange = useHardwareBack(webViewRef);
+  const handleLoad = useSplash();
+  const isConnected = useIsConnected();
 
   return (
     <View style={{ flex: 1 }}>
