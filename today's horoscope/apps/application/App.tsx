@@ -1,80 +1,57 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, View, ToastAndroid } from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text } from 'react-native';
 import WebView from 'react-native-webview';
-import * as SplashScreen from 'expo-splash-screen';
+import useHardwareBack from './hooks/useHardwareBack';
+import useSplash from './hooks/useSplash';
+import useIsConnected from './hooks/useIsConnected';
+import useNotification from './hooks/useNotification';
+
+const INJECTEDJAVASCRIPT = `const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); `;
 
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
-  const [isCanGoBack, setIsCanGoBack] = useState(false);
-  const [lastBackPressed, setLastBackPressed] = useState(0);
+  const handleNavigationStateChange = useHardwareBack(webViewRef);
+  const handleLoad = useSplash();
+  const isConnected = useIsConnected();
+  useNotification();
 
-  SplashScreen.preventAutoHideAsync();
-
-  const onPressHardwareBackButton = () => {
-    const now = Date.now();
-    if (webViewRef.current && isCanGoBack) {
-      webViewRef.current.goBack();
-      return true;
-    } else if (now - lastBackPressed <= 2000) {
-      BackHandler.exitApp();
-      return true;
-    } else {
-      ToastAndroid.show('뒤로가기 버튼을 한번 더 누르면 종료됩니다.', ToastAndroid.SHORT);
-      setLastBackPressed(now);
-      return true;
-    }
-  };
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onPressHardwareBackButton);
-    };
-  }, [isCanGoBack, lastBackPressed]);
-
-  const handleLoad = () => {
-    setTimeout(() => {
-      SplashScreen.hideAsync();
-    }, 1000);
-  };
-
-  return Platform.OS === 'web' ? (
-    <iframe src="https://today-s-horoscope.vercel.app/" height={'100%'} width={'100%'} />
-  ) : (
+  return (
     <View style={{ flex: 1 }}>
-      <WebView
-        textZoom={100}
-        style={{ margin: 0, padding: 0 }}
-        ref={webViewRef}
-        javaScriptEnabled={true}
-        allowsBackForwardNavigationGestures={true}
-        source={{ uri: 'https://today-s-horoscope.vercel.app/' }}
-        onLoadEnd={handleLoad}
-        injectedJavaScript={`
-          (function() {
-            function wrap(fn) {
-              return function wrapper() {
-                var res = fn.apply(this, arguments);
-                window.ReactNativeWebView.postMessage('navigationStateChange');
-                return res;
-              }
-            }
-      
-            history.pushState = wrap(history.pushState);
-            history.replaceInstance = wrap(history.replaceState);
-            window.addEventListener('popstate', function() {
-              window.ReactNativeWebView.postMessage('navigationStateChange');
-            });
-          })();
-      
-          true;
-        `}
-        onMessage={({ nativeEvent: state }) => {
-          if (state.data === 'navigationStateChange') {
-            setIsCanGoBack(state.canGoBack);
-          }
-        }}
-      />
+      {isConnected ? (
+        <WebView
+          style={{ flex: 1 }}
+          textZoom={100}
+          source={{
+            uri: 'https://today-s-horoscope.vercel.app/',
+          }}
+          injectedJavaScript={INJECTEDJAVASCRIPT}
+          onNavigationStateChange={handleNavigationStateChange}
+          ref={webViewRef}
+          onLoadEnd={handleLoad}
+        />
+      ) : (
+        <View
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#191a18',
+          }}>
+          <View
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 24,
+            }}>
+            <Text style={{ fontSize: 18, fontWeight: '500', color: '#d3d3d3' }}>인터넷 연결</Text>
+            <Text style={{ fontSize: 14, fontWeight: '500', color: '#838f90' }}>
+              오프라인 상태입니다. 인터넷 연결을 확인하세요.
+            </Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 }
