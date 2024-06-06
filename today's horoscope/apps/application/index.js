@@ -5,12 +5,12 @@ import App from './App';
 import firebase from '@react-native-firebase/app';
 
 const firebaseConfig = {
-  apiKey: Constants.manifest.extra.API_KEY,
-  projectId: Constants.manifest.extra.PROJECT_ID,
-  storageBucket: Constants.manifest.extra.STORAGE_BUCKET,
-  messagingSenderId: Constants.manifest.extra.MESSAGING_SENDER_ID,
-  appId: Constants.manifest.extra.APP_ID,
-  databaseURL: Constants.manifest.extra.DATABASE_URL,
+  apiKey: process.env.EXPO_PUBLIC_API_KEY,
+  projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_APP_ID,
+  databaseURL: process.env.EXPO_PUBLIC_DATABASE_URL,
 };
 
 if (!firebase.apps.length) {
