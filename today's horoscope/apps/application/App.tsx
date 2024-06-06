@@ -4,6 +4,7 @@ import WebView from 'react-native-webview';
 import useHardwareBack from './hooks/useHardwareBack';
 import useSplash from './hooks/useSplash';
 import useIsConnected from './hooks/useIsConnected';
+import useNotification from './hooks/useNotification';
 
 const INJECTEDJAVASCRIPT = `const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); `;
 
@@ -12,6 +13,7 @@ export default function Native() {
   const handleNavigationStateChange = useHardwareBack(webViewRef);
   const handleLoad = useSplash();
   const isConnected = useIsConnected();
+  useNotification();
 
   return (
     <View style={{ flex: 1 }}>

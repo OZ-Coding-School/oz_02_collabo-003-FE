@@ -23,13 +23,15 @@
     "react-dom": "18.2.0",
     "react-native": "0.73.6",
     "react-native-web": "^0.19.10",
-    "react-native-webview": "^13.6.4"
+    "react-native-webview": "^13.6.4",
+    "expo-constants": "~15.4.6"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@expo/webpack-config": "^19.0.0",
     "@types/react": "^18.2.45",
     "@types/react-native": "^0.73.0",
+    "babel-plugin-inline-dotenv": "^1.7.0",
     "typescript": "~5.3.3"
   }
 }
