@@ -12,6 +12,9 @@
     "start": "expo start --dev-client"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "11.1.0",
+    "@react-native-firebase/app": "^20.1.0",
+    "@react-native-firebase/messaging": "^20.1.0",
     "@repo/ui": "*",
     "expo": "^50.0.0",
     "expo-splash-screen": "~0.26.5",
@@ -20,8 +23,7 @@
     "react-dom": "18.2.0",
     "react-native": "0.73.6",
     "react-native-web": "^0.19.10",
-    "react-native-webview": "^13.6.4",
-    "@react-native-community/netinfo": "11.1.0"
+    "react-native-webview": "^13.6.4"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
