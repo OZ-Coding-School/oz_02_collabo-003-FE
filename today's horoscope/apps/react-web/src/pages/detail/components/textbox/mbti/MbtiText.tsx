@@ -24,21 +24,21 @@ interface MbtiFortuneConfig {
 }
 
 const MbtiFortunes: MbtiFortuneConfig = {
-  INTJ: {
+  ISTJ: {
     luck_date:
       '능력이 부족하니 알찬 결실을 거두기가 만무한 실정입니다. 현재 상황을 냉정히 평가하고 부족한 부분을 보완해야 합니다. ',
     imageSrc: '/K_img/img_circle_mbti_istj.png',
   },
-  INFJ: {
+  ISFJ: {
     luck_date:
       '능력이 부족하니 알찬 결실을 거두기가 만무한 실정입니다. 현재 상황을 냉정히 평가하고 부족한 부분을 보완해야 합니다. ',
     imageSrc: '/K_img/img_circle_mbti_isfj.png',
   },
-  INFP: {
+  INFJ: {
     luck_date: '오늘은 감수성이 풍부한 하루가 될 것입니다.',
     imageSrc: '/K_img/img_circle_mbti_infj.png',
   },
-  INTP: {
+  INTJ: {
     luck_date: '오늘은 새로운 아이디어를 구상할 수 있는 날이에요. 창의력을 발휘하세요!',
     imageSrc: '/K_img/img_circle_mbti_intj.png',
   },
@@ -50,11 +50,11 @@ const MbtiFortunes: MbtiFortuneConfig = {
     luck_date: '자연의 아름다움을 느낄 수 있는 하루가 될 것입니다. 산책이나 그림을 그려보세요.',
     imageSrc: '/K_img/img_circle_mbti_isfp.png',
   },
-  ISTJ: {
+  INFP: {
     luck_date: '창의력을 발휘하는 좋은 날이 될 거에요. 새로운 아이디어가 떠오를 거예요.',
     imageSrc: '/K_img/img_circle_mbti_infp.png',
   },
-  ISFJ: {
+  INTP: {
     luck_date: '목표를 설정하고 계획을 세우는 데에 집중하세요. 당신의 미래가 밝을 거예요.',
     imageSrc: '/K_img/img_circle_mbti_intj.png',
   },
