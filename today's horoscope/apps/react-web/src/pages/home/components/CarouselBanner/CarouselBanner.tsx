@@ -65,6 +65,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
+    //로컬스토리지에 저장되어 있는 오늘의 한마디 불러오기
     const today = localStorage.getItem('today_msg_data');
     const todayData: objectTypes = today ? JSON.parse(today) : { luck_msg: '' };
     let today_msg;
@@ -75,6 +76,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
     }
 
     const bannerDefaultText = `나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!`;
+    //정보입력을 하지 않았을 경우
     if (localStorage.userData === undefined) {
       if (imgitem === 'today') {
         setMsg(today_msg);
@@ -82,26 +84,27 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
         setMsg(bannerDefaultText);
       }
       setInputItem('default');
-    }
-
-    if (localStorage.userData === undefined && imgitem !== 'today') {
-      setMsg(bannerDefaultText);
     } else if (imgitem === 'mbti') {
+      //mbti일 경우
       if (inputData.mbti === 'MBTI모름') {
+        //mbti 모름 설정 시 기본 이미지와 멘트 출력
         setInputItem('default');
         setMsg(bannerDefaultText);
       } else {
+        //유저의 mbti 정보에 관한 이미지와 운세 출력
         const mbti = inputData.mbti;
         setInputItem(mbti.toLowerCase());
         setMsg(userData?.mbti_msg?.luck_msg);
       }
     } else if (imgitem === 'zodiac') {
+      //띠일 경우 유저의 띠 정보에 관한 이미지와 운세 출력
       const birthData = inputData.birth;
       const birthYear = birthData.split('-')[0];
       const zodiacIndex = parseInt(birthYear) % 12;
       setInputItem(zodiacList[zodiacIndex]);
       setMsg(userData?.zodiac_msg?.luck_msg);
     } else if (imgitem === 'star') {
+      //별자리일 경우 유저의 별자리 정보에 관한 이미지와 운세 출력
       const birthData = inputData.birth;
       const birthMonth = birthData.split('-')[1];
       const month = parseInt(birthMonth);
@@ -135,6 +138,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
       } else setInputItem('default');
       setMsg(userData?.star_msg?.luck_msg);
     } else {
+      //오늘의 한마디 일 경우 오늘의 한마디 기본 이미지에 로철 스토리지에 저장한 오늘의 한마디 출력
       setInputItem('default');
       setMsg(today_msg);
     }
