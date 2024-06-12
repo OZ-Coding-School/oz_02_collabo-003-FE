@@ -6,6 +6,7 @@ import APIS from '../../../../../services/api';
 import Styles from './StarText.module.scss';
 import { ClipLoader } from 'react-spinners';
 
+// StarFortunes 인터페이스와 StarFortuneConfig 타입을 정의해 별자리 운세 데이터의 구조
 interface StarFortunes {
   msg_id: number;
   imageSrc: string;
@@ -23,6 +24,7 @@ interface StarFortuneConfig {
   };
 }
 
+// 각 별자리에 대한 운세 메시지와 이미지 경로
 const StarFortunes: StarFortuneConfig = {
   물병자리: {
     luck_date: '신나는 모험이 당신을 기다리고 있어요!',
@@ -74,12 +76,14 @@ const StarFortunes: StarFortuneConfig = {
   },
 };
 
+// useQuery 훅을 사용하여 API에서 별자리 운세 데이터 불러옴
 const TextImage: React.FC = () => {
   const { data: starData, isLoading } = useQuery({
     queryKey: QUERY_KEYS.STAR,
     queryFn: () => APIS.getStarDataAPI(),
   });
 
+  // 불러온 데이터를 starFortuneMessages 변수에 매핑하여 별자리 이미지와 운세 메시지를 표시
   const starFortuneMessages = starData?.map((individualStar: StarFortunes, index: string) => (
     <div key={index} className={Styles.body}>
       <img
@@ -87,13 +91,18 @@ const TextImage: React.FC = () => {
         alt="starImages"
         className={Styles.starImage}
       />
-      <h2 className={Styles.starName}>{individualStar.attribute1}</h2>
-      <p className={Styles.starTMI}>
-        {individualStar.luck_msg} [{individualStar.attribute2}]
-      </p>
+      <div className={Styles.starContainer}>
+        <h2 className={Styles.starName}>
+          <span className={Styles.starNameBold}>{individualStar.attribute1}</span>
+          <span className={Styles.starDay}>[ {individualStar.attribute2} ]</span>
+        </h2>
+
+        <p className={Styles.starTMI}>{individualStar.luck_msg}</p>
+      </div>
     </div>
   ));
 
+  // 데이터 로딩 중에는 로딩 스피너 표시
   return (
     <div>
       <ul>
@@ -102,6 +111,7 @@ const TextImage: React.FC = () => {
             <ClipLoader color="#36d7b7" size={60} />
           </div>
         ) : (
+          // starFortuneMessages 변수를 렌더링하여 화면에 별자리 운세 정보 표시
           starFortuneMessages
         )}
       </ul>
