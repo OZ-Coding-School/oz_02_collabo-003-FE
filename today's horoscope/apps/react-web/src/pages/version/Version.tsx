@@ -10,13 +10,13 @@ const Version: React.FC = () => {
   // 현재 앱 버전 상태
   const [appVersion] = useState<string>('2.1.5');
   // 최신 앱 버전 상태
-  /*const [latestVersion, setLatestVersion] = useState<string>('');*/
+  /*const [latestVersion, setLatestVersion] = useState<string>('');
   // 푸시 알림 설정 상태
   const [pushNotification, setPushNotification] = useState<boolean>(false);
   // 푸시 알림 설정 토글 함수
   const togglePushNotification = () => {
     setPushNotification(prevState => !prevState);
-  };
+  };*/
 
   // 페이지 이동 네비게이트 훅
   const navigate = useNavigate();
@@ -79,7 +79,7 @@ const Version: React.FC = () => {
           <h1 className={Styles.textTitle}>푸시 알림 설정</h1>
           <span className={Styles.textSub}>푸시 알림을 켜거나 끌 수 있습니다.</span>
         </label>
-        <div className={Styles.wrapper}>
+        {/*<div className={Styles.wrapper}>
           <input
             type="checkbox"
             id="switch"
@@ -88,7 +88,7 @@ const Version: React.FC = () => {
             className={Styles.toggleSwitch}
           />
           <label htmlFor="switch" className={Styles.onfBtn}></label>
-        </div>
+        </div>*/}
       </div>
 
       {/* 업데이트 팝업 */}
