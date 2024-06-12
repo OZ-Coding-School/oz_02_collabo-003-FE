@@ -27,7 +27,7 @@ function Home() {
       case 'mbti':
         return 'linear-gradient(45deg, #D2F9FC, #C6B2FE)';
       default:
-        return 'none';
+        return 'linear-gradient(45deg, #F4CFD8, #94E4FD)';
     }
   }
 
