@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
-import Share from '../../kakao/Kakao';
+// import Share from '../../kakao/Kakao';
 import Styles from './ZodiacText.module.scss';
 import { IoChevronBack } from 'react-icons/io5';
 import { useQuery } from '@tanstack/react-query';
@@ -57,7 +57,7 @@ const TextImage: React.FC = () => {
         <div className={Styles.headicon}>
           <IoChevronBack onClick={movehome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-          <Share />
+          {/* <Share />*/}
         </div>
         <div className={Styles.title}>
           <div>{JSON.stringify(zodiacData)}</div>
