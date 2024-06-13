@@ -74,7 +74,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
         setSelectedItem(prev => {
           const newIndex = (prev + (xDir > 0 ? -1 : 1) + Slides.length) % Slides.length;
           if (newIndex < 0) setActiveSlide(imgValue[3]);
-          else setActiveSlide(imgValue[newIndex]);
+          else setTimeout(() => setActiveSlide(imgValue[newIndex]), 0);
           return newIndex;
         });
         cancel();
