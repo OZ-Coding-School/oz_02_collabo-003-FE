@@ -1,13 +1,27 @@
 .body {
-  margin-top: 402px;
-  margin-bottom: -426px;
-  padding-bottom: 72px;
+  display: grid;
+  grid-template-rows: 100px auto 57px;
+  margin-top: 300px;
+  margin-bottom: -423px;
+  padding-bottom: 50px;
+}
+.grid-item-1 {
+  /* 첫 번째 행 */
+}
+
+.grid-item-2 {
+  /* 두 번째 행 */
+}
+
+.grid-item-3 {
+  /* 세 번째 행 */
+  padding-bottom: 0px;
 }
 
 .mbtiImage {
   display: flex;
   flex-direction: column;
-  margin-top: 402px;
+  margin-top: 102px;
   margin-left: 25px;
   margin-bottom: 24px;
   width: 80px;
@@ -18,7 +32,7 @@
   display: flex;
   font-weight: bold;
   font-size: 16px;
-  margin-top: -95px;
+  margin-top: 10px;
   margin-left: 121px;
   margin-bottom: 0;
 }
