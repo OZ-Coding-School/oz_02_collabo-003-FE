@@ -67,9 +67,55 @@ function Carousel({ setActiveSlide }: swiperProps) {
     }
   }, [setActiveSlide]);
 
-  // 현재 배너의 인덱스 저장하고 배경색 변경을 위한 배너값 저장
+  //왼쪽 스와이프 시 배너의 깊이 변경 함수
+  const leftChangeStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '2';
+    }
+    if (item3) {
+      item3.style.zIndex = '1';
+    }
+  };
+
+  //원상태로 되돌리기 함수
+  const resetStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '3';
+    }
+    if (item3) {
+      item3.style.zIndex = '0';
+    }
+  };
+
+  //오른쪽 스와이프 시 배너의 깊이 변경 함수
+  const rightChangeStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '2';
+    }
+    if (item3) {
+      item3.style.zIndex = '1';
+    }
+  };
+
+  //드래그 이벤트 함수
   const bind = useDrag(
+    //왼쪽 스와이프 시 배너 변경 함수 실행(활성화 안된 경우 되돌리기 한수 실행)
     ({ active, movement: [mx], direction: [xDir], cancel }) => {
+      if (active && xDir < 0) {
+        leftChangeStyles();
+      } else if (active && xDir > 0) {
+        rightChangeStyles();
+      } else resetStyles();
+      // 현재 배너의 인덱스 저장하고 배경색 변경을 위한 배너값 저장
       if (active && Math.abs(mx) > 50) {
         setSelectedItem(prev => {
           const newIndex = (prev + (xDir > 0 ? -1 : 1) + Slides.length) % Slides.length;

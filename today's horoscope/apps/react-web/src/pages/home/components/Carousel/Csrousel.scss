@@ -35,7 +35,7 @@
 }
 .slider-items li.item-3 {
   z-index: 0;
-  transform: translateX(-23%) scale(0.5) translate3d(0, 5%, 0);
+  transform: translateX(-23%) scale(0.3) translate3d(0, 5%, 0);
 }
 .slider-items li.item-2 {
   z-index: 2;
@@ -47,7 +47,7 @@
 }
 .slider-items li {
   transition:
-    transform 0.5s,
+    transform 0.8s,
     opacity 0.5s;
 }
 .item-1 .activeContentDetail {
@@ -55,7 +55,6 @@
   pointer-events: all;
   transition: all 0.3s ease-in-out;
 }
-
 .contentsDetail {
   width: 68px;
   height: 68px;
