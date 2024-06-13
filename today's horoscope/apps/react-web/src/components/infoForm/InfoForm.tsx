@@ -79,7 +79,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
     };
 
     localStorage.setItem('userData', JSON.stringify(inputData));
-    localStorage.removeItem('activeBanner');
+    sessionStorage.removeItem('activeBanner');
     setSubmitModal(!submitModal);
   }
 

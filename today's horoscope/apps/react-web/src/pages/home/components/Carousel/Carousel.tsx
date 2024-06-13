@@ -34,12 +34,12 @@ function Carousel({ setActiveSlide }: swiperProps) {
       } else if (value === 'star') {
         navigate('/detail-star');
       }
-      localStorage.setItem('activeBanner', value);
+      sessionStorage.setItem('activeBanner', value);
     };
   }
 
   useEffect(() => {
-    const activeBanner = localStorage.getItem('activeBanner');
+    const activeBanner = sessionStorage.getItem('activeBanner');
     if (activeBanner !== null) {
       const activeIndex = imgList.indexOf(activeBanner);
       //배경색 변경을 위한 배너값 저장

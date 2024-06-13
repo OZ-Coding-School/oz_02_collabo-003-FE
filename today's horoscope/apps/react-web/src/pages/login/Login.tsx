@@ -7,6 +7,7 @@ function Login() {
   const navigate = useNavigate();
   function moveHome() {
     navigate(-1);
+    sessionStorage.removeItem('activeBanner');
   }
   return (
     <div>
