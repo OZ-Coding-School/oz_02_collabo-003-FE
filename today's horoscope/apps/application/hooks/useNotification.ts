@@ -1,23 +1,33 @@
-import messaging from '@react-native-firebase/messaging';
 import { useEffect } from 'react';
-import { Alert } from 'react-native';
+import messaging from '@react-native-firebase/messaging';
+import * as Notifications from 'expo-notifications';
 
 export default function useNotification() {
   const requestUserPermission = async () => {
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    const settings = await Notifications.requestPermissionsAsync();
+    const enabled = settings.granted || settings.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log('Authorization status:', authStatus);
+      console.log('Authorization status:', settings);
     }
 
     return enabled;
   };
 
+  const setupNotificationHandler = async () => {
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+      }),
+    });
+  };
+
   useEffect(() => {
     (async () => {
+      await setupNotificationHandler();
+
       const permissionGranted = await requestUserPermission();
       if (permissionGranted) {
         const token = await messaging().getToken();
@@ -40,7 +50,14 @@ export default function useNotification() {
       });
 
       const unsubscribe = messaging().onMessage(async remoteMessage => {
-        Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: remoteMessage.notification?.title,
+            body: remoteMessage.notification?.body,
+            data: remoteMessage.data,
+          },
+          trigger: null,
+        });
       });
 
       return () => unsubscribe();
