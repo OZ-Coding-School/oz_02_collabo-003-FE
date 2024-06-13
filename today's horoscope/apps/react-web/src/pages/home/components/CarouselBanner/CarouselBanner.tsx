@@ -12,9 +12,6 @@ interface carouselContents {
   imgitem: string;
   user: string;
 }
-interface objectTypes {
-  luck_msg: string;
-}
 
 const zodiacList: string[] = [
   'monkey',
@@ -51,35 +48,14 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
   });
 
   useEffect(() => {
-    if (userData) {
-      if (
-        !localStorage.getItem('today_msg_data') ||
-        JSON.parse(localStorage.getItem('today_msg_data') as string).luck_date !== userData.today_msg?.luck_date
-      ) {
-        localStorage.setItem('today_msg_data', JSON.stringify(userData.today_msg || {}));
-      }
-    }
-  }, [userData]);
-
-  useEffect(() => {
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
-    //로컬스토리지에 저장되어 있는 오늘의 한마디 불러오기
-    const today = localStorage.getItem('today_msg_data');
-    const todayData: objectTypes = today ? JSON.parse(today) : { luck_msg: '' };
-    let today_msg;
-    if (todayData) {
-      today_msg = todayData.luck_msg;
-    } else {
-      today_msg = '';
-    }
-
     const bannerDefaultText = `나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!`;
     //정보입력을 하지 않았을 경우
     if (localStorage.userData === undefined) {
       if (imgitem === 'today') {
-        setMsg(today_msg);
+        setMsg(userData?.today_msg?.luck_msg);
       } else {
         setMsg(bannerDefaultText);
       }
@@ -115,9 +91,9 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
         setInputItem('aries');
       } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
         setInputItem('taurus');
-      } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
+      } else if ((month === 5 && day >= 21) || (month === 6 && day <= 21)) {
         setInputItem('gemini');
-      } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
+      } else if ((month === 6 && day >= 22) || (month === 7 && day <= 22)) {
         setInputItem('cancer');
       } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
         setInputItem('leo');
@@ -138,9 +114,8 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
       } else setInputItem('default');
       setMsg(userData?.star_msg?.luck_msg);
     } else {
-      //오늘의 한마디 일 경우 오늘의 한마디 기본 이미지에 로철 스토리지에 저장한 오늘의 한마디 출력
       setInputItem('default');
-      setMsg(today_msg);
+      setMsg(userData?.today_msg?.luck_msg);
     }
   }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
 
