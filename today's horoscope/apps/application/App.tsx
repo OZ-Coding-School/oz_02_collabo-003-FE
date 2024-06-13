@@ -1,18 +1,29 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { View, Text } from 'react-native';
 import WebView from 'react-native-webview';
 import useHardwareBack from './hooks/useHardwareBack';
 import useSplash from './hooks/useSplash';
 import useIsConnected from './hooks/useIsConnected';
 import useNotification from './hooks/useNotification';
+import * as Notifications from 'expo-notifications';
+import requestNotificationPermission from './hooks/useRequestNotificationPermission';
 
 const INJECTEDJAVASCRIPT = `const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); `;
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
 
 export default function Native() {
   const webViewRef = useRef<WebView>(null);
   const handleNavigationStateChange = useHardwareBack(webViewRef);
   const handleLoad = useSplash();
   const isConnected = useIsConnected();
+  requestNotificationPermission();
   useNotification();
 
   return (

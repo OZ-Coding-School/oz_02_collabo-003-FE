@@ -28,7 +28,10 @@
         "foregroundImage": "./assets/logo.png",
         "resizeMode": "contain"
       },
-      "package": "com.fullswing.fortune"
+      "package": "com.fullswing.fortune",
+      "notification": {
+        "icon": "./assets/logo.png"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
