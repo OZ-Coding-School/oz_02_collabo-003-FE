@@ -115,9 +115,9 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
         setInputItem('aries');
       } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
         setInputItem('taurus');
-      } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
+      } else if ((month === 5 && day >= 21) || (month === 6 && day <= 21)) {
         setInputItem('gemini');
-      } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
+      } else if ((month === 6 && day >= 22) || (month === 7 && day <= 22)) {
         setInputItem('cancer');
       } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
         setInputItem('leo');
