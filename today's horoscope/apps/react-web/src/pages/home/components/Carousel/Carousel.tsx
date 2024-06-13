@@ -70,7 +70,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   // 현재 배너의 인덱스 저장하고 배경색 변경을 위한 배너값 저장
   const bind = useDrag(
     ({ active, movement: [mx], direction: [xDir], cancel }) => {
-      if (active && Math.abs(mx) > containerRef.current!.clientWidth / 2) {
+      if (active && Math.abs(mx) > 50) {
         setSelectedItem(prev => {
           const newIndex = (prev + (xDir > 0 ? -1 : 1) + Slides.length) % Slides.length;
           if (newIndex < 0) setActiveSlide(imgValue[3]);
