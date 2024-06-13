@@ -1,7 +1,7 @@
 .body {
   margin-top: 402px;
-  margin-bottom: -445px;
-  padding-bottom: 70px;
+  margin-bottom: -430px;
+  padding-bottom: 60px;
 }
 
 // 별자리 써클이미지 위치 및 크기 설정
@@ -26,15 +26,18 @@ h2 {
 // 별자리 이름 위치
 .starName {
   display: flex;
+  font-weight: bold;
   font-size: 16px;
   margin-top: -95px;
   margin-left: 121px;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 // 별자리 날짜 normal로 설정
 .starDay {
   font-weight: normal;
+  font-size: 12px;
+  margin-top: 3px;
   margin-left: 5px;
 }
 
@@ -43,7 +46,7 @@ h2 {
   display: flex;
   font-size: 12px;
   line-height: 16px;
-  margin-top: 0px;
+  margin-top: 4px;
   margin-left: 121px;
   margin-right: 25px;
 }
