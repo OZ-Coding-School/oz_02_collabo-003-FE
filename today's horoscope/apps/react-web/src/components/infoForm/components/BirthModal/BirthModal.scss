@@ -3,6 +3,7 @@
   height: 180px;
   display: flex;
   margin-left: 40px;
+  overflow: hidden;
 }
 .birthModal .swiper-wrapper {
   width: 87px;
@@ -16,6 +17,3 @@
   font-size: 16px;
   line-height: 36px;
 }
-// .birthModal .swiper-slide-active {
-//   background-color: #f7f7f7;
-// }

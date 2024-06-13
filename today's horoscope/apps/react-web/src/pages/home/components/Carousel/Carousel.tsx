@@ -1,13 +1,9 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import swiper from 'swiper';
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import { EffectCoverflow } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDrag } from '@use-gesture/react';
 
 interface swiperProps {
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
@@ -21,6 +17,10 @@ function Carousel({ setActiveSlide }: swiperProps) {
   const [slidesValue, setSlidesValue] = useState<string[]>(Slides);
   const [imgValue, setImgValue] = useState<string[]>(imgList);
   const [userValue, setUserValue] = useState<string[]>(user);
+  const [selectedItem, setSelectedItem] = useState<number>(0);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const navigate = useNavigate();
 
   function moveDetail(value: string) {
@@ -42,6 +42,9 @@ function Carousel({ setActiveSlide }: swiperProps) {
     const activeBanner = localStorage.getItem('activeBanner');
     if (activeBanner !== null) {
       const activeIndex = imgList.indexOf(activeBanner);
+      //배경색 변경을 위한 배너값 저장
+      setActiveSlide(activeBanner);
+      //더보기에서 나온 후 배너 배열 변경
       if (activeIndex !== -1) {
         const preList = Slides.slice(activeIndex);
         const nextList = Slides.slice(0, activeIndex);
@@ -62,66 +65,63 @@ function Carousel({ setActiveSlide }: swiperProps) {
         setSlidesValue(Slides);
       }
     }
-  }, []);
+  }, [setActiveSlide]);
 
-  function handleSlwiper(swiper: swiper) {
-    if (swiper && swiper.slides && swiper.slides.length > 0) {
-      const activeSlide = swiper.slides[swiper.activeIndex];
-      if (activeSlide) {
-        const activeSlideId = activeSlide.id;
-        const activeIdContent = activeSlideId.split('-')[1];
-        setActiveSlide(activeIdContent);
+  // 현재 배너의 인덱스 저장하고 배경색 변경을 위한 배너값 저장
+  const bind = useDrag(
+    ({ active, movement: [mx], direction: [xDir], cancel }) => {
+      if (active && Math.abs(mx) > containerRef.current!.clientWidth / 2) {
+        setSelectedItem(prev => {
+          const newIndex = (prev + (xDir > 0 ? -1 : 1) + Slides.length) % Slides.length;
+          if (newIndex < 0) setActiveSlide(imgValue[3]);
+          else setActiveSlide(imgValue[newIndex]);
+          return newIndex;
+        });
+        cancel();
       }
-    }
-  }
+    },
+    { filterTaps: true },
+  );
 
   return (
-    <div className="swiper-container carousel">
-      <Swiper
-        slidesPerView={2}
-        loop={true}
-        centeredSlides={true}
-        effect={'coverflow'}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 50,
-          depth: 500,
-          modifier: 1,
-          slideShadows: false,
-        }}
-        modules={[EffectCoverflow]}
-        onSlideChange={handleSlwiper}
-        className="swiper-wrapper">
-        {slidesValue.map((SlideContent, index) => (
-          <SwiperSlide id={`slide-${imgValue[index]}`} key={index} className="swiper-slide">
-            <CarouselBanner imgitem={imgValue[index]} user={userValue[index]} title={SlideContent} />
-            <button
-              onClick={moveDetail(imgValue[index])}
-              className={
-                localStorage.userData !== undefined && imgValue[index] === 'today'
-                  ? 'contentsDetail'
-                  : 'contentsDetail activeContentDetail'
-              }>
-              {localStorage.userData === undefined ? (
-                <div>
-                  오늘의 운세
-                  <br />
-                  더보기
-                  <br />
-                </div>
-              ) : (
-                <div>
-                  운세
-                  <br />
-                  더보기
-                  <br />
-                </div>
-              )}
-              <IoIosArrowDown className="detailIcon" size={30} />
-            </button>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="slider-container">
+      <div className="carousel-slider" {...bind()} ref={containerRef} style={{ touchAction: 'none' }}>
+        <ul className="slider-items">
+          {slidesValue.map((SlideContent, index) => {
+            let offset = index - selectedItem;
+            if (offset < 0) offset += Slides.length;
+            return (
+              <li id={`slide-${imgValue[index]}`} key={index} className={`item-${offset + 1}`}>
+                <CarouselBanner imgitem={imgValue[index]} user={userValue[index]} title={SlideContent} />
+                <button
+                  onClick={moveDetail(imgValue[index])}
+                  className={
+                    localStorage.userData !== undefined && imgValue[index] === 'today'
+                      ? 'contentsDetail'
+                      : 'contentsDetail activeContentDetail'
+                  }>
+                  {localStorage.userData === undefined ? (
+                    <div>
+                      오늘의 운세
+                      <br />
+                      더보기
+                      <br />
+                    </div>
+                  ) : (
+                    <div>
+                      운세
+                      <br />
+                      더보기
+                      <br />
+                    </div>
+                  )}
+                  <IoIosArrowDown className="detailIcon" size={30} />
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
