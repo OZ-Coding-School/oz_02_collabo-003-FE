@@ -83,6 +83,9 @@
 .error {
   border: 1px solid #e10000;
 }
+.inputRequired::placeholder {
+  color: #e10000;
+}
 .errorText {
   width: 150px;
   height: 16px;
