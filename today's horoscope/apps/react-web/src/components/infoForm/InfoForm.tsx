@@ -105,6 +105,7 @@ function InfoForm({ alertText, content }: InfoFormProps) {
                 name="name"
                 value={userData.name}
                 placeholder="이름을 입력해 주세요."
+                maxLength={7}
                 required
                 className={
                   koreanValue
