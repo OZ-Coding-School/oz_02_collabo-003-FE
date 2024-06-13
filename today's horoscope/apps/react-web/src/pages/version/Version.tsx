@@ -77,7 +77,7 @@ const Version: React.FC = () => {
       <div className={Styles.pushContents}>
         <label className={Styles.switch}>
           <h1 className={Styles.textTitle}>푸시 알림 설정</h1>
-          <span className={Styles.textSub}>푸시 알림을 켜거나 끌 수 있습니다.</span>
+          <span className={Styles.textSub}>휴대폰 설정에서 푸시 알람을 켜거나 끌 수 있습니다.</span>
         </label>
         {/*<div className={Styles.wrapper}>
           <input
