@@ -1,9 +1,10 @@
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
 import { useNavigate } from 'react-router-dom';
-import { IoIosArrowDown } from 'react-icons/io';
 import { useEffect, useRef, useState } from 'react';
 import { useDrag } from '@use-gesture/react';
+import TodayButton from './components/TodayButton';
+import Button from './components/Button';
 
 interface swiperProps {
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
@@ -143,25 +144,16 @@ function Carousel({ setActiveSlide }: swiperProps) {
                   onClick={moveDetail(imgValue[index])}
                   className={
                     localStorage.userData !== undefined && imgValue[index] === 'today'
-                      ? 'contentsDetail'
+                      ? 'todayContentsDetail activeContentDetail'
                       : 'contentsDetail activeContentDetail'
                   }>
                   {localStorage.userData === undefined ? (
-                    <div>
-                      오늘의 운세
-                      <br />
-                      더보기
-                      <br />
-                    </div>
+                    <Button title="오늘의 운세" />
+                  ) : localStorage.userData !== undefined && imgValue[index] === 'today' ? (
+                    <TodayButton />
                   ) : (
-                    <div>
-                      운세
-                      <br />
-                      더보기
-                      <br />
-                    </div>
+                    <Button title="운세" />
                   )}
-                  <IoIosArrowDown className="detailIcon" size={30} />
                 </button>
               </li>
             );
