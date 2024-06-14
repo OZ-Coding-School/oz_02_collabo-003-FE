@@ -56,7 +56,7 @@ const MbtiFortunes: MbtiFortuneConfig = {
   },
   INTP: {
     luck_date: '목표를 설정하고 계획을 세우는 데에 집중하세요. 당신의 미래가 밝을 거예요.',
-    imageSrc: '/K_img/img_circle_mbti_intj.png',
+    imageSrc: '/K_img/img_circle_mbti_intp.png',
   },
   ESTP: {
     luck_date: '대담한 시도를 해보세요. 새로운 경험이 당신을 기다리고 있어요!',

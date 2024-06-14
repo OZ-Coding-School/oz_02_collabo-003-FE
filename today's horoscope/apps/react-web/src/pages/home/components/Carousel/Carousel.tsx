@@ -1,9 +1,10 @@
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
 import { useNavigate } from 'react-router-dom';
-import { IoIosArrowDown } from 'react-icons/io';
 import { useEffect, useRef, useState } from 'react';
 import { useDrag } from '@use-gesture/react';
+import TodayButton from './components/TodayButton';
+import Button from './components/Button';
 
 interface swiperProps {
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
@@ -18,7 +19,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   const [imgValue, setImgValue] = useState<string[]>(imgList);
   const [userValue, setUserValue] = useState<string[]>(user);
   const [selectedItem, setSelectedItem] = useState<number>(0);
-
+  const [styleValue, setStyleValue] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
@@ -65,12 +66,59 @@ function Carousel({ setActiveSlide }: swiperProps) {
         setSlidesValue(Slides);
       }
     }
+    setStyleValue(true);
   }, [setActiveSlide]);
 
-  // 현재 배너의 인덱스 저장하고 배경색 변경을 위한 배너값 저장
+  //왼쪽 스와이프 시 배너의 깊이 변경 함수
+  const leftChangeStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '2';
+    }
+    if (item3) {
+      item3.style.zIndex = '1';
+    }
+  };
+
+  //원상태로 되돌리기 함수
+  const resetStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '3';
+    }
+    if (item3) {
+      item3.style.zIndex = '0';
+    }
+  };
+
+  //오른쪽 스와이프 시 배너의 깊이 변경 함수
+  const rightChangeStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '2';
+    }
+    if (item3) {
+      item3.style.zIndex = '1';
+    }
+  };
+
+  //드래그 이벤트 함수
   const bind = useDrag(
+    //왼쪽 스와이프 시 배너 변경 함수 실행(활성화 안된 경우 되돌리기 한수 실행)
     ({ active, movement: [mx], direction: [xDir], cancel }) => {
-      if (active && Math.abs(mx) > containerRef.current!.clientWidth / 2) {
+      if (active && xDir < 0) {
+        leftChangeStyles();
+      } else if (active && xDir > 0) {
+        rightChangeStyles();
+      } else resetStyles();
+      // 현재 배너의 인덱스 저장하고 배경색 변경을 위한 배너값 저장
+      if (active && Math.abs(mx) > 50) {
         setSelectedItem(prev => {
           const newIndex = (prev + (xDir > 0 ? -1 : 1) + Slides.length) % Slides.length;
           if (newIndex < 0) setActiveSlide(imgValue[3]);
@@ -93,30 +141,17 @@ function Carousel({ setActiveSlide }: swiperProps) {
             return (
               <li id={`slide-${imgValue[index]}`} key={index} className={`item-${offset + 1}`}>
                 <CarouselBanner imgitem={imgValue[index]} user={userValue[index]} title={SlideContent} />
-                <button
-                  onClick={moveDetail(imgValue[index])}
-                  className={
-                    localStorage.userData !== undefined && imgValue[index] === 'today'
-                      ? 'contentsDetail'
-                      : 'contentsDetail activeContentDetail'
-                  }>
-                  {localStorage.userData === undefined ? (
-                    <div>
-                      오늘의 운세
-                      <br />
-                      더보기
-                      <br />
-                    </div>
-                  ) : (
-                    <div>
-                      운세
-                      <br />
-                      더보기
-                      <br />
-                    </div>
-                  )}
-                  <IoIosArrowDown className="detailIcon" size={30} />
-                </button>
+                {localStorage.userData !== undefined && imgValue[index] === 'today' ? (
+                  <button className={styleValue ? 'todayContentsDetail activeContentDetail' : 'todayContentsDetail'}>
+                    <TodayButton />
+                  </button>
+                ) : (
+                  <button
+                    onClick={moveDetail(imgValue[index])}
+                    className={styleValue ? 'contentsDetail activeContentDetail' : 'contentsDetail'}>
+                    {localStorage.userData === undefined ? <Button title="오늘의 운세" /> : <Button title="운세" />}
+                  </button>
+                )}
               </li>
             );
           })}
