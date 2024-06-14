@@ -19,7 +19,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   const [imgValue, setImgValue] = useState<string[]>(imgList);
   const [userValue, setUserValue] = useState<string[]>(user);
   const [selectedItem, setSelectedItem] = useState<number>(0);
-
+  const [styleValue, setStyleValue] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
@@ -66,6 +66,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
         setSlidesValue(Slides);
       }
     }
+    setStyleValue(true);
   }, [setActiveSlide]);
 
   //왼쪽 스와이프 시 배너의 깊이 변경 함수
@@ -140,21 +141,17 @@ function Carousel({ setActiveSlide }: swiperProps) {
             return (
               <li id={`slide-${imgValue[index]}`} key={index} className={`item-${offset + 1}`}>
                 <CarouselBanner imgitem={imgValue[index]} user={userValue[index]} title={SlideContent} />
-                <button
-                  onClick={moveDetail(imgValue[index])}
-                  className={
-                    localStorage.userData !== undefined && imgValue[index] === 'today'
-                      ? 'todayContentsDetail activeContentDetail'
-                      : 'contentsDetail activeContentDetail'
-                  }>
-                  {localStorage.userData === undefined ? (
-                    <Button title="오늘의 운세" />
-                  ) : localStorage.userData !== undefined && imgValue[index] === 'today' ? (
+                {localStorage.userData !== undefined && imgValue[index] === 'today' ? (
+                  <button className={styleValue ? 'todayContentsDetail activeContentDetail' : 'todayContentsDetail'}>
                     <TodayButton />
-                  ) : (
-                    <Button title="운세" />
-                  )}
-                </button>
+                  </button>
+                ) : (
+                  <button
+                    onClick={moveDetail(imgValue[index])}
+                    className={styleValue ? 'contentsDetail activeContentDetail' : 'contentsDetail'}>
+                    {localStorage.userData === undefined ? <Button title="오늘의 운세" /> : <Button title="운세" />}
+                  </button>
+                )}
               </li>
             );
           })}
