@@ -2,20 +2,13 @@
   display: grid;
   grid-template-rows: 100px auto 57px;
   margin-top: 300px;
-  margin-bottom: -425px;
+  margin-bottom: -422px;
 }
-.grid-item-1 {
-  /* 첫 번째 행 */
-}
-
-.grid-item-2 {
-  /* 두 번째 행 */
-}
-
 .grid-item-3 {
   /* 세 번째 행 */
   padding-bottom: 0px;
 }
+
 // 별자리 써클이미지 위치 및 크기 설정
 .starImage {
   display: flex;
