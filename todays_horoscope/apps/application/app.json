@@ -17,7 +17,8 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.fullswing.fortune"
+      "bundleIdentifier": "com.fullswing.fortune",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "name": "오늘의 운세",

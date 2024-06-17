@@ -25,6 +25,11 @@ export default function useNotification() {
   };
 
   useEffect(() => {
+    const clearAllNotifications = async () => {
+      await Notifications.dismissAllNotificationsAsync();
+      console.log('All notifications dismissed');
+    };
+
     (async () => {
       await setupNotificationHandler();
 
@@ -35,6 +40,8 @@ export default function useNotification() {
       } else {
         console.log('Permission not granted');
       }
+
+      await clearAllNotifications();
 
       const initialNotification = await messaging().getInitialNotification();
       if (initialNotification) {
