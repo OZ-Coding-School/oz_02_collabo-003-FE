@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import messaging from '@react-native-firebase/messaging';
 import * as Notifications from 'expo-notifications';
+import { Platform } from 'react-native';
 
 export default function useNotification() {
   const requestUserPermission = async () => {
@@ -37,6 +38,19 @@ export default function useNotification() {
       if (permissionGranted) {
         const token = await messaging().getToken();
         console.log(token);
+
+        const res = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/push/token/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            token: token,
+            device_os: Platform.OS,
+          }),
+        });
+        const data = await res.json();
+        console.log('data:', data);
       } else {
         console.log('Permission not granted');
       }
