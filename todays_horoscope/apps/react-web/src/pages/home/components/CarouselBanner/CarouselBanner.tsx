@@ -35,6 +35,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
   });
   const [msg, setMsg] = useState<string>('');
   const [inputItem, setInputItem] = useState<string>('');
+  // const [todayData, setTodayData] = useState<objectTypes>();
 
   const storedData = localStorage.getItem('userData');
   const objectStoredData = JSON.parse(storedData as string);
@@ -50,41 +51,36 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
     if (storedData) {
       setInputData(JSON.parse(storedData));
     }
-    const bannerDefaultText = `나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!
-`;
+    const bannerDefaultText = `나만의 ${title}를\n보고 싶다면\n${user}을 설정 해 주세요!`;
+    //정보입력을 하지 않았을 경우
     if (localStorage.userData === undefined) {
       if (imgitem === 'today') {
-        if (localStorage.todays !== undefined) {
-          const storedData = localStorage.getItem('todays');
-          const objectStoredData = JSON.parse(storedData as string);
-          setMsg(objectStoredData);
-        } else {
-          setMsg(userData?.today_msg?.luck_msg);
-        }
+        setMsg(userData?.today_msg?.luck_msg);
       } else {
         setMsg(bannerDefaultText);
       }
       setInputItem('default');
-    }
-
-    if (localStorage.userData === undefined && imgitem !== 'today') {
-      setMsg(bannerDefaultText);
     } else if (imgitem === 'mbti') {
+      //mbti일 경우
       if (inputData.mbti === 'MBTI모름') {
+        //mbti 모름 설정 시 기본 이미지와 멘트 출력
         setInputItem('default');
         setMsg(bannerDefaultText);
       } else {
+        //유저의 mbti 정보에 관한 이미지와 운세 출력
         const mbti = inputData.mbti;
         setInputItem(mbti.toLowerCase());
         setMsg(userData?.mbti_msg?.luck_msg);
       }
     } else if (imgitem === 'zodiac') {
+      //띠일 경우 유저의 띠 정보에 관한 이미지와 운세 출력
       const birthData = inputData.birth;
       const birthYear = birthData.split('-')[0];
       const zodiacIndex = parseInt(birthYear) % 12;
       setInputItem(zodiacList[zodiacIndex]);
       setMsg(userData?.zodiac_msg?.luck_msg);
     } else if (imgitem === 'star') {
+      //별자리일 경우 유저의 별자리 정보에 관한 이미지와 운세 출력
       const birthData = inputData.birth;
       const birthMonth = birthData.split('-')[1];
       const month = parseInt(birthMonth);
@@ -95,9 +91,9 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
         setInputItem('aries');
       } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
         setInputItem('taurus');
-      } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
+      } else if ((month === 5 && day >= 21) || (month === 6 && day <= 21)) {
         setInputItem('gemini');
-      } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
+      } else if ((month === 6 && day >= 22) || (month === 7 && day <= 22)) {
         setInputItem('cancer');
       } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
         setInputItem('leo');
@@ -119,13 +115,7 @@ function CarouselBanner({ title, imgitem, user }: carouselContents) {
       setMsg(userData?.star_msg?.luck_msg);
     } else {
       setInputItem('default');
-      if (localStorage.todays !== undefined) {
-        const storedData = localStorage.getItem('todays');
-        const objectStoredData = JSON.parse(storedData as string);
-        setMsg(objectStoredData);
-      } else {
-        setMsg(userData?.today_msg?.luck_msg);
-      }
+      setMsg(userData?.today_msg?.luck_msg);
     }
   }, [imgitem, inputData.birth, inputData.mbti, storedData, userData, title, user]);
 

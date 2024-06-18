@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Share from '../../components/kakao/Kakao';
+// import Share from '../../components/kakao/Kakao';
 import Date from '../../components/date/Date';
 import Text from '../../components/textbox/mbti/MbtiText';
 
@@ -38,7 +38,7 @@ const Fortune: React.FC = () => {
         <div className={Styles.headicon}>
           <IoChevronBack onClick={MoveHome} className={Styles.Back} />
           <img src="/K_img/K-logo-icon/text_logo_b.png" alt="로고" className={Styles.LogoImg} />
-          <Share />
+          {/* <Share />*/}
         </div>
         <div className={`${isScrolled ? Styles.hidden : ''}`}>
           <img src="/K_img/island/img_island_mbti_default.png" alt="main" className={Styles.MbtiMainImg} />

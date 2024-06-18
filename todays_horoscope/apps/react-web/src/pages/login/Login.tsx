@@ -6,7 +6,8 @@ import { IoChevronBack } from 'react-icons/io5';
 function Login() {
   const navigate = useNavigate();
   function moveHome() {
-    navigate('/');
+    navigate(-1);
+    sessionStorage.removeItem('activeBanner');
   }
   return (
     <div>

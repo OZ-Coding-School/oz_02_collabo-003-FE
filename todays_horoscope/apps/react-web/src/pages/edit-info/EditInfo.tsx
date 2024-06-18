@@ -6,8 +6,8 @@ import { IoChevronBack } from 'react-icons/io5';
 function EditInfo() {
   const navigate = useNavigate();
   function moveHome() {
-    navigate('/');
-    localStorage.removeItem('activeBanner');
+    navigate(-1);
+    sessionStorage.removeItem('activeBanner');
   }
   return (
     <div>

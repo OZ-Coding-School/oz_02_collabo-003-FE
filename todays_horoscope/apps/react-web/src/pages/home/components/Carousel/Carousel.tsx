@@ -1,13 +1,10 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import swiper from 'swiper';
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
 import './Csrousel.scss';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import { EffectCoverflow } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
-import { IoIosArrowDown } from 'react-icons/io';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDrag } from '@use-gesture/react';
+import TodayButton from './components/TodayButton';
+import Button from './components/Button';
 
 interface swiperProps {
   setActiveSlide: React.Dispatch<React.SetStateAction<string>>;
@@ -21,6 +18,10 @@ function Carousel({ setActiveSlide }: swiperProps) {
   const [slidesValue, setSlidesValue] = useState<string[]>(Slides);
   const [imgValue, setImgValue] = useState<string[]>(imgList);
   const [userValue, setUserValue] = useState<string[]>(user);
+  const [selectedItem, setSelectedItem] = useState<number>(0);
+  const [styleValue, setStyleValue] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const navigate = useNavigate();
 
   function moveDetail(value: string) {
@@ -34,14 +35,17 @@ function Carousel({ setActiveSlide }: swiperProps) {
       } else if (value === 'star') {
         navigate('/detail-star');
       }
-      localStorage.setItem('activeBanner', value);
+      sessionStorage.setItem('activeBanner', value);
     };
   }
 
   useEffect(() => {
-    const activeBanner = localStorage.getItem('activeBanner');
+    const activeBanner = sessionStorage.getItem('activeBanner');
     if (activeBanner !== null) {
       const activeIndex = imgList.indexOf(activeBanner);
+      //배경색 변경을 위한 배너값 저장
+      setActiveSlide(activeBanner);
+      //더보기에서 나온 후 배너 배열 변경
       if (activeIndex !== -1) {
         const preList = Slides.slice(activeIndex);
         const nextList = Slides.slice(0, activeIndex);
@@ -62,66 +66,97 @@ function Carousel({ setActiveSlide }: swiperProps) {
         setSlidesValue(Slides);
       }
     }
-  }, []);
+    setStyleValue(true);
+  }, [setActiveSlide]);
 
-  function handleSlwiper(swiper: swiper) {
-    if (swiper && swiper.slides && swiper.slides.length > 0) {
-      const activeSlide = swiper.slides[swiper.activeIndex];
-      if (activeSlide) {
-        const activeSlideId = activeSlide.id;
-        const activeIdContent = activeSlideId.split('-')[1];
-        setActiveSlide(activeIdContent);
-      }
+  //왼쪽 스와이프 시 배너의 깊이 변경 함수
+  const leftChangeStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '2';
     }
-  }
+    if (item3) {
+      item3.style.zIndex = '1';
+    }
+  };
+
+  //원상태로 되돌리기 함수
+  const resetStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '3';
+    }
+    if (item3) {
+      item3.style.zIndex = '0';
+    }
+  };
+
+  //오른쪽 스와이프 시 배너의 깊이 변경 함수
+  const rightChangeStyles = () => {
+    const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item3 = document.querySelector('.item-3') as HTMLElement;
+
+    if (item1) {
+      item1.style.zIndex = '2';
+    }
+    if (item3) {
+      item3.style.zIndex = '1';
+    }
+  };
+
+  //드래그 이벤트 함수
+  const bind = useDrag(
+    //왼쪽 스와이프 시 배너 변경 함수 실행(활성화 안된 경우 되돌리기 한수 실행)
+    ({ active, movement: [mx], direction: [xDir], cancel }) => {
+      if (active && xDir < 0) {
+        leftChangeStyles();
+      } else if (active && xDir > 0) {
+        rightChangeStyles();
+      } else resetStyles();
+      // 현재 배너의 인덱스 저장하고 배경색 변경을 위한 배너값 저장
+      if (active && Math.abs(mx) > 50) {
+        setSelectedItem(prev => {
+          const newIndex = (prev + (xDir > 0 ? -1 : 1) + Slides.length) % Slides.length;
+          if (newIndex < 0) setActiveSlide(imgValue[3]);
+          else setTimeout(() => setActiveSlide(imgValue[newIndex]), 0);
+          return newIndex;
+        });
+        cancel();
+      }
+    },
+    { filterTaps: true },
+  );
 
   return (
-    <div className="swiper-container carousel">
-      <Swiper
-        slidesPerView={2}
-        loop={true}
-        centeredSlides={true}
-        effect={'coverflow'}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 50,
-          depth: 500,
-          modifier: 1,
-          slideShadows: false,
-        }}
-        modules={[EffectCoverflow]}
-        onSlideChange={handleSlwiper}
-        className="swiper-wrapper">
-        {slidesValue.map((SlideContent, index) => (
-          <SwiperSlide id={`slide-${imgValue[index]}`} key={index} className="swiper-slide">
-            <CarouselBanner imgitem={imgValue[index]} user={userValue[index]} title={SlideContent} />
-            <button
-              onClick={moveDetail(imgValue[index])}
-              className={
-                localStorage.userData !== undefined && imgValue[index] === 'today'
-                  ? 'contentsDetail'
-                  : 'contentsDetail activeContentDetail'
-              }>
-              {localStorage.userData === undefined ? (
-                <div>
-                  오늘의 운세
-                  <br />
-                  더보기
-                  <br />
-                </div>
-              ) : (
-                <div>
-                  운세
-                  <br />
-                  더보기
-                  <br />
-                </div>
-              )}
-              <IoIosArrowDown className="detailIcon" size={30} />
-            </button>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="slider-container">
+      <div className="carousel-slider" {...bind()} ref={containerRef} style={{ touchAction: 'none' }}>
+        <ul className="slider-items">
+          {slidesValue.map((SlideContent, index) => {
+            let offset = index - selectedItem;
+            if (offset < 0) offset += Slides.length;
+            return (
+              <li id={`slide-${imgValue[index]}`} key={index} className={`item-${offset + 1}`}>
+                <CarouselBanner imgitem={imgValue[index]} user={userValue[index]} title={SlideContent} />
+                {localStorage.userData !== undefined && imgValue[index] === 'today' ? (
+                  <button className={styleValue ? 'todayContentsDetail activeContentDetail' : 'todayContentsDetail'}>
+                    <TodayButton />
+                  </button>
+                ) : (
+                  <button
+                    onClick={moveDetail(imgValue[index])}
+                    className={styleValue ? 'contentsDetail activeContentDetail' : 'contentsDetail'}>
+                    {localStorage.userData === undefined ? <Button title="오늘의 운세" /> : <Button title="운세" />}
+                  </button>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

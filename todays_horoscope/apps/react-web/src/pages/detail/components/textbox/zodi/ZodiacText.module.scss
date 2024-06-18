@@ -3,7 +3,7 @@
 }
 
 .head {
-  background: linear-gradient(180deg, #ffd9ebda 0%, #fbd8efcb 100%);
+  background: linear-gradient(180deg, #8cbaff 0%, #d2fcf9 100%);
   width: 100%;
   height: 80px;
   margin: auto;
@@ -64,11 +64,11 @@
 }
 
 .title {
-  padding-top: 208px;
+  padding-top: 200px;
   padding-left: 24px;
   text-align: left;
   font-size: 25px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .headtitle {
@@ -90,7 +90,7 @@
   position: fixed;
   display: inline-flex;
   flex-direction: column;
-  margin-top: 112px;
+  margin-top: 110px;
   width: 80px;
   height: 80px;
 }
@@ -116,6 +116,7 @@
 
 .point .fortune {
   margin-top: 8px;
-  margin-bottom: -232px;
+  margin-bottom: -260px;
+  padding-bottom: -80px;
   font-size: 12px;
 }
