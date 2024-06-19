@@ -1,0 +1,47 @@
+.body {
+  display: grid;
+  grid-template-rows: 100px auto 57px;
+  margin-top: 300px;
+  margin-bottom: -412px;
+  padding-bottom: 50px;
+}
+.grid-item-3 {
+  /* 세 번째 행 */
+  padding-bottom: 0px;
+}
+
+.mbtiImage {
+  display: flex;
+  flex-direction: column;
+  margin-top: 102px;
+  margin-left: 25px;
+  margin-bottom: 24px;
+  width: 80px;
+  height: 80px;
+}
+
+.mbtiName {
+  display: flex;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: 121px;
+  margin-bottom: 0;
+}
+
+.mbtiTMI {
+  display: flex;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 4px;
+  margin-left: 121px;
+  margin-right: 25px;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
