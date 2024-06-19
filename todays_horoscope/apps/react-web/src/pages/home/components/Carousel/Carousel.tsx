@@ -127,6 +127,9 @@ function Carousel({ setActiveSlide }: swiperProps) {
         });
         cancel();
       }
+      //첫스와이프 기록 남기기
+      if (localStorage.userData !== undefined && localStorage.todayMessage === undefined)
+        localStorage.setItem('todayMessage', 'true');
     },
     { filterTaps: true },
   );
@@ -142,7 +145,12 @@ function Carousel({ setActiveSlide }: swiperProps) {
               <li id={`slide-${imgValue[index]}`} key={index} className={`item-${offset + 1}`}>
                 <CarouselBanner imgitem={imgValue[index]} user={userValue[index]} title={SlideContent} />
                 {localStorage.userData !== undefined && imgValue[index] === 'today' ? (
-                  <button className={styleValue ? 'todayContentsDetail activeContentDetail' : 'todayContentsDetail'}>
+                  <button
+                    className={
+                      localStorage.todayMessage === undefined
+                        ? 'todayContentsDetail activeContentDetail'
+                        : 'todayContentsDetail'
+                    }>
                     <TodayButton />
                   </button>
                 ) : (
