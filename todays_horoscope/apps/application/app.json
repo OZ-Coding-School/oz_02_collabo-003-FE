@@ -17,7 +17,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.fullswing.fortune",
+      "bundleIdentifier": "com.exodus.fortune",
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
@@ -29,7 +29,7 @@
         "foregroundImage": "./assets/logo.png",
         "resizeMode": "contain"
       },
-      "package": "com.fullswing.fortune",
+      "package": "com.exodus.fortune",
       "notification": {
         "icon": "./assets/logo.png"
       }
