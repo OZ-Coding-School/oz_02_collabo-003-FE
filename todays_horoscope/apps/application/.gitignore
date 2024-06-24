@@ -12,7 +12,8 @@ web-build/
 .env
 .env*
 google-services.json
-k-luck-firebase-adminsdk-j6k5p-2ce2c0911a.json
+GoogleService-Info.plist
+k-luck-firebase-adminsdk-j6k5p-bfdbed34a0.json
 
 # macOS
 .DS_Store

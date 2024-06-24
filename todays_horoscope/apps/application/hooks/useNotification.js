@@ -39,6 +39,7 @@ export default function useNotification() {
         const token = await messaging().getToken();
         console.log(token);
 
+        // 아래의 환경변수가 앱 빌드시 로드되지 않는 이슈가 있습니다. 앱 빌드 시에는 환경변수 대신에 실제 서버 주소를 넣어서 빌드해주세요!
         const res = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/push/token/`, {
           method: 'POST',
           headers: {
