@@ -6,7 +6,7 @@
     "build": "turbo run build",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
-    "postinstall": "npm install rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs"
+    "postinstall": "npm install rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs esbuild"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.2",
