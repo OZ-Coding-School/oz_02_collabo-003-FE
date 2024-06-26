@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "todays_horoscope",
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
