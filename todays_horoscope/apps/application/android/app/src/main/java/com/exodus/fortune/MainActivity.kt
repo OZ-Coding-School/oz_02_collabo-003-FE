@@ -1,4 +1,4 @@
-package com.fullswing.fortune
+package com.exodus.fortune
 
 import android.os.Build
 import android.os.Bundle

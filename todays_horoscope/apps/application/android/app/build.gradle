@@ -83,9 +83,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.fullswing.fortune'
+    namespace 'com.exodus.fortune'
     defaultConfig {
-        applicationId 'com.fullswing.fortune'
+        applicationId 'com.exodus.fortune'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
