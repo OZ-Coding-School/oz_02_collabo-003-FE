@@ -1,4 +1,4 @@
-package com.fullswing.fortune
+package com.exodus.fortune
 
 import android.app.Application
 import android.content.res.Configuration
