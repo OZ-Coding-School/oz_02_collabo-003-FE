@@ -70,7 +70,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   }, [setActiveSlide]);
 
   //왼쪽 스와이프 시 배너의 깊이 변경 함수
-  const leftChangeStyles = () => {
+  function leftChangeStyles() {
     const item1 = document.querySelector('.item-1') as HTMLElement;
     const item3 = document.querySelector('.item-3') as HTMLElement;
 
@@ -83,7 +83,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   };
 
   //원상태로 되돌리기 함수
-  const resetStyles = () => {
+  function resetStyles() {
     const item1 = document.querySelector('.item-1') as HTMLElement;
     const item3 = document.querySelector('.item-3') as HTMLElement;
 
@@ -96,7 +96,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   };
 
   //오른쪽 스와이프 시 배너의 깊이 변경 함수
-  const rightChangeStyles = () => {
+  function rightChangeStyles() {
     const item1 = document.querySelector('.item-1') as HTMLElement;
     const item3 = document.querySelector('.item-3') as HTMLElement;
 
