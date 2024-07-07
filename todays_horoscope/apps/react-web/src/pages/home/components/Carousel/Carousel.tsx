@@ -20,6 +20,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   const [userValue, setUserValue] = useState<string[]>(user);
   const [selectedItem, setSelectedItem] = useState<number>(0);
   const [styleValue, setStyleValue] = useState<boolean>(false);
+  const [isThrottled, setIsThrottled] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
@@ -66,6 +67,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
         setSlidesValue(Slides);
       }
     }
+    
     setStyleValue(true);
   }, [setActiveSlide]);
 
@@ -108,15 +110,18 @@ function Carousel({ setActiveSlide }: swiperProps) {
     }
   };
 
+
   //드래그 이벤트 함수
   const bind = useDrag(
-    //왼쪽 스와이프 시 배너 변경 함수 실행(활성화 안된 경우 되돌리기 한수 실행)
-    ({ active, movement: [mx], direction: [xDir], cancel }) => {
+    ({ active, movement: [mx], direction: [xDir], cancel }: any) => {
       if (active && xDir < 0) {
         leftChangeStyles();
       } else if (active && xDir > 0) {
         rightChangeStyles();
       } else resetStyles();
+
+      if (isThrottled) return;
+
       // 현재 배너의 인덱스 저장하고 배경색 변경을 위한 배너값 저장
       if (active && Math.abs(mx) > 50) {
         setSelectedItem(prev => {
@@ -124,15 +129,20 @@ function Carousel({ setActiveSlide }: swiperProps) {
           if (newIndex < 0) setActiveSlide(imgValue[3]);
           else setTimeout(() => setActiveSlide(imgValue[newIndex]), 0);
           return newIndex;
-        });
+        })
         cancel();
+        setIsThrottled(true);
+
+        // 0.5초 후에 다시 활성화
+        setTimeout(() => {
+          setIsThrottled(false);
+        }, 500);
       }
       //첫스와이프 기록 남기기
       if (localStorage.userData !== undefined && localStorage.todayMessage === undefined)
         localStorage.setItem('todayMessage', 'true');
-    },
-    { filterTaps: true },
-  );
+    }, { filterTaps: true });
+
 
   return (
     <div className="slider-container">
