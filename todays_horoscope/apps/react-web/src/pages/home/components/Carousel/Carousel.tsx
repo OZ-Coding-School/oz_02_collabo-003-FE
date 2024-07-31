@@ -21,6 +21,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
   const [selectedItem, setSelectedItem] = useState<number>(0);
   const [styleValue, setStyleValue] = useState<boolean>(false);
   const [isThrottled, setIsThrottled] = useState<boolean>(false);
+  const [drag, setDrag] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
@@ -71,42 +72,46 @@ function Carousel({ setActiveSlide }: swiperProps) {
     setStyleValue(true);
   }, [setActiveSlide]);
 
-  //왼쪽 스와이프 시 배너의 깊이 변경 함수
-  function leftChangeStyles() {
+
+  //왼쪽으로 드래그 후 z-index 값 변경 함수
+  function leftStyles() {
     const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item2 = document.querySelector('.item-2') as HTMLElement;
     const item3 = document.querySelector('.item-3') as HTMLElement;
-
-    if (item1) {
-      item1.style.zIndex = '2';
-    }
-    if (item3) {
-      item3.style.zIndex = '1';
-    }
-  };
-
-  //원상태로 되돌리기 함수
-  function resetStyles() {
-    const item1 = document.querySelector('.item-1') as HTMLElement;
-    const item3 = document.querySelector('.item-3') as HTMLElement;
-
+    const item4 = document.querySelector('.item-4') as HTMLElement;
+  
     if (item1) {
       item1.style.zIndex = '3';
+    }
+    if (item2) {
+      item2.style.zIndex = '1';
     }
     if (item3) {
       item3.style.zIndex = '0';
     }
+    if (item4) {
+      item4.style.zIndex = '2';
+    }
   };
 
-  //오른쪽 스와이프 시 배너의 깊이 변경 함수
-  function rightChangeStyles() {
+  //오른쪽으로 드래그 후 z-index 값 변경 함수
+  function rightStyles() {
     const item1 = document.querySelector('.item-1') as HTMLElement;
+    const item2 = document.querySelector('.item-2') as HTMLElement;
     const item3 = document.querySelector('.item-3') as HTMLElement;
-
+    const item4 = document.querySelector('.item-4') as HTMLElement;
+  
     if (item1) {
-      item1.style.zIndex = '2';
+      item1.style.zIndex = '3';
+    }
+    if (item2) {
+      item2.style.zIndex = '2';
     }
     if (item3) {
-      item3.style.zIndex = '1';
+      item3.style.zIndex = '0';
+    }
+    if (item4) {
+      item4.style.zIndex = '1';
     }
   };
 
@@ -114,11 +119,12 @@ function Carousel({ setActiveSlide }: swiperProps) {
   //드래그 이벤트 함수
   const bind = useDrag(
     ({ active, movement: [mx], direction: [xDir], cancel }: any) => {
-      if (active && xDir < 0) {
-        leftChangeStyles();
-      } else if (active && xDir > 0) {
-        rightChangeStyles();
-      } else resetStyles();
+      if (active) {
+        setDrag(xDir);
+        console.log('left')
+      } else {
+        if(drag < 0) leftStyles();
+        else rightStyles(); console.log('none')}
 
       if (isThrottled) return;
 
