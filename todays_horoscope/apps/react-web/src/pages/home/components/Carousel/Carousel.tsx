@@ -119,11 +119,15 @@ function Carousel({ setActiveSlide }: swiperProps) {
   //드래그 이벤트 함수
   const bind = useDrag(
     ({ active, movement: [mx], direction: [xDir], cancel }: any) => {
-      if (active) {
+      if (active && xDir < 0) {
+        leftStyles()
+        setDrag(xDir);
+      }else if (active && xDir > 0) {
+        rightStyles()
         setDrag(xDir);
       } else {
         if(drag < 0) leftStyles();
-        else rightStyles();
+        else if (drag > 0) rightStyles();
       }
 
       if (isThrottled) return;
