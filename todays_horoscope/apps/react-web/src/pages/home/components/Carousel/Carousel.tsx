@@ -121,10 +121,10 @@ function Carousel({ setActiveSlide }: swiperProps) {
     ({ active, movement: [mx], direction: [xDir], cancel }: any) => {
       if (active) {
         setDrag(xDir);
-        console.log('left')
       } else {
         if(drag < 0) leftStyles();
-        else rightStyles(); console.log('none')}
+        else rightStyles();
+      }
 
       if (isThrottled) return;
 
