@@ -115,15 +115,18 @@ function Carousel({ setActiveSlide }: swiperProps) {
     }
   };
 
+  useEffect(() => {
+    if (drag < 0) {
+      leftStyles();
+    } else if (drag > 0) {
+      rightStyles();
+    }
+  }, [drag]);
 
   //드래그 이벤트 함수
   const bind = useDrag(
     ({ active, movement: [mx], direction: [xDir], cancel }: any) => {
-      if (active && xDir < 0) {
-        leftStyles()
-        setDrag(xDir);
-      }else if (active && xDir > 0) {
-        rightStyles()
+      if (active) {
         setDrag(xDir);
       } else {
         if(drag < 0) leftStyles();
@@ -151,12 +154,12 @@ function Carousel({ setActiveSlide }: swiperProps) {
       //첫스와이프 기록 남기기
       if (localStorage.userData !== undefined && localStorage.todayMessage === undefined)
         localStorage.setItem('todayMessage', 'true');
-    }, { filterTaps: true });
+    }, { filterTaps: true, pointer: { touch: true }});
 
 
   return (
     <div className="slider-container">
-      <div className="carousel-slider" {...bind()} ref={containerRef} style={{ touchAction: 'none' }}>
+      <div className="carousel-slider" {...bind()} ref={containerRef}>
         <ul className="slider-items">
           {slidesValue.map((SlideContent, index) => {
             let offset = index - selectedItem;
