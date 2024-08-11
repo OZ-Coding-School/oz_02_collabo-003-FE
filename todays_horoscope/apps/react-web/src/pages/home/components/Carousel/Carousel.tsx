@@ -147,12 +147,12 @@ function Carousel({ setActiveSlide }: swiperProps) {
       //첫스와이프 기록 남기기
       if (localStorage.userData !== undefined && localStorage.todayMessage === undefined)
         localStorage.setItem('todayMessage', 'true');
-    }, { filterTaps: true, pointer: { touch: true }});
+    }, { filterTaps: true});
 
 
   return (
     <div className="slider-container">
-      <div className="carousel-slider" {...bind()} ref={containerRef}>
+      <div className="carousel-slider" {...bind()} ref={containerRef} style={{ touchAction: 'none' }}>
         <ul className="slider-items">
           {slidesValue.map((SlideContent, index) => {
             let offset = index - selectedItem;
