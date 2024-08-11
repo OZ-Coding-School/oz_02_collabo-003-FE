@@ -80,17 +80,11 @@ function Carousel({ setActiveSlide }: swiperProps) {
     const item3 = document.querySelector('.item-3') as HTMLElement;
     const item4 = document.querySelector('.item-4') as HTMLElement;
   
-    if (item1) {
-      item1.style.zIndex = '3';
-    }
-    if (item2) {
-      item2.style.zIndex = '1';
-    }
-    if (item3) {
-      item3.style.zIndex = '0';
-    }
-    if (item4) {
-      item4.style.zIndex = '2';
+    if (item1 && item2 && item3 && item4){
+      item1.style.cssText += 'z-index: 3;';
+      item2.style.cssText += 'z-index: 1;';
+      item3.style.cssText += 'z-index: 0;';
+      item4.style.cssText += 'z-index: 2;';
     }
   };
 
@@ -101,17 +95,11 @@ function Carousel({ setActiveSlide }: swiperProps) {
     const item3 = document.querySelector('.item-3') as HTMLElement;
     const item4 = document.querySelector('.item-4') as HTMLElement;
   
-    if (item1) {
-      item1.style.zIndex = '3';
-    }
-    if (item2) {
-      item2.style.zIndex = '2';
-    }
-    if (item3) {
-      item3.style.zIndex = '0';
-    }
-    if (item4) {
-      item4.style.zIndex = '1';
+    if (item1 && item2 && item3 && item4){
+      item1.style.cssText += 'z-index: 3;';
+      item2.style.cssText += 'z-index: 2;';
+      item3.style.cssText += 'z-index: 0;';
+      item4.style.cssText += 'z-index: 1;';
     }
   };
  
