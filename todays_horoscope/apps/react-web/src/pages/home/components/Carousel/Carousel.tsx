@@ -1,5 +1,5 @@
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
-import './Csrousel.scss';
+import './Carousel.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useDrag } from '@use-gesture/react';
@@ -80,17 +80,11 @@ function Carousel({ setActiveSlide }: swiperProps) {
     const item3 = document.querySelector('.item-3') as HTMLElement;
     const item4 = document.querySelector('.item-4') as HTMLElement;
   
-    if (item1) {
-      item1.style.zIndex = '3';
-    }
-    if (item2) {
-      item2.style.zIndex = '1';
-    }
-    if (item3) {
-      item3.style.zIndex = '0';
-    }
-    if (item4) {
-      item4.style.zIndex = '2';
+    if (item1 && item2 && item3 && item4){
+      item1.style.cssText += 'z-index: 3;';
+      item2.style.cssText += 'z-index: 1;';
+      item3.style.cssText += 'z-index: 0;';
+      item4.style.cssText += 'z-index: 2;';
     }
   };
 
@@ -101,27 +95,14 @@ function Carousel({ setActiveSlide }: swiperProps) {
     const item3 = document.querySelector('.item-3') as HTMLElement;
     const item4 = document.querySelector('.item-4') as HTMLElement;
   
-    if (item1) {
-      item1.style.zIndex = '3';
-    }
-    if (item2) {
-      item2.style.zIndex = '2';
-    }
-    if (item3) {
-      item3.style.zIndex = '0';
-    }
-    if (item4) {
-      item4.style.zIndex = '1';
+    if (item1 && item2 && item3 && item4){
+      item1.style.cssText += 'z-index: 3;';
+      item2.style.cssText += 'z-index: 2;';
+      item3.style.cssText += 'z-index: 0;';
+      item4.style.cssText += 'z-index: 1;';
     }
   };
-
-  useEffect(() => {
-    if (drag < 0) {
-      leftStyles();
-    } else if (drag > 0) {
-      rightStyles();
-    }
-  }, [drag]);
+ 
 
   //드래그 이벤트 함수
   const bind = useDrag(
@@ -154,12 +135,12 @@ function Carousel({ setActiveSlide }: swiperProps) {
       //첫스와이프 기록 남기기
       if (localStorage.userData !== undefined && localStorage.todayMessage === undefined)
         localStorage.setItem('todayMessage', 'true');
-    }, { filterTaps: true, pointer: { touch: true }});
+    }, { filterTaps: true});
 
 
   return (
     <div className="slider-container">
-      <div className="carousel-slider" {...bind()} ref={containerRef}>
+      <div className="carousel-slider" {...bind()} ref={containerRef} style={{ touchAction: 'none' }}>
         <ul className="slider-items">
           {slidesValue.map((SlideContent, index) => {
             let offset = index - selectedItem;
