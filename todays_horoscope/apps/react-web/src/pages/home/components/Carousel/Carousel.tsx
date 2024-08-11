@@ -1,5 +1,5 @@
 import CarouselBanner from '../CarouselBanner/CarouselBanner';
-import './Csrousel.scss';
+import './Carousel.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useDrag } from '@use-gesture/react';
@@ -114,14 +114,7 @@ function Carousel({ setActiveSlide }: swiperProps) {
       item4.style.zIndex = '1';
     }
   };
-
-  useEffect(() => {
-    if (drag < 0) {
-      leftStyles();
-    } else if (drag > 0) {
-      rightStyles();
-    }
-  }, [drag]);
+ 
 
   //드래그 이벤트 함수
   const bind = useDrag(
